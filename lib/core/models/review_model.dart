@@ -1,4 +1,4 @@
-import 'package:e_commerce/core/entities/review_entity.dart';
+import 'package:home_dreams/core/entities/review_entity.dart';
 
 class ReviewModel {
   final String name;

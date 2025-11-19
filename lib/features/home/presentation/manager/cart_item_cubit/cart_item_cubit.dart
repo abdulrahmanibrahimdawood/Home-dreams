@@ -1,5 +1,5 @@
-import 'package:e_commerce/features/home/domain/entites/cart_item_entity.dart';
 import 'package:flutter_bloc/flutter_bloc.dart' show Cubit;
+import 'package:home_dreams/features/home/domain/entites/cart_item_entity.dart';
 
 part 'cart_item_state.dart';
 

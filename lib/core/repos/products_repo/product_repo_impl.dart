@@ -1,12 +1,12 @@
 import 'dart:developer';
 
 import 'package:dartz/dartz.dart';
-import 'package:e_commerce/core/entities/product_entity.dart';
-import 'package:e_commerce/core/errors/failures.dart';
-import 'package:e_commerce/core/models/product_model.dart';
-import 'package:e_commerce/core/repos/products_repo/product_repo.dart';
-import 'package:e_commerce/core/services/data_service.dart';
-import 'package:e_commerce/core/utils/backend_endpoints.dart';
+import 'package:home_dreams/core/entities/product_entity.dart';
+import 'package:home_dreams/core/errors/failures.dart';
+import 'package:home_dreams/core/models/product_model.dart';
+import 'package:home_dreams/core/repos/products_repo/product_repo.dart';
+import 'package:home_dreams/core/services/data_service.dart';
+import 'package:home_dreams/core/utils/backend_endpoints.dart';
 
 class ProductsRepoImpl implements ProductsRepo {
   final DatabaseServices databaseServices;

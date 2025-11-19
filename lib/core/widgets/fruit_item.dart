@@ -1,10 +1,10 @@
-import 'package:e_commerce/core/entities/product_entity.dart';
-import 'package:e_commerce/core/utils/app_colors.dart';
-import 'package:e_commerce/core/utils/app_text_styles.dart';
-import 'package:e_commerce/core/widgets/custom_network_image.dart';
-import 'package:e_commerce/features/home/presentation/manager/cart_cubit/cart_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:home_dreams/core/entities/product_entity.dart';
+import 'package:home_dreams/core/utils/app_colors.dart';
+import 'package:home_dreams/core/utils/app_text_styles.dart';
+import 'package:home_dreams/core/widgets/custom_network_image.dart';
+import 'package:home_dreams/features/home/presentation/manager/cart_cubit/cart_cubit.dart';
 
 class FruitItem extends StatelessWidget {
   const FruitItem({super.key, required this.productEntity});

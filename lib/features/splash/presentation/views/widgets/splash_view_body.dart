@@ -1,11 +1,10 @@
-import 'package:e_commerce/constants.dart';
-import 'package:e_commerce/core/services/firebase_auth_service.dart';
-import 'package:e_commerce/core/services/shared_preferences_singleton.dart';
-import 'package:e_commerce/core/utils/app_images.dart';
-import 'package:e_commerce/features/auth/presentation/views/signin_view.dart';
-import 'package:e_commerce/features/on_boarding/presentation/views/on_boardig_view.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:home_dreams/constants.dart';
+import 'package:home_dreams/core/services/firebase_auth_service.dart';
+import 'package:home_dreams/core/services/shared_preferences_singleton.dart';
+import 'package:home_dreams/core/utils/app_images.dart';
+import 'package:home_dreams/features/auth/presentation/views/signin_view.dart';
+import 'package:home_dreams/features/on_boarding/presentation/views/on_boardig_view.dart';
 
 class SplashViewBody extends StatefulWidget {
   const SplashViewBody({super.key});
@@ -24,22 +23,23 @@ class _SplashViewBodyState extends State<SplashViewBody> {
   @override
   Widget build(BuildContext context) {
     return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      crossAxisAlignment: CrossAxisAlignment.stretch,
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        SizedBox(),
-        SizedBox(),
-
-        Image.asset(Assets.assetsImagesSplash),
-
-        SvgPicture.asset(Assets.assetsImagesSplashButtom, fit: BoxFit.fill),
+        Center(
+          child: SizedBox(
+            height: MediaQuery.of(context).size.height * 0.4,
+            width: MediaQuery.of(context).size.width * 0.4,
+            child: Image.asset(Assets.assetsImagesAppIcon),
+          ),
+        ),
+        Text('أحلام المنزل'),
       ],
     );
   }
 
   void excuteNavigation() {
     bool isOnBoardingViewSeen = Prefs.getBool(kIsOnBoardingViewSeen);
-    Future.delayed(const Duration(seconds: 3), () {
+    Future.delayed(const Duration(seconds: 2000), () {
       if (isOnBoardingViewSeen) {
         if (!mounted) return;
         var isLoggedIn = FirebaseAuthService().isLoggedIn();

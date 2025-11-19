@@ -1,4 +1,4 @@
-import 'package:e_commerce/features/checkout/domain/entites/order_input_entity.dart';
+import 'package:home_dreams/features/checkout/domain/entites/order_input_entity.dart';
 
 import 'amount.payment.entity.dart';
 import 'item_list.payment.entity.dart';

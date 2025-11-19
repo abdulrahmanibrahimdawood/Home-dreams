@@ -1,7 +1,7 @@
-import 'package:e_commerce/core/utils/app_colors.dart';
-import 'package:e_commerce/core/utils/app_text_styles.dart';
-import 'package:e_commerce/features/auth/presentation/views/widgets/custom_chech_box.dart';
 import 'package:flutter/material.dart';
+import 'package:home_dreams/core/utils/app_colors.dart';
+import 'package:home_dreams/core/utils/app_text_styles.dart';
+import 'package:home_dreams/features/auth/presentation/views/widgets/custom_chech_box.dart';
 
 class TermsAndCondations extends StatefulWidget {
   const TermsAndCondations({super.key, required this.onChanged});

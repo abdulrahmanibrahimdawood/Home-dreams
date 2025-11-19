@@ -1,8 +1,8 @@
-import 'package:e_commerce/core/utils/app_images.dart';
-import 'package:e_commerce/core/utils/app_text_styles.dart';
-import 'package:e_commerce/features/home/presentation/views/widgets/featured_item_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
+import 'package:home_dreams/core/utils/app_images.dart';
+import 'package:home_dreams/core/utils/app_text_styles.dart';
+import 'package:home_dreams/features/home/presentation/views/widgets/featured_item_button.dart';
 
 class FeaturedItem extends StatelessWidget {
   const FeaturedItem({super.key});

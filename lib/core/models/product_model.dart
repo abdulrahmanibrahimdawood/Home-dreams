@@ -1,6 +1,6 @@
-import 'package:e_commerce/core/entities/product_entity.dart';
-import 'package:e_commerce/core/helper_funcations/get_avg_rating.dart';
-import 'package:e_commerce/core/models/review_model.dart';
+import 'package:home_dreams/core/entities/product_entity.dart';
+import 'package:home_dreams/core/helper_funcations/get_avg_rating.dart';
+import 'package:home_dreams/core/models/review_model.dart';
 
 class ProductModel {
   final String name;

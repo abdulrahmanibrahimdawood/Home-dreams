@@ -1,10 +1,10 @@
 import 'package:dartz/dartz.dart';
-import 'package:e_commerce/core/errors/failures.dart';
-import 'package:e_commerce/core/repos/order_repo/order_repo.dart';
-import 'package:e_commerce/core/services/data_service.dart';
-import 'package:e_commerce/core/utils/backend_endpoints.dart';
-import 'package:e_commerce/features/checkout/data/order/models/order_model.dart';
-import 'package:e_commerce/features/checkout/domain/entites/order_input_entity.dart';
+import 'package:home_dreams/core/errors/failures.dart';
+import 'package:home_dreams/core/repos/order_repo/order_repo.dart';
+import 'package:home_dreams/core/services/data_service.dart';
+import 'package:home_dreams/core/utils/backend_endpoints.dart';
+import 'package:home_dreams/features/checkout/data/order/models/order_model.dart';
+import 'package:home_dreams/features/checkout/domain/entites/order_input_entity.dart';
 
 class OrderRepoImpl implements OrderRepo {
   final DatabaseServices firestoreServices;

@@ -1,8 +1,8 @@
-import 'package:e_commerce/core/utils/app_text_styles.dart';
-import 'package:e_commerce/features/checkout/domain/entites/order_input_entity.dart';
-import 'package:e_commerce/features/checkout/presentation/views/widgets/payment_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:home_dreams/core/utils/app_text_styles.dart';
+import 'package:home_dreams/features/checkout/domain/entites/order_input_entity.dart';
+import 'package:home_dreams/features/checkout/presentation/views/widgets/payment_item.dart';
 
 class OrderSummaryWidget extends StatelessWidget {
   const OrderSummaryWidget({super.key, required this.pageController});

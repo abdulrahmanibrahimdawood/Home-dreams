@@ -1,4 +1,4 @@
-import 'package:e_commerce/core/utils/app_images.dart';
+import 'package:home_dreams/core/utils/app_images.dart';
 
 class BottomNavigationBarEntity {
   final String name;

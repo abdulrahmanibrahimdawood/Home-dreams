@@ -1,8 +1,8 @@
-import 'package:e_commerce/core/helper_funcations/get_user.dart';
-import 'package:e_commerce/core/utils/app_images.dart';
-import 'package:e_commerce/core/utils/app_text_styles.dart';
-import 'package:e_commerce/core/widgets/notification_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:home_dreams/core/helper_funcations/get_user.dart';
+import 'package:home_dreams/core/utils/app_images.dart';
+import 'package:home_dreams/core/utils/app_text_styles.dart';
+import 'package:home_dreams/core/widgets/notification_widget.dart';
 
 class CustomHomeAppBar extends StatelessWidget {
   const CustomHomeAppBar({super.key});

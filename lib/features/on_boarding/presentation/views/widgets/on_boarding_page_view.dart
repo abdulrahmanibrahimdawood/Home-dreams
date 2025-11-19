@@ -1,6 +1,6 @@
-import 'package:e_commerce/core/utils/app_images.dart';
-import 'package:e_commerce/features/on_boarding/presentation/views/widgets/page_view_item.dart';
 import 'package:flutter/material.dart';
+import 'package:home_dreams/core/utils/app_images.dart';
+import 'package:home_dreams/features/on_boarding/presentation/views/widgets/page_view_item.dart';
 
 class OnBoardingPageView extends StatelessWidget {
   const OnBoardingPageView({super.key, required this.pageController});

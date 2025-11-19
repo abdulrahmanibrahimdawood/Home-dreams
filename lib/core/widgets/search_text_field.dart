@@ -1,7 +1,7 @@
-import 'package:e_commerce/core/utils/app_images.dart';
-import 'package:e_commerce/core/utils/app_text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:home_dreams/core/utils/app_images.dart';
+import 'package:home_dreams/core/utils/app_text_styles.dart';
 
 class SearchTextField extends StatelessWidget {
   const SearchTextField({super.key});

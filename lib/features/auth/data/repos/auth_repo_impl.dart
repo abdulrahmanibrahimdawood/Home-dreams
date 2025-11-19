@@ -2,17 +2,17 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:dartz/dartz.dart';
-import 'package:e_commerce/constants.dart';
-import 'package:e_commerce/core/errors/exceptions.dart';
-import 'package:e_commerce/core/errors/failures.dart';
-import 'package:e_commerce/core/services/data_service.dart';
-import 'package:e_commerce/core/services/firebase_auth_service.dart';
-import 'package:e_commerce/core/services/shared_preferences_singleton.dart';
-import 'package:e_commerce/core/utils/backend_endpoints.dart';
-import 'package:e_commerce/features/auth/data/models/user_model.dart';
-import 'package:e_commerce/features/auth/domain/entites/user_entity.dart';
-import 'package:e_commerce/features/auth/domain/repos/auth_repo.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:home_dreams/constants.dart';
+import 'package:home_dreams/core/errors/exceptions.dart';
+import 'package:home_dreams/core/errors/failures.dart';
+import 'package:home_dreams/core/services/data_service.dart';
+import 'package:home_dreams/core/services/firebase_auth_service.dart';
+import 'package:home_dreams/core/services/shared_preferences_singleton.dart';
+import 'package:home_dreams/core/utils/backend_endpoints.dart';
+import 'package:home_dreams/features/auth/data/models/user_model.dart';
+import 'package:home_dreams/features/auth/domain/entites/user_entity.dart';
+import 'package:home_dreams/features/auth/domain/repos/auth_repo.dart';
 
 class AuthRepoImpl extends AuthRepo {
   final FirebaseAuthService firebaseAuthService;

@@ -1,5 +1,5 @@
-import 'package:e_commerce/core/helper_funcations/get_currency.dart';
-import 'package:e_commerce/features/checkout/domain/entites/order_input_entity.dart';
+import 'package:home_dreams/core/helper_funcations/get_currency.dart';
+import 'package:home_dreams/features/checkout/domain/entites/order_input_entity.dart';
 
 import 'details.payment.entity.dart';
 

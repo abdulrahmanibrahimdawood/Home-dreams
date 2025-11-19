@@ -1,4 +1,4 @@
-import 'package:e_commerce/features/checkout/domain/entites/shipping_address_entity.dart';
+import 'package:home_dreams/features/checkout/domain/entites/shipping_address_entity.dart';
 
 class ShippingAddressModel {
   String? name;

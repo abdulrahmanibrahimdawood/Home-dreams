@@ -1,4 +1,4 @@
-import 'package:e_commerce/features/home/domain/entites/cart_item_entity.dart';
+import 'package:home_dreams/features/home/domain/entites/cart_item_entity.dart';
 
 class OrderProductModel {
   final String code;

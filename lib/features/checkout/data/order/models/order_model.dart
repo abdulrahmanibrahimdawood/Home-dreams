@@ -1,6 +1,6 @@
-import 'package:e_commerce/features/checkout/data/order/models/order_product_model.dart';
-import 'package:e_commerce/features/checkout/data/order/models/shipping_address_model.dart';
-import 'package:e_commerce/features/checkout/domain/entites/order_input_entity.dart';
+import 'package:home_dreams/features/checkout/data/order/models/order_product_model.dart';
+import 'package:home_dreams/features/checkout/data/order/models/shipping_address_model.dart';
+import 'package:home_dreams/features/checkout/domain/entites/order_input_entity.dart';
 import 'package:uuid/uuid.dart';
 
 class OrderModel {

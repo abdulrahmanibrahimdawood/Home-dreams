@@ -1,7 +1,7 @@
-import 'package:e_commerce/features/home/domain/entites/cart_item_entity.dart';
-import 'package:e_commerce/features/home/presentation/views/widgets/cart_item.dart';
-import 'package:e_commerce/features/home/presentation/views/widgets/custom_divider.dart';
 import 'package:flutter/material.dart';
+import 'package:home_dreams/features/home/domain/entites/cart_item_entity.dart';
+import 'package:home_dreams/features/home/presentation/views/widgets/cart_item.dart';
+import 'package:home_dreams/features/home/presentation/views/widgets/custom_divider.dart';
 
 class CartItemsList extends StatelessWidget {
   const CartItemsList({super.key, required this.carItems});

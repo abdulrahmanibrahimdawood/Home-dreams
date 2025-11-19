@@ -1,5 +1,5 @@
-import 'package:e_commerce/features/checkout/domain/entites/shipping_address_entity.dart';
-import 'package:e_commerce/features/home/domain/entites/cart_entity.dart';
+import 'package:home_dreams/features/checkout/domain/entites/shipping_address_entity.dart';
+import 'package:home_dreams/features/home/domain/entites/cart_entity.dart';
 
 class OrderInputEntity {
   final String uId;

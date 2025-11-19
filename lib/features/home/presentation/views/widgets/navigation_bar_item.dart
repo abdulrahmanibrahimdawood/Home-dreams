@@ -1,7 +1,7 @@
-import 'package:e_commerce/features/home/domain/entites/bottom_navigation_bar_entity.dart';
-import 'package:e_commerce/features/home/presentation/views/widgets/active_item.dart';
-import 'package:e_commerce/features/home/presentation/views/widgets/in_active_item.dart';
 import 'package:flutter/material.dart';
+import 'package:home_dreams/features/home/domain/entites/bottom_navigation_bar_entity.dart';
+import 'package:home_dreams/features/home/presentation/views/widgets/active_item.dart';
+import 'package:home_dreams/features/home/presentation/views/widgets/in_active_item.dart';
 
 class NavigationBarItem extends StatelessWidget {
   const NavigationBarItem({

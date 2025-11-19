@@ -1,6 +1,6 @@
-import 'package:e_commerce/core/entities/product_entity.dart';
-import 'package:e_commerce/core/widgets/fruit_item.dart';
 import 'package:flutter/material.dart';
+import 'package:home_dreams/core/entities/product_entity.dart';
+import 'package:home_dreams/core/widgets/fruit_item.dart';
 
 class ProductsGridView extends StatelessWidget {
   const ProductsGridView({super.key, required this.products});

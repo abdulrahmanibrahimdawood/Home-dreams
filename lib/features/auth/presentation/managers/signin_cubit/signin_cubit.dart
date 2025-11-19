@@ -1,7 +1,7 @@
-import 'package:e_commerce/features/auth/domain/entites/user_entity.dart';
-import 'package:e_commerce/features/auth/domain/repos/auth_repo.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart' show Cubit;
+import 'package:home_dreams/features/auth/domain/entites/user_entity.dart';
+import 'package:home_dreams/features/auth/domain/repos/auth_repo.dart';
 
 part 'signin_state.dart';
 

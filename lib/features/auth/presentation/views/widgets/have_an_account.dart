@@ -1,7 +1,7 @@
-import 'package:e_commerce/core/utils/app_colors.dart';
-import 'package:e_commerce/core/utils/app_text_styles.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:home_dreams/core/utils/app_colors.dart';
+import 'package:home_dreams/core/utils/app_text_styles.dart';
 
 class HaveAnAccountWidget extends StatelessWidget {
   const HaveAnAccountWidget({super.key});

@@ -1,12 +1,12 @@
-import 'package:e_commerce/constants.dart';
-import 'package:e_commerce/core/widgets/custom_app_bar_inside.dart';
-import 'package:e_commerce/features/home/presentation/manager/cart_cubit/cart_cubit.dart';
-import 'package:e_commerce/features/home/presentation/views/widgets/cart_header.dart';
-import 'package:e_commerce/features/home/presentation/views/widgets/cart_items_list.dart';
-import 'package:e_commerce/features/home/presentation/views/widgets/custom_cart_button.dart';
-import 'package:e_commerce/features/home/presentation/views/widgets/custom_divider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:home_dreams/constants.dart';
+import 'package:home_dreams/core/widgets/custom_app_bar_inside.dart';
+import 'package:home_dreams/features/home/presentation/manager/cart_cubit/cart_cubit.dart';
+import 'package:home_dreams/features/home/presentation/views/widgets/cart_header.dart';
+import 'package:home_dreams/features/home/presentation/views/widgets/cart_items_list.dart';
+import 'package:home_dreams/features/home/presentation/views/widgets/custom_cart_button.dart';
+import 'package:home_dreams/features/home/presentation/views/widgets/custom_divider.dart';
 
 class CartViewBody extends StatelessWidget {
   const CartViewBody({super.key});

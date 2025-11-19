@@ -1,13 +1,13 @@
-import 'package:e_commerce/constants.dart';
-import 'package:e_commerce/core/helper_funcations/build_error_bar.dart';
-import 'package:e_commerce/core/widgets/custom_button.dart';
-import 'package:e_commerce/core/widgets/custom_password_field.dart';
-import 'package:e_commerce/core/widgets/custom_text_form_field.dart';
-import 'package:e_commerce/features/auth/presentation/managers/signup_cubit/signup_cubit.dart';
-import 'package:e_commerce/features/auth/presentation/views/widgets/have_an_account.dart';
-import 'package:e_commerce/features/auth/presentation/views/widgets/terms_and_condations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:home_dreams/constants.dart';
+import 'package:home_dreams/core/helper_funcations/build_error_bar.dart';
+import 'package:home_dreams/core/widgets/custom_button.dart';
+import 'package:home_dreams/core/widgets/custom_password_field.dart';
+import 'package:home_dreams/core/widgets/custom_text_form_field.dart';
+import 'package:home_dreams/features/auth/presentation/managers/signup_cubit/signup_cubit.dart';
+import 'package:home_dreams/features/auth/presentation/views/widgets/have_an_account.dart';
+import 'package:home_dreams/features/auth/presentation/views/widgets/terms_and_condations.dart';
 
 class SignupViewBody extends StatefulWidget {
   const SignupViewBody({super.key});

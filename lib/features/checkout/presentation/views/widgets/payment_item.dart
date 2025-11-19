@@ -1,6 +1,6 @@
-import 'package:e_commerce/core/utils/app_decoration.dart';
-import 'package:e_commerce/core/utils/app_text_styles.dart';
 import 'package:flutter/material.dart';
+import 'package:home_dreams/core/utils/app_decoration.dart';
+import 'package:home_dreams/core/utils/app_text_styles.dart';
 
 class PaymentItem extends StatelessWidget {
   const PaymentItem({super.key, required this.title, required this.child});

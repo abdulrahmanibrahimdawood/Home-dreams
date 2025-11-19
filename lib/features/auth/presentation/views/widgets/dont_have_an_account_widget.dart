@@ -1,7 +1,7 @@
-import 'package:e_commerce/core/utils/app_text_styles.dart';
-import 'package:e_commerce/features/auth/presentation/views/signup_view.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:home_dreams/core/utils/app_text_styles.dart';
+import 'package:home_dreams/features/auth/presentation/views/signup_view.dart';
 
 import '../../../../../core/utils/app_colors.dart';
 

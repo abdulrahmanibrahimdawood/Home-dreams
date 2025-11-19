@@ -1,4 +1,4 @@
-import 'package:e_commerce/core/entities/product_entity.dart';
+import 'package:home_dreams/core/entities/product_entity.dart';
 
 ProductEntity getDummyProduct() {
   return ProductEntity(

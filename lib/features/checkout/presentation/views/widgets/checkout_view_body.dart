@@ -1,15 +1,15 @@
 import 'dart:developer';
 
-import 'package:e_commerce/core/helper_funcations/build_error_bar.dart';
-import 'package:e_commerce/core/utils/app_keys.dart';
-import 'package:e_commerce/core/widgets/custom_button.dart';
-import 'package:e_commerce/features/checkout/domain/entites/order_input_entity.dart';
-import 'package:e_commerce/features/checkout/domain/entites/paypal_payment_entity/paypal.payment.entity.dart';
-import 'package:e_commerce/features/checkout/presentation/manager/add_order_cubit/add_order_cubit.dart';
-import 'package:e_commerce/features/checkout/presentation/views/widgets/checkout_page_view.dart';
-import 'package:e_commerce/features/checkout/presentation/views/widgets/checkout_steps.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_paypal_payment/flutter_paypal_payment.dart';
+import 'package:home_dreams/core/helper_funcations/build_error_bar.dart';
+import 'package:home_dreams/core/utils/app_keys.dart';
+import 'package:home_dreams/core/widgets/custom_button.dart';
+import 'package:home_dreams/features/checkout/domain/entites/order_input_entity.dart';
+import 'package:home_dreams/features/checkout/domain/entites/paypal_payment_entity/paypal.payment.entity.dart';
+import 'package:home_dreams/features/checkout/presentation/manager/add_order_cubit/add_order_cubit.dart';
+import 'package:home_dreams/features/checkout/presentation/views/widgets/checkout_page_view.dart';
+import 'package:home_dreams/features/checkout/presentation/views/widgets/checkout_steps.dart';
 import 'package:provider/provider.dart';
 
 class CheckoutViewBody extends StatefulWidget {

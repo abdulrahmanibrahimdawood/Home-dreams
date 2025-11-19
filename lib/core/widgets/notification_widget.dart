@@ -1,6 +1,6 @@
-import 'package:e_commerce/core/utils/app_images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:home_dreams/core/utils/app_images.dart';
 
 class NotificationWidget extends StatelessWidget {
   const NotificationWidget({super.key});
