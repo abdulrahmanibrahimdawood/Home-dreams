@@ -1,4 +1,3 @@
-import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:home_dreams/constants.dart';
 import 'package:home_dreams/core/services/shared_preferences_singleton.dart';
@@ -40,32 +39,50 @@ class _OnBoardingViewBodyState extends State<OnBoardingViewBody> {
       children: [
         Expanded(child: OnBoardingPageView(pageController: pageController)),
 
-        DotsIndicator(
-          dotsCount: 2,
-          decorator: DotsDecorator(
-            activeColor: AppColors.primaryColor,
-            color: currentPage == 1
-                ? AppColors.primaryColor
-                : AppColors.primaryColor.withValues(alpha: 0.5),
-          ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: List.generate(3, (index) {
+            final bool isActive = index == currentPage;
+
+            return AnimatedContainer(
+              duration: const Duration(milliseconds: 250),
+              margin: const EdgeInsets.symmetric(horizontal: 6),
+              width: isActive ? 18 : 9,
+              height: 9,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(30),
+                color: isActive
+                    ? AppColors.primaryColor
+                    : AppColors.primaryColor.withValues(alpha: 0.5),
+              ),
+            );
+          }),
         ),
+
         SizedBox(height: 29),
 
         Visibility(
           maintainAnimation: true,
           maintainSize: true,
           maintainState: true,
-          visible: currentPage == 1 ? true : false,
+          visible: true,
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: kHorizontalPadding),
             child: CustomButton(
               onPressed: () {
-                Prefs.setBool(kIsOnBoardingViewSeen, true);
-                Navigator.of(
-                  context,
-                ).pushReplacementNamed(SigninView.routeName);
+                if (currentPage == 0 || currentPage == 1) {
+                  pageController.nextPage(
+                    duration: const Duration(milliseconds: 500),
+                    curve: Curves.fastLinearToSlowEaseIn,
+                  );
+                } else {
+                  Prefs.setBool(kIsOnBoardingViewSeen, true);
+                  Navigator.of(
+                    context,
+                  ).pushReplacementNamed(SigninView.routeName);
+                }
               },
-              text: "ابدأ الان",
+              text: currentPage == 2 ? "ابدأ الان" : 'التالي',
             ),
           ),
         ),

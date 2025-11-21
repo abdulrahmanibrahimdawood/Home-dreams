@@ -1,21 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:home_dreams/constants.dart';
 import 'package:home_dreams/core/services/shared_preferences_singleton.dart';
-import 'package:home_dreams/core/utils/app_images.dart';
 import 'package:home_dreams/features/auth/presentation/views/signin_view.dart';
 
 class PageViewItem extends StatelessWidget {
   const PageViewItem({
     super.key,
     required this.image,
-    required this.backgroundImage,
     required this.subTitle,
     required this.title,
     required this.isVisable,
   });
-
-  final String image, backgroundImage;
+  final String image;
   final String subTitle;
   final Widget title;
   final bool isVisable;
@@ -29,12 +25,12 @@ class PageViewItem extends StatelessWidget {
 
           child: Stack(
             children: [
-              Positioned.fill(
-                child: SvgPicture.asset(
-                  Assets.assetsImagesBackGround,
-                  fit: BoxFit.fill,
-                ),
-              ),
+              // Positioned.fill(
+              // child: SvgPicture.asset(
+              // Assets.assetsImagesBackGround,
+              //   // fit: BoxFit.fill,
+              // ),
+              // ),
               Positioned(
                 bottom: 0,
                 right: 0,
