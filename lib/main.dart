@@ -29,7 +29,7 @@ class ECommerce extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-        scaffoldBackgroundColor: Colors.white,
+        scaffoldBackgroundColor: Color.fromARGB(255, 252, 250, 249),
         fontFamily: 'Cairo',
         colorScheme: ColorScheme.fromSeed(seedColor: AppColors.primaryColor),
       ),

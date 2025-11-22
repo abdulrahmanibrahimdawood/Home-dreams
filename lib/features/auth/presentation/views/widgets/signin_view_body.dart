@@ -10,6 +10,7 @@ import 'package:home_dreams/core/widgets/custom_button.dart';
 import 'package:home_dreams/core/widgets/custom_password_field.dart';
 import 'package:home_dreams/core/widgets/custom_text_form_field.dart';
 import 'package:home_dreams/features/auth/presentation/managers/signin_cubit/signin_cubit.dart';
+import 'package:home_dreams/features/auth/presentation/views/forget_password_view.dart';
 import 'package:home_dreams/features/auth/presentation/views/widgets/dont_have_an_account_widget.dart';
 import 'package:home_dreams/features/auth/presentation/views/widgets/or_divider.dart';
 import 'package:home_dreams/features/auth/presentation/views/widgets/social_login_button.dart';
@@ -54,10 +55,18 @@ class _SigninViewBodyState extends State<SigninViewBody> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  Text(
-                    " نسيت كلمة المرور؟",
-                    style: TextStyles.bold13.copyWith(
-                      color: AppColors.lightPrimaryColor,
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.pushNamed(
+                        context,
+                        ForgetPasswordView.routeName,
+                      );
+                    },
+                    child: Text(
+                      " نسيت كلمة المرور؟",
+                      style: TextStyles.bold13.copyWith(
+                        color: AppColors.lightPrimaryColor,
+                      ),
                     ),
                   ),
                 ],

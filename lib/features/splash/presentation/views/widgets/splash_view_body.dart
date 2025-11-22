@@ -6,7 +6,6 @@ import 'package:home_dreams/core/utils/app_colors.dart';
 import 'package:home_dreams/core/utils/app_images.dart';
 import 'package:home_dreams/core/utils/app_text_styles.dart';
 import 'package:home_dreams/features/auth/presentation/views/signin_view.dart';
-import 'package:home_dreams/features/home/presentation/views/main_view.dart';
 import 'package:home_dreams/features/on_boarding/presentation/views/on_boardig_view.dart';
 
 class SplashViewBody extends StatefulWidget {
@@ -53,7 +52,7 @@ class _SplashViewBodyState extends State<SplashViewBody> {
         if (!mounted) return;
         var isLoggedIn = FirebaseAuthService().isLoggedIn();
         if (isLoggedIn) {
-          Navigator.pushReplacementNamed(context, MainView.routeName);
+          Navigator.pushReplacementNamed(context, SigninView.routeName); //main
         } else {
           Navigator.pushReplacementNamed(context, SigninView.routeName);
         }
