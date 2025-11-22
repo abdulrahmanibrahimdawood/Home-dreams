@@ -23,14 +23,17 @@ class FeaturedItem extends StatelessWidget {
                 top: 0,
                 bottom: 0,
                 right: itemWidth * .4,
-                child: Image.asset(Assets.assetsImagesTest, fit: BoxFit.fill),
+                child: Image.asset(
+                  Assets.assetsImagesAppIconsss,
+                  fit: BoxFit.fill,
+                ),
               ),
               Container(
                 width: itemWidth / 2,
                 decoration: BoxDecoration(
                   image: DecorationImage(
                     fit: BoxFit.fill,
-                    image: Svg(Assets.assetsImagesFeaturedItemBackground),
+                    image: Svg(Assets.assetsImagesCartIcon),
                   ),
                 ),
                 child: Padding(

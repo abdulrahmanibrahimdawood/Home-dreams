@@ -6,7 +6,6 @@ import 'package:home_dreams/core/widgets/search_text_field.dart';
 import 'package:home_dreams/features/home/presentation/views/widgets/best_selling_grid_view_bloc_builder.dart';
 import 'package:home_dreams/features/home/presentation/views/widgets/best_selling_header.dart';
 import 'package:home_dreams/features/home/presentation/views/widgets/custom_home_app_bar.dart';
-import 'package:home_dreams/features/home/presentation/views/widgets/featured_list.dart';
 
 class HomeViewBody extends StatefulWidget {
   const HomeViewBody({super.key});
@@ -35,8 +34,6 @@ class _HomeViewBodyState extends State<HomeViewBody> {
                 CustomHomeAppBar(),
                 SizedBox(height: kTopPadding),
                 SearchTextField(),
-                SizedBox(height: 12),
-                FeaturedList(),
                 SizedBox(height: 12),
                 BestSellingHeader(),
                 SizedBox(height: 8),

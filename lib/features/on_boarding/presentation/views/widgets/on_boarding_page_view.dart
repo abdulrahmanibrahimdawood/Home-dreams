@@ -13,7 +13,7 @@ class OnBoardingPageView extends StatelessWidget {
       children: [
         PageViewItem(
           isVisable: true,
-          image: Assets.assetsImages2,
+          image: Assets.assetsImagesOnboarding1,
           subTitle:
               'تسوق أفضل منتجات وأساس المنزل بجودة عالية وأسعار مناسبة، واطلب كل احتياجاتك بسهولة ومن مكان واحد.',
           title: Row(
@@ -42,7 +42,7 @@ class OnBoardingPageView extends StatelessWidget {
         ),
         PageViewItem(
           isVisable: true,
-          image: Assets.assetsImages3,
+          image: Assets.assetsImagesOnboarding2,
           subTitle:
               'اكتشف تشكيلة واسعة من منتجات البيت والأثاث وخليك دايمًا جاهز لكل احتياجات منزلك مع تجربة شراء سهلة وسريعة.',
           title: Text(
@@ -59,7 +59,7 @@ class OnBoardingPageView extends StatelessWidget {
 
         PageViewItem(
           isVisable: false,
-          image: Assets.assetsImages1,
+          image: Assets.assetsImagesOnboarding3,
           subTitle:
               'وفر وقتك ومجهودك وتسوق أساس ومنتجات المنزل بأفضل الأسعار مع توصيل سريع وخدمة مضمونة لحد باب بيتك.',
           title: Text(

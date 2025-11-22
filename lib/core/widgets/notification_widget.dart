@@ -11,7 +11,7 @@ class NotificationWidget extends StatelessWidget {
       padding: EdgeInsets.all(12),
       decoration: ShapeDecoration(
         shape: OvalBorder(),
-        color: Color.fromARGB(255, 230, 239, 245),
+        color: const Color.fromARGB(255, 249, 234, 227),
       ),
       child: SvgPicture.asset(Assets.assetsImagesNotification),
     );

@@ -11,7 +11,7 @@ class CustomHomeAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       trailing: NotificationWidget(),
-      leading: Image.asset(Assets.assetsImagesProfileImage),
+      leading: Image.asset(Assets.assetsImagesEllipse11),
       title: Text(
         'صباح الخير !..',
         style: TextStyles.regular16.copyWith(color: Color(0xff949D9E)),
