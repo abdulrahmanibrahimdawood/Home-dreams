@@ -39,6 +39,7 @@ class _CheckoutViewState extends State<CheckoutView> {
       create: (context) => AddOrderCubit(getIt.get<OrderRepo>()),
       child: Scaffold(
         appBar: buildAppBarInside(
+          showBackButton: false,
           context,
           title: 'الشحن',
           showNotification: false,
