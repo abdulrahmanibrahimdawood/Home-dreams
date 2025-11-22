@@ -31,7 +31,7 @@ class ForgetPasswordViewBody extends StatelessWidget {
             onPressed: () {
               Navigator.pushNamed(context, ConfirmCodeView.routeName);
             },
-            text: 'نسيت كلمة المرور',
+            text: 'ارسل رمز التحقق',
           ),
         ],
       ),

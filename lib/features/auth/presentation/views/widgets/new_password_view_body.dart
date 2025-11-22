@@ -3,6 +3,7 @@ import 'package:home_dreams/constants.dart';
 import 'package:home_dreams/core/utils/app_text_styles.dart';
 import 'package:home_dreams/core/widgets/custom_button.dart';
 import 'package:home_dreams/core/widgets/custom_password_field.dart';
+import 'package:home_dreams/features/auth/presentation/views/widgets/change_password_success_dialog.dart';
 
 class NewPasswordViewBody extends StatelessWidget {
   const NewPasswordViewBody({super.key});
@@ -25,7 +26,15 @@ class NewPasswordViewBody extends StatelessWidget {
           SizedBox(height: 24),
           PasswordField(hintText: 'تأكيد كلمة المرور'),
           SizedBox(height: 30),
-          CustomButton(onPressed: () {}, text: 'إنشاء كلمة مرور جديدة'),
+          CustomButton(
+            onPressed: () {
+              showDialog(
+                context: context,
+                builder: (context) => const SuccessDialog(),
+              );
+            },
+            text: 'إنشاء كلمة مرور جديدة',
+          ),
         ],
       ),
     );

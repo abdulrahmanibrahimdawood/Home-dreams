@@ -26,6 +26,10 @@ class Assets {
   /// assets/images/checked.svg
   static const String assetsImagesChecked = "assets/images/checked.svg";
 
+  /// Assets for assetsImagesConfirmPassword
+  /// assets/images/confirm_password.svg
+  static const String assetsImagesConfirmPassword = "assets/images/confirm_password.svg";
+
   /// Assets for assetsImagesEdit
   /// assets/images/edit.png
   static const String assetsImagesEdit = "assets/images/edit.png";
