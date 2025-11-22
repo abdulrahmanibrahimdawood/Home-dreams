@@ -4,6 +4,7 @@ import 'package:home_dreams/core/utils/app_colors.dart';
 import 'package:home_dreams/core/utils/app_text_styles.dart';
 import 'package:home_dreams/core/widgets/custom_button.dart';
 import 'package:home_dreams/core/widgets/custom_text_form_field.dart';
+import 'package:home_dreams/features/auth/presentation/views/new_password_view.dart';
 
 class ConfirmCodeViewBody extends StatelessWidget {
   const ConfirmCodeViewBody({super.key});
@@ -13,7 +14,8 @@ class ConfirmCodeViewBody extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: kHorizontalPadding),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
+
         children: [
           SizedBox(height: 24),
           Text(
@@ -27,7 +29,12 @@ class ConfirmCodeViewBody extends StatelessWidget {
             textInputType: TextInputType.number,
           ),
           SizedBox(height: 30),
-          CustomButton(onPressed: () {}, text: 'تحقق من الرمز'),
+          CustomButton(
+            onPressed: () {
+              Navigator.pushNamed(context, NewPasswordView.routeName);
+            },
+            text: 'تحقق من الرمز',
+          ),
           SizedBox(height: 30),
           GestureDetector(
             onTap: () {},

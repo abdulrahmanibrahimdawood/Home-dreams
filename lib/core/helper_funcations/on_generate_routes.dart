@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:home_dreams/features/auth/presentation/views/confirm_code_view.dart';
 import 'package:home_dreams/features/auth/presentation/views/forget_password_view.dart';
+import 'package:home_dreams/features/auth/presentation/views/new_password_view.dart';
 import 'package:home_dreams/features/auth/presentation/views/signin_view.dart';
 import 'package:home_dreams/features/auth/presentation/views/signup_view.dart';
 import 'package:home_dreams/features/best_selling_product/presentation/views/best_selling_view.dart';
@@ -35,6 +36,8 @@ Route<dynamic> onGenerateRoutes(RouteSettings settings) {
       );
     case ConfirmCodeView.routeName:
       return MaterialPageRoute(builder: (context) => const ConfirmCodeView());
+    case NewPasswordView.routeName:
+      return MaterialPageRoute(builder: (context) => const NewPasswordView());
     default:
       return MaterialPageRoute(builder: (context) => const Scaffold());
   }
