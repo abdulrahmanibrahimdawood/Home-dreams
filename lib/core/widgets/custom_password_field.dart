@@ -14,6 +14,7 @@ class _PasswordFieldState extends State<PasswordField> {
   @override
   Widget build(BuildContext context) {
     return CustomTextFormField(
+      errorMessage: 'يرجى كتابة كلمة المرور',
       obscureText: obscureText,
       onSaved: widget.onSaved,
       suffixIcon: GestureDetector(

@@ -33,6 +33,7 @@ class _SignupViewBodyState extends State<SignupViewBody> {
             children: [
               SizedBox(height: 24),
               CustomTextFormField(
+                errorMessage: 'يرجى كتابة الاسم كامل',
                 onSaved: (value) {
                   userName = value!;
                 },
@@ -41,6 +42,7 @@ class _SignupViewBodyState extends State<SignupViewBody> {
               ),
               SizedBox(height: 16),
               CustomTextFormField(
+                errorMessage: 'يرجى كتابة البريد الإلكتروني',
                 onSaved: (value) {
                   email = value!;
                 },
@@ -73,10 +75,7 @@ class _SignupViewBodyState extends State<SignupViewBody> {
                             userName,
                           );
                     } else {
-                      showErrorBar(
-                        context,
-                        'يجب الموافقة على الشروط والسياسات',
-                      );
+                      showBar(context, 'يجب الموافقة على الشروط والسياسات');
                     }
                   } else {
                     setState(() {

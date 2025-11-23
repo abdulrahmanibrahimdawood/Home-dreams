@@ -184,4 +184,14 @@ class FirebaseAuthService {
   bool isLoggedIn() {
     return FirebaseAuth.instance.currentUser != null;
   }
+
+  Future<void> resetPassword({required String email}) async {
+    try {
+      await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
+    } catch (e) {
+      throw CustomException(
+        message: 'لقد حدث خطأ ما. الرجاء المحاولة مرة اخرى.',
+      );
+    }
+  }
 }

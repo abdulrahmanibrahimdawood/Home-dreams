@@ -25,6 +25,7 @@ class AddressInputSection extends StatelessWidget {
             children: [
               SizedBox(height: 24),
               CustomTextFormField(
+                errorMessage: 'يرجى كتابة الاسم كامل',
                 onSaved: (value) {
                   context.read<OrderInputEntity>().shippingAddressEntity.name =
                       value!;
@@ -34,6 +35,7 @@ class AddressInputSection extends StatelessWidget {
               ),
               SizedBox(height: 16),
               CustomTextFormField(
+                errorMessage: 'يرجى كتابة البريد الإلكتروني',
                 onSaved: (value) {
                   context.read<OrderInputEntity>().shippingAddressEntity.email =
                       value!;
@@ -43,6 +45,7 @@ class AddressInputSection extends StatelessWidget {
               ),
               SizedBox(height: 16),
               CustomTextFormField(
+                errorMessage: 'يرجى كتابة العنوان',
                 onSaved: (value) {
                   context
                           .read<OrderInputEntity>()
@@ -55,6 +58,7 @@ class AddressInputSection extends StatelessWidget {
               ),
               SizedBox(height: 16),
               CustomTextFormField(
+                errorMessage: 'يرجى كتابة المدينه',
                 onSaved: (value) {
                   context.read<OrderInputEntity>().shippingAddressEntity.city =
                       value!;
@@ -64,6 +68,7 @@ class AddressInputSection extends StatelessWidget {
               ),
               SizedBox(height: 16),
               CustomTextFormField(
+                errorMessage: 'يرجى كتابة رقم الطابق , رقم الشقه ..',
                 onSaved: (value) {
                   context.read<OrderInputEntity>().shippingAddressEntity.floor =
                       value!;
@@ -73,6 +78,7 @@ class AddressInputSection extends StatelessWidget {
               ),
               SizedBox(height: 16),
               CustomTextFormField(
+                errorMessage: 'يرجى كتابة رقم التليفون',
                 onSaved: (value) {
                   context.read<OrderInputEntity>().shippingAddressEntity.phone =
                       value!;

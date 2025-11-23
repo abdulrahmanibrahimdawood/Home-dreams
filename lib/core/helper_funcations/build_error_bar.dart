@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-void showErrorBar(BuildContext context, String message) {
+void showBar(BuildContext context, String message) {
   final messenger = ScaffoldMessenger.of(context);
   messenger.hideCurrentSnackBar();
   messenger.showSnackBar(
     SnackBar(
       content: Text(message),
       behavior: SnackBarBehavior.floating,
-      duration: const Duration(seconds: 1),
+      duration: const Duration(seconds: 2),
     ),
   );
 }

@@ -68,7 +68,7 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
                     curve: Curves.easeIn,
                   );
                 } else {
-                  showErrorBar(context, 'يرجي تحديد طريقه الدفع');
+                  showBar(context, 'يرجي تحديد طريقه الدفع');
                 }
               } else {
                 _handleAddressValidation();
@@ -110,7 +110,7 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
         curve: Curves.bounceIn,
       );
     } else {
-      showErrorBar(context, 'يرجي تحديد طريقه الدفع');
+      showBar(context, 'يرجي تحديد طريقه الدفع');
     }
   }
 
@@ -162,7 +162,7 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
           onError: (error) {
             Navigator.pop(context);
             log(error.toString());
-            showErrorBar(context, 'حدث خطأ في عملية الدفع');
+            showBar(context, 'حدث خطأ في عملية الدفع');
           },
           onCancel: () {
             log('cancelled:');

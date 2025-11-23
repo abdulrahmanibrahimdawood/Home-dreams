@@ -12,10 +12,10 @@ class AddOrderCubitBlocBuilder extends StatelessWidget {
     return BlocConsumer<AddOrderCubit, AddOrderState>(
       listener: (context, state) {
         if (state is AddOrderSuccess) {
-          showErrorBar(context, 'تمت العمليه بنجاح');
+          showBar(context, 'تمت العمليه بنجاح');
         }
         if (state is AddOrderFailure) {
-          showErrorBar(context, state.errMessage);
+          showBar(context, state.errMessage);
         }
       },
       builder: (context, state) {

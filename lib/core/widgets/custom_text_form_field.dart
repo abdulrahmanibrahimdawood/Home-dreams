@@ -9,12 +9,14 @@ class CustomTextFormField extends StatelessWidget {
     this.suffixIcon,
     this.onSaved,
     this.obscureText = false,
+    required this.errorMessage,
   });
   final String hintText;
   final TextInputType textInputType;
   final Widget? suffixIcon;
   final void Function(String?)? onSaved;
   final bool obscureText;
+  final String errorMessage;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
@@ -22,7 +24,7 @@ class CustomTextFormField extends StatelessWidget {
       onSaved: onSaved,
       validator: (value) {
         if (value == null || value.isEmpty) {
-          return 'هذا الحقل مطلوب';
+          return errorMessage;
         }
         return null;
       },

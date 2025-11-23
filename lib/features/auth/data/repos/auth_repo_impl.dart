@@ -175,4 +175,15 @@ class AuthRepoImpl extends AuthRepo {
     var jsonData = jsonEncode(UserModel.fromEntity(user).toMap());
     await Prefs.setString(kUserData, jsonData);
   }
+
+  @override
+  Future resetPassword({required String email}) async {
+    try {
+      await firebaseAuthService.resetPassword(email: email);
+    } catch (e) {
+      throw CustomException(
+        message: 'لقد حدث خطأ ما. الرجاء المحاولة مرة اخرى.',
+      );
+    }
+  }
 }

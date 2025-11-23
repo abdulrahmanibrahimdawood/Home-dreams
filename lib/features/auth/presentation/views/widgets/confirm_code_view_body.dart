@@ -25,6 +25,7 @@ class ConfirmCodeViewBody extends StatelessWidget {
           ),
           SizedBox(height: 30),
           CustomTextFormField(
+            errorMessage: 'ادخل رمز التحقق',
             hintText: 'كود التحقق',
             textInputType: TextInputType.number,
           ),

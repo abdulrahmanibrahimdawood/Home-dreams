@@ -39,6 +39,7 @@ class _SigninViewBodyState extends State<SigninViewBody> {
             children: [
               SizedBox(height: 24),
               CustomTextFormField(
+                errorMessage: 'يرجى كتابة البريد الإلكتروني',
                 onSaved: (value) {
                   email = value!;
                 },
