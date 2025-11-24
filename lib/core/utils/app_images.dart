@@ -2,6 +2,46 @@
 class Assets {
   Assets._();
   
+  /// Assets for assetsImages10
+  /// assets/images/10.jpg
+  static const String assetsImages10 = "assets/images/10.jpg";
+
+  /// Assets for assetsImages11
+  /// assets/images/11.jpg
+  static const String assetsImages11 = "assets/images/11.jpg";
+
+  /// Assets for assetsImages22
+  /// assets/images/22.jpg
+  static const String assetsImages22 = "assets/images/22.jpg";
+
+  /// Assets for assetsImages33
+  /// assets/images/33.jpg
+  static const String assetsImages33 = "assets/images/33.jpg";
+
+  /// Assets for assetsImages44
+  /// assets/images/44.jpg
+  static const String assetsImages44 = "assets/images/44.jpg";
+
+  /// Assets for assetsImages55
+  /// assets/images/55.jpg
+  static const String assetsImages55 = "assets/images/55.jpg";
+
+  /// Assets for assetsImages66
+  /// assets/images/66.jpg
+  static const String assetsImages66 = "assets/images/66.jpg";
+
+  /// Assets for assetsImages77
+  /// assets/images/77.jpg
+  static const String assetsImages77 = "assets/images/77.jpg";
+
+  /// Assets for assetsImages88
+  /// assets/images/88.jpg
+  static const String assetsImages88 = "assets/images/88.jpg";
+
+  /// Assets for assetsImages99
+  /// assets/images/99.png
+  static const String assetsImages99 = "assets/images/99.png";
+
   /// Assets for assetsImagesAppIcon
   /// assets/images/app_icon.png
   static const String assetsImagesAppIcon = "assets/images/app_icon.png";
@@ -29,6 +69,10 @@ class Assets {
   /// Assets for assetsImagesConfirmPassword
   /// assets/images/confirm_password.svg
   static const String assetsImagesConfirmPassword = "assets/images/confirm_password.svg";
+
+  /// Assets for assetsImagesDdddddddd
+  /// assets/images/ddddddddd.png
+  static const String assetsImagesDdddddddd = "assets/images/ddddddddd.png";
 
   /// Assets for assetsImagesEdit
   /// assets/images/edit.png
