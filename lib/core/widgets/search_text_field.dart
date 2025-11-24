@@ -2,9 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:home_dreams/core/utils/app_images.dart';
 import 'package:home_dreams/core/utils/app_text_styles.dart';
+import 'package:home_dreams/core/widgets/custom_text_form_field.dart';
 
 class SearchTextField extends StatelessWidget {
-  const SearchTextField({super.key});
+  final VoidCallback? onTap;
+  final bool readOnly;
+  const SearchTextField({this.onTap, super.key, required this.readOnly});
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -13,13 +17,13 @@ class SearchTextField extends StatelessWidget {
           BoxShadow(
             color: Color(0x0A000000),
             blurRadius: 9,
-            spreadRadius: 0,
-            offset: const Offset(0, 2), // changes position of shadow
+            offset: Offset(0, 2),
           ),
         ],
       ),
       child: TextField(
-        keyboardType: TextInputType.text,
+        readOnly: readOnly,
+        onTap: onTap,
         decoration: InputDecoration(
           suffixIcon: SizedBox(
             width: 20,
@@ -44,11 +48,4 @@ class SearchTextField extends StatelessWidget {
       ),
     );
   }
-}
-
-OutlineInputBorder buildBorder() {
-  return OutlineInputBorder(
-    borderRadius: BorderRadius.circular(4),
-    borderSide: BorderSide(color: Colors.white, width: 1),
-  );
 }

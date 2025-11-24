@@ -37,7 +37,7 @@ class _ProductsViewBodyState extends State<ProductsViewBody> {
                   showBackButton: false,
                 ),
                 SizedBox(height: kTopPadding),
-                SearchTextField(),
+                SearchTextField(readOnly: false),
                 SizedBox(height: 12),
                 ProductsViewHeader(
                   productsLength: context.read<ProductsCubit>().productsLength,

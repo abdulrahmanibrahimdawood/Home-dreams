@@ -9,6 +9,7 @@ import 'package:home_dreams/features/checkout/presentation/views/checkout_view.d
 import 'package:home_dreams/features/home/domain/entites/cart_entity.dart';
 import 'package:home_dreams/features/home/presentation/views/main_view.dart';
 import 'package:home_dreams/features/on_boarding/presentation/views/on_boardig_view.dart';
+import 'package:home_dreams/features/search/presentation/views/search_view.dart';
 import 'package:home_dreams/features/splash/presentation/views/splash_view.dart';
 
 Route<dynamic> onGenerateRoutes(RouteSettings settings) {
@@ -38,6 +39,9 @@ Route<dynamic> onGenerateRoutes(RouteSettings settings) {
       return MaterialPageRoute(builder: (context) => const ConfirmCodeView());
     case NewPasswordView.routeName:
       return MaterialPageRoute(builder: (context) => const NewPasswordView());
+    case SearchView.routeName:
+      return MaterialPageRoute(builder: (context) => const SearchView());
+
     default:
       return MaterialPageRoute(builder: (context) => const Scaffold());
   }
