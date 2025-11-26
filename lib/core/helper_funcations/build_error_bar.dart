@@ -4,10 +4,6 @@ void showBar(BuildContext context, String message) {
   final messenger = ScaffoldMessenger.of(context);
   messenger.hideCurrentSnackBar();
   messenger.showSnackBar(
-    SnackBar(
-      content: Text(message),
-      behavior: SnackBarBehavior.floating,
-      duration: const Duration(seconds: 2),
-    ),
+    SnackBar(content: Text(message), duration: const Duration(seconds: 2)),
   );
 }

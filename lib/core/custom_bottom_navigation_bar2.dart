@@ -1,7 +1,10 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:home_dreams/core/utils/app_images.dart';
 import 'package:home_dreams/features/home/presentation/views/cart_view.dart';
 import 'package:home_dreams/features/home/presentation/views/home_view.dart';
 import 'package:home_dreams/features/home/presentation/views/products_view.dart';
+import 'package:home_dreams/features/home/presentation/views/widgets/active_item.dart';
+import 'package:home_dreams/features/home/presentation/views/widgets/in_active_item.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 
 class CustomBottomNavigationBar2 extends StatefulWidget {
@@ -54,32 +57,32 @@ class _CustomBottomNavigationBar2State
   List<PersistentBottomNavBarItem> _navBarsItems() {
     return [
       PersistentBottomNavBarItem(
-        contentPadding: 10,
-        icon: Icon(CupertinoIcons.home),
-        title: "الرئيسية",
-        activeColorPrimary: CupertinoColors.activeBlue,
-        inactiveColorPrimary: CupertinoColors.systemGrey,
+        icon: ActiveItem(image: Assets.assetsImagesHomeIcon, text: 'الرئيسية'),
+        inactiveIcon: InActiveItem(image: Assets.assetsImagesHomeIcon),
         scrollController: _scrollController1,
       ),
       PersistentBottomNavBarItem(
-        icon: Icon(CupertinoIcons.search),
-        title: "Search",
-        activeColorPrimary: CupertinoColors.activeBlue,
-        inactiveColorPrimary: CupertinoColors.systemGrey,
+        icon: ActiveItem(
+          image: Assets.assetsImagesProductIconActive,
+          text: 'المنتجات',
+        ),
+        inactiveIcon: InActiveItem(image: Assets.assetsImagesProductIcon),
         scrollController: _scrollController2,
       ),
       PersistentBottomNavBarItem(
-        icon: Icon(CupertinoIcons.heart),
-        title: "Favorites",
-        activeColorPrimary: CupertinoColors.activeBlue,
-        inactiveColorPrimary: CupertinoColors.systemGrey,
+        icon: ActiveItem(
+          image: Assets.assetsImagesCartIconActive,
+          text: 'السلة',
+        ),
+        inactiveIcon: InActiveItem(image: Assets.assetsImagesCartIcon),
         scrollController: _scrollController3,
       ),
       PersistentBottomNavBarItem(
-        icon: Icon(CupertinoIcons.settings),
-        title: "Settings",
-        activeColorPrimary: CupertinoColors.activeBlue,
-        inactiveColorPrimary: CupertinoColors.systemGrey,
+        icon: ActiveItem(
+          image: Assets.assetsImagesProfileIconActive,
+          text: 'حسابي',
+        ),
+        inactiveIcon: InActiveItem(image: Assets.assetsImagesProfileIcon),
         scrollController: _scrollController4,
       ),
     ];
@@ -96,11 +99,11 @@ class _CustomBottomNavigationBar2State
       resizeToAvoidBottomInset: true,
       stateManagement: true,
       hideNavigationBarWhenKeyboardAppears: true,
-      backgroundColor: const Color.fromARGB(255, 110, 39, 39),
+      backgroundColor: Colors.white,
       navBarStyle: _navBarStyle,
       decoration: NavBarDecoration(
-        borderRadius: BorderRadius.circular(10),
-        colorBehindNavBar: const Color.fromARGB(255, 208, 199, 199),
+        borderRadius: BorderRadius.circular(12),
+        colorBehindNavBar: Color.fromARGB(255, 252, 250, 249),
       ),
     );
   }
