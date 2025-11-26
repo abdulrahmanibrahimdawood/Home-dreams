@@ -7,6 +7,7 @@ import 'package:home_dreams/features/home/presentation/views/widgets/best_sellin
 import 'package:home_dreams/features/home/presentation/views/widgets/best_selling_header.dart';
 import 'package:home_dreams/features/home/presentation/views/widgets/custom_home_app_bar.dart';
 import 'package:home_dreams/features/search/presentation/views/search_view.dart';
+import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 
 class HomeViewBody extends StatefulWidget {
   const HomeViewBody({super.key});
@@ -37,7 +38,11 @@ class _HomeViewBodyState extends State<HomeViewBody> {
                 SearchTextField(
                   readOnly: true,
                   onTap: () {
-                    Navigator.pushNamed(context, SearchView.routeName);
+                    PersistentNavBarNavigator.pushNewScreen(
+                      context,
+                      screen: SearchView(),
+                      withNavBar: true,
+                    );
                   },
                 ),
                 SizedBox(height: 12),

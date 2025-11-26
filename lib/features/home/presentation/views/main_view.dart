@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:home_dreams/core/custom_bottom_navigation_bar2.dart';
 import 'package:home_dreams/features/home/presentation/manager/cart_cubit/cart_cubit.dart';
-import 'package:home_dreams/features/home/presentation/views/widgets/main_view_body_bloc_consumer.dart';
 
 class MainView extends StatefulWidget {
   const MainView({super.key});
@@ -22,16 +21,7 @@ class _MainViewState extends State<MainView> {
       create: (context) => CartCubit(),
       child: Scaffold(
         bottomNavigationBar: CustomBottomNavigationBar2(),
-        //  CustomBottomNavigationBar(
-        //   onItemTapped: (index) {
-        //     setState(() {
-        //       currentViewIndex = index;
-        //     });
-        //   },
-        // ),
-        body: SafeArea(
-          child: MainViewBodyBlocConsumer(currentViewIndex: currentViewIndex),
-        ),
+        body: const SizedBox.shrink(), // Body is managed by PersistentTabView
       ),
     );
   }
