@@ -46,12 +46,7 @@ class _CustomBottomNavigationBar2State
   }
 
   List<Widget> _buildScreens() {
-    return [
-      HomeView(), // Screen 1
-      ProductsView(), // Screen 2
-      CartView(), // Screen 3
-      Container(), // Screen 4
-    ];
+    return [HomeView(), ProductsView(), CartView(), Container()];
   }
 
   List<PersistentBottomNavBarItem> _navBarsItems() {

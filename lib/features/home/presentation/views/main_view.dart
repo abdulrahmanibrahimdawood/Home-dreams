@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:home_dreams/core/custom_bottom_navigation_bar2.dart';
 import 'package:home_dreams/features/home/presentation/manager/cart_cubit/cart_cubit.dart';
+import 'package:home_dreams/features/home/presentation/views/widgets/custom_bottom_navigation_bar.dart';
+import 'package:home_dreams/features/home/presentation/views/widgets/main_view_body_bloc_consumer.dart';
 
 class MainView extends StatefulWidget {
   const MainView({super.key});
@@ -20,13 +21,16 @@ class _MainViewState extends State<MainView> {
     return BlocProvider(
       create: (context) => CartCubit(),
       child: Scaffold(
-        bottomNavigationBar: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.only(top: 18),
-            child: CustomBottomNavigationBar2(),
-          ),
+        bottomNavigationBar: CustomBottomNavigationBar(
+          onItemTapped: (index) {
+            setState(() {
+              currentViewIndex = index;
+            });
+          },
         ),
-        body: const SizedBox.shrink(),
+        body: SafeArea(
+          child: MainViewBodyBlocConsumer(currentViewIndex: currentViewIndex),
+        ),
       ),
     );
   }

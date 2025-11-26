@@ -33,3 +33,4 @@ AppBar buildAppBarInside(
     title: Text(title, textAlign: TextAlign.center, style: TextStyles.bold19),
   );
 }
+ 
