@@ -23,7 +23,7 @@ class ProductsView extends StatelessWidget {
             showBar(context, 'تم حذف المنتج بنجاح');
           }
         },
-        child: Scaffold(body: const ProductsViewBody()),
+        child: const ProductsViewBody(),
       ),
     );
   }

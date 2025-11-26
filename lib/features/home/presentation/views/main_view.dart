@@ -20,8 +20,13 @@ class _MainViewState extends State<MainView> {
     return BlocProvider(
       create: (context) => CartCubit(),
       child: Scaffold(
-        bottomNavigationBar: CustomBottomNavigationBar2(),
-        body: const SizedBox.shrink(), // Body is managed by PersistentTabView
+        bottomNavigationBar: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.only(top: 18),
+            child: CustomBottomNavigationBar2(),
+          ),
+        ),
+        body: const SizedBox.shrink(),
       ),
     );
   }

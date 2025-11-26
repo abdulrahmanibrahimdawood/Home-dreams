@@ -10,7 +10,7 @@ class CartView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => CartItemCubit(),
-      child: Scaffold(body: const CartViewBody()),
+      child: const CartViewBody(),
     );
   }
 }
