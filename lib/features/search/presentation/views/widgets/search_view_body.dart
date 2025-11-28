@@ -10,29 +10,28 @@ class SearchViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: kHorizontalPadding),
-        child: Column(
-          children: [
-            SizedBox(height: 12),
-            SearchTextField(readOnly: false),
-            SizedBox(height: 16),
-            Row(
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: kHorizontalPadding),
+      child: CustomScrollView(
+        slivers: [
+          SliverToBoxAdapter(child: SizedBox(height: 12)),
+          SliverToBoxAdapter(child: SearchTextField(readOnly: false)),
+          SliverToBoxAdapter(child: SizedBox(height: 16)),
+          SliverToBoxAdapter(
+            child: Row(
               children: [
                 Text(
-                  'نتائج البحث ',
-                  textAlign: TextAlign.center,
+                  'بحث',
                   style: TextStyles.regular13.copyWith(
                     color: Color(0xFF949D9E),
                   ),
                 ),
               ],
             ),
-            SizedBox(height: 12),
-            ProductsGridView(products: getDummyProducts()),
-          ],
-        ),
+          ),
+          SliverToBoxAdapter(child: SizedBox(height: 12)),
+          ProductsGridView(products: getDummyProducts()),
+        ],
       ),
     );
   }

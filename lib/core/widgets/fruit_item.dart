@@ -6,8 +6,8 @@ import 'package:home_dreams/core/utils/app_text_styles.dart';
 import 'package:home_dreams/core/widgets/custom_network_image.dart';
 import 'package:home_dreams/features/home/presentation/manager/cart_cubit/cart_cubit.dart';
 
-class FruitItem extends StatelessWidget {
-  const FruitItem({super.key, required this.productEntity});
+class ProductItem extends StatelessWidget {
+  const ProductItem({super.key, required this.productEntity});
   final ProductEntity productEntity;
   @override
   Widget build(BuildContext context) {
