@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:home_dreams/core/services/get_it_services.dart';
 import 'package:home_dreams/core/widgets/custom_app_bar_inside.dart';
+import 'package:home_dreams/features/search/domain/repo/search_repo.dart';
+import 'package:home_dreams/features/search/presentation/manager/cubit/search_product_cubit.dart';
 import 'package:home_dreams/features/search/presentation/views/widgets/search_view_body.dart';
 
 class SearchView extends StatelessWidget {
@@ -7,9 +11,12 @@ class SearchView extends StatelessWidget {
   static const routeName = 'search';
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: buildAppBarInside(context, title: 'بحث'),
-      body: const SearchViewBody(),
+    return BlocProvider(
+      create: (context) => SearchProductCubit(getIt.get<SearchRepo>()),
+      child: Scaffold(
+        appBar: buildAppBarInside(context, title: 'بحث'),
+        body: SearchViewBody(),
+      ),
     );
   }
 }
