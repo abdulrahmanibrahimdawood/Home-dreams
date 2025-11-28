@@ -12,9 +12,9 @@ class SearchRepoImpl implements SearchRepo {
   SearchRepoImpl({required this.databaseServices});
 
   @override
-  Future<Either<Failure, List<ProductEntity>>> searchProducts({
-    required String name,
-  }) async {
+  Future<Either<Failure, List<ProductEntity>>> searchProducts(
+    String name,
+  ) async {
     try {
       var data =
           await databaseServices.getData(
