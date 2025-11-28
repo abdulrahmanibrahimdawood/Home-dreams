@@ -36,6 +36,10 @@ class FirestoreServices implements DatabaseServices {
           var descending = query['descending'];
           data = data.orderBy(orderByField, descending: descending);
         }
+        if (query['search'] != null) {
+          var searchTerm = query['search'];
+          data = data.startAt([searchTerm]).endAt(["$searchTerm\uf8ff"]);
+        }
         if (query['limit'] != null) {
           var limit = query['limit'];
           data = data.limit(limit);
