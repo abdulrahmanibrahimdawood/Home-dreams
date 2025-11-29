@@ -10,7 +10,6 @@ class SearchProductCubit extends Cubit<SearchProductState> {
   SearchProductCubit(this.searchRepo) : super(SearchProductInitial());
 
   Future<void> getSearchProducts(String name) async {
-    emit(SearchProductLoading());
     final result = await searchRepo.searchProducts(name);
     result.fold(
       (failure) => emit(SearchProductFailure(errMessage: failure.message)),

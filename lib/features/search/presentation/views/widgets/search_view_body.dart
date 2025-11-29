@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:home_dreams/constants.dart';
-import 'package:home_dreams/core/helper_funcations/get_dummy_products.dart';
 import 'package:home_dreams/core/utils/app_text_styles.dart';
 import 'package:home_dreams/core/widgets/search_text_field.dart';
-import 'package:home_dreams/features/home/presentation/views/widgets/products_grid_view.dart';
 import 'package:home_dreams/features/search/presentation/manager/cubit/search_product_cubit.dart';
+import 'package:home_dreams/features/search/presentation/views/widgets/search_view_body_bloc_consumer.dart';
 
 class SearchViewBody extends StatelessWidget {
   const SearchViewBody({super.key});
@@ -39,7 +38,7 @@ class SearchViewBody extends StatelessWidget {
             ),
           ),
           SliverToBoxAdapter(child: SizedBox(height: 12)),
-          ProductsGridView(products: getDummyProducts()),
+          SearchViewBodyBlocConsumer(),
         ],
       ),
     );
