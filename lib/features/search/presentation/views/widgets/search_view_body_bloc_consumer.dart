@@ -17,13 +17,29 @@ class SearchViewBodyBlocConsumer extends StatelessWidget {
         }
       },
       builder: (context, state) {
-        if (state is SearchProductFailure) {
+        if (state is SearchProductLoading) {
+          return SliverToBoxAdapter(
+            child: const Center(
+              child: Padding(
+                padding: EdgeInsets.all(20.0),
+                child: CircularProgressIndicator(),
+              ),
+            ),
+          );
+        } else if (state is SearchProductFailure) {
           return SliverToBoxAdapter(
             child: const Center(child: Text('هناك خطأ ما')),
           );
         } else if (state is SearchProductSuccess) {
           return state.products.isEmpty
-              ? SliverToBoxAdapter(child: Center(child: Text('لا يوجد منتجات')))
+              ? SliverToBoxAdapter(
+                  child: Center(
+                    child: Padding(
+                      padding: const EdgeInsets.all(20.0),
+                      child: Text('لا يوجد منتجات'),
+                    ),
+                  ),
+                )
               : ProductsGridView(products: state.products);
         } else {
           return ProductsGridView(

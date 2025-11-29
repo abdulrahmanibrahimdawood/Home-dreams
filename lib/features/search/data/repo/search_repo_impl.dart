@@ -16,24 +16,25 @@ class SearchRepoImpl implements SearchRepo {
     String name,
   ) async {
     try {
-      var data =
-          await databaseServices.getData(
-                path: BackendEndpoints.getProducts,
-                query: {
-                  'search': name,
-                  'orderBy': 'sellingCount',
-                  'descending': true,
-                },
-              )
+      var allData =
+          await databaseServices.getData(path: BackendEndpoints.getProducts)
               as List<Map<String, dynamic>>;
-      List<ProductEntity> products = data
+      final searchTerm = name.trim().toLowerCase();
+      final filteredData = allData.where((product) {
+        final productName = (product['name'] ?? '').toString().toLowerCase();
+        return productName.contains(searchTerm);
+      }).toList();
+      filteredData.sort((a, b) {
+        final aCount = (a['sellingCount'] ?? 0) as int;
+        final bCount = (b['sellingCount'] ?? 0) as int;
+        return bCount.compareTo(aCount);
+      });
+      List<ProductEntity> products = filteredData
           .map((e) => ProductModel.fromJson(e).toEntity())
           .toList();
       return right(products);
     } catch (e) {
-      return left(
-        ServerFailure('Failed to get best selling products: ${e.toString()}'),
-      );
+      return left(ServerFailure('Failed to search products: ${e.toString()}'));
     }
   }
 }

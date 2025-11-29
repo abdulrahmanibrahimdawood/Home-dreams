@@ -37,7 +37,7 @@ class FirestoreServices implements DatabaseServices {
           data = data.orderBy(orderByField, descending: descending);
         }
         if (query['search'] != null) {
-          var searchTerm = query['search'].toString().trim();
+          var searchTerm = query['search'].toString().trim().toLowerCase();
           data = data.orderBy('name').startAt([searchTerm]).endAt([
             '$searchTerm\uf8ff',
           ]);
