@@ -70,10 +70,6 @@ class Assets {
   /// assets/images/confirm_password.svg
   static const String assetsImagesConfirmPassword = "assets/images/confirm_password.svg";
 
-  /// Assets for assetsImagesDdddddddd
-  /// assets/images/ddddddddd.png
-  static const String assetsImagesDdddddddd = "assets/images/ddddddddd.png";
-
   /// Assets for assetsImagesEdit
   /// assets/images/edit.png
   static const String assetsImagesEdit = "assets/images/edit.png";
@@ -109,6 +105,10 @@ class Assets {
   /// Assets for assetsImagesLocation
   /// assets/images/location.png
   static const String assetsImagesLocation = "assets/images/location.png";
+
+  /// Assets for assetsImagesNoporducts
+  /// assets/images/noporducts.svg
+  static const String assetsImagesNoporducts = "assets/images/noporducts.svg";
 
   /// Assets for assetsImagesNotification
   /// assets/images/notification.svg

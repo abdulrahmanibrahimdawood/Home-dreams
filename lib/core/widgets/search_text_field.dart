@@ -7,12 +7,12 @@ import 'package:home_dreams/core/widgets/custom_text_form_field.dart';
 class SearchTextField extends StatelessWidget {
   final VoidCallback? onTap;
   final bool readOnly;
-  final void Function(String)? onSubmitted;
+  final void Function(String)? onChanged;
   const SearchTextField({
     this.onTap,
     super.key,
     required this.readOnly,
-    this.onSubmitted,
+    this.onChanged,
   });
 
   @override
@@ -28,7 +28,7 @@ class SearchTextField extends StatelessWidget {
         ],
       ),
       child: TextField(
-        onSubmitted: onSubmitted,
+        onChanged: onChanged,
         readOnly: readOnly,
         onTap: onTap,
         decoration: InputDecoration(
