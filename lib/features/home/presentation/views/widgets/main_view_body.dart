@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:home_dreams/features/home/presentation/views/cart_view.dart';
 import 'package:home_dreams/features/home/presentation/views/home_view.dart';
 import 'package:home_dreams/features/home/presentation/views/products_view.dart';
+import 'package:home_dreams/features/home/presentation/views/profile_view.dart';
 
 class MainViewBody extends StatelessWidget {
   const MainViewBody({super.key, required this.currentViewIndex});
@@ -12,7 +13,7 @@ class MainViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return IndexedStack(
       index: currentViewIndex,
-      children: [HomeView(), ProductsView(), CartView()],
+      children: [HomeView(), ProductsView(), CartView(), ProfileView()],
     );
   }
 }
