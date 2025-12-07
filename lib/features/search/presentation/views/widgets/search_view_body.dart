@@ -14,6 +14,9 @@ class SearchViewBody extends StatefulWidget {
 }
 
 class _SearchViewBodyState extends State<SearchViewBody> {
+  bool _showHistory = false;
+  final List<String> _searchHistory = SearchHistoryService.getHistory();
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -22,14 +25,75 @@ class _SearchViewBodyState extends State<SearchViewBody> {
         slivers: [
           SliverToBoxAdapter(child: SizedBox(height: 12)),
           SliverToBoxAdapter(
-            child: SearchTextField(
-              readOnly: false,
-              onChanged: (value) {
-                context.read<SearchProductCubit>().getSearchProducts(value);
-              },
-              onSubmitted: (value) {
-                SearchHistoryService.addSearch(value);
-              },
+            child: Column(
+              children: [
+                SearchTextField(
+                  readOnly: false,
+                  onTap: () {
+                    setState(() {
+                      _showHistory = true;
+                    });
+                  },
+                  onChanged: (value) {
+                    context.read<SearchProductCubit>().getSearchProducts(value);
+                  },
+                  onSubmitted: (value) {
+                    SearchHistoryService.addSearch(value);
+                    setState(() {
+                      _showHistory = false;
+                    });
+                  },
+                ),
+                if (_showHistory)
+                  Visibility(
+                    visible: SearchHistoryService.getHistory().isNotEmpty,
+                    child: Container(
+                      margin: const EdgeInsets.only(top: 8),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(8),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black12,
+                            blurRadius: 6,
+                            offset: Offset(0, 3),
+                          ),
+                        ],
+                      ),
+                      child: ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: _searchHistory.length,
+                        itemBuilder: (context, index) {
+                          return ListTile(
+                            trailing: IconButton(
+                              icon: Icon(Icons.close),
+                              onPressed: () {
+                                SearchHistoryService.removeSearch(
+                                  _searchHistory[index],
+                                );
+                                setState(() {});
+                              },
+                            ),
+                            leading: Icon(
+                              Icons.history,
+                              size: 20,
+                              color: Colors.grey,
+                            ),
+                            title: Text(_searchHistory[index]),
+                            onTap: () {
+                              context
+                                  .read<SearchProductCubit>()
+                                  .getSearchProducts(_searchHistory[index]);
+                              setState(() {
+                                _showHistory = false;
+                              });
+                            },
+                          );
+                        },
+                      ),
+                    ),
+                  ),
+              ],
             ),
           ),
           SliverToBoxAdapter(child: SizedBox(height: 16)),
