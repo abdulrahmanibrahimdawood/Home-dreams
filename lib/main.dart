@@ -2,6 +2,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:home_dreams/constants.dart';
 import 'package:home_dreams/core/helper_funcations/on_generate_routes.dart';
 import 'package:home_dreams/core/services/custom_bloc_observer.dart';
 import 'package:home_dreams/core/services/get_it_services.dart';
@@ -17,6 +19,8 @@ void main() async {
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await Prefs.init();
   setupGetIt();
+  await Hive.initFlutter();
+  await Hive.openBox(kSearchHistoryBox);
   runApp(const ECommerce());
 }
 

@@ -2,12 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:home_dreams/constants.dart';
 import 'package:home_dreams/core/widgets/search_text_field.dart';
+import 'package:home_dreams/features/search/data/data_sources/search_local_data_source.dart';
 import 'package:home_dreams/features/search/presentation/manager/cubit/search_product_cubit.dart';
 import 'package:home_dreams/features/search/presentation/views/widgets/search_view_body_bloc_consumer.dart';
 
-class SearchViewBody extends StatelessWidget {
+class SearchViewBody extends StatefulWidget {
   const SearchViewBody({super.key});
 
+  @override
+  State<SearchViewBody> createState() => _SearchViewBodyState();
+}
+
+class _SearchViewBodyState extends State<SearchViewBody> {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -20,6 +26,9 @@ class SearchViewBody extends StatelessWidget {
               readOnly: false,
               onChanged: (value) {
                 context.read<SearchProductCubit>().getSearchProducts(value);
+              },
+              onSubmitted: (value) {
+                SearchHistoryService.addSearch(value);
               },
             ),
           ),
