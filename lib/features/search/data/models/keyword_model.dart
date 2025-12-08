@@ -7,5 +7,12 @@ class KeywordModel {
   factory KeywordModel.fromEntity(KeywordEntity keywordEntity) =>
       KeywordModel(searchKeyWord: keywordEntity.searchKeyWord);
 
+  KeywordEntity toEntity() {
+    return KeywordEntity(searchKeyWord: searchKeyWord);
+  }
+
   toJson() => {'searchKeyWord': searchKeyWord};
+
+  factory KeywordModel.fromJson(Map<String, dynamic> json) =>
+      KeywordModel(searchKeyWord: json['searchKeyWord']);
 }

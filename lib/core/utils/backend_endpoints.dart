@@ -5,4 +5,5 @@ class BackendEndpoints {
   static const getProducts = 'products';
   static const addOrder = 'orders';
   static const searchKeyWord = 'searchKeywords';
+  static const getSearchKeyWord = 'searchKeywords';
 }

@@ -56,4 +56,22 @@ class SearchRepoImpl implements SearchRepo {
       return Left(ServerFailure('Failed to add product: ${e.toString()}'));
     }
   }
+
+  @override
+  Future<Either<Failure, List<KeywordEntity>>> getSearchKeyWords() async {
+    try {
+      var data =
+          await databaseServices.getData(
+                path: BackendEndpoints.getSearchKeyWord,
+                documentId: getUser().uId,
+              )
+              as List<Map<String, dynamic>>;
+      List<KeywordEntity> keywords = data
+          .map((e) => KeywordModel.fromJson(e).toEntity())
+          .toList();
+      return right(keywords);
+    } catch (e) {
+      return Left(ServerFailure('Failed to get products: ${e.toString()}'));
+    }
+  }
 }
