@@ -1,9 +1,12 @@
 import 'package:dartz/dartz.dart';
 import 'package:home_dreams/core/entities/product_entity.dart';
 import 'package:home_dreams/core/errors/failures.dart';
+import 'package:home_dreams/core/helper_funcations/get_user.dart';
 import 'package:home_dreams/core/models/product_model.dart';
 import 'package:home_dreams/core/services/data_service.dart';
 import 'package:home_dreams/core/utils/backend_endpoints.dart';
+import 'package:home_dreams/features/search/data/models/keyword_model.dart';
+import 'package:home_dreams/features/search/domain/entities/keyword_entity.dart';
 import 'package:home_dreams/features/search/domain/repo/search_repo.dart';
 
 class SearchRepoImpl implements SearchRepo {
@@ -35,6 +38,22 @@ class SearchRepoImpl implements SearchRepo {
       return right(products);
     } catch (e) {
       return left(ServerFailure('Failed to search products: ${e.toString()}'));
+    }
+  }
+
+  @override
+  Future<Either<Failure, void>> addSearchKeyWord(
+    KeywordEntity keyWordEntity,
+  ) async {
+    try {
+      await databaseServices.addData(
+        path: BackendEndpoints.searchKeyWord,
+        data: KeywordModel.fromEntity(keyWordEntity).toJson(),
+        documentId: getUser().uId,
+      );
+      return const Right(null);
+    } catch (e) {
+      return Left(ServerFailure('Failed to add product: ${e.toString()}'));
     }
   }
 }

@@ -4,12 +4,13 @@ import 'package:home_dreams/constants.dart';
 import 'package:home_dreams/core/utils/app_text_styles.dart';
 import 'package:home_dreams/core/widgets/search_text_field.dart';
 import 'package:home_dreams/features/search/data/data_sources/search_local_data_source.dart';
+import 'package:home_dreams/features/search/domain/entities/keyword_entity.dart';
+import 'package:home_dreams/features/search/presentation/manager/add_search_keywords_cubit/add_search_keywords_cubit.dart';
 import 'package:home_dreams/features/search/presentation/manager/cubit/search_product_cubit.dart';
 import 'package:home_dreams/features/search/presentation/views/widgets/search_view_body_bloc_consumer.dart';
 
 class SearchViewBody extends StatefulWidget {
   const SearchViewBody({super.key});
-
   @override
   State<SearchViewBody> createState() => _SearchViewBodyState();
 }
@@ -39,10 +40,10 @@ class _SearchViewBodyState extends State<SearchViewBody> {
                     context.read<SearchProductCubit>().getSearchProducts(value);
                   },
                   onSubmitted: (value) {
-                    SearchHistoryService.addSearch(value);
-                    setState(() {
-                      _showHistory = false;
-                    });
+                    var keywordEntity = KeywordEntity(searchKeyWord: value);
+                    context.read<AddSearchKeywordsCubit>().addSearchKeyWord(
+                      keywordEntity,
+                    );
                   },
                 ),
                 if (_showHistory)
