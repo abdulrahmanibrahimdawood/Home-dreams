@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:home_dreams/core/helper_funcations/build_error_bar.dart';
 import 'package:home_dreams/features/home/presentation/views/widgets/products_grid_view.dart';
-import 'package:home_dreams/features/search/presentation/manager/cubit/search_product_cubit.dart';
+import 'package:home_dreams/features/search/presentation/manager/search_product_cubit/search_product_cubit.dart';
 import 'package:home_dreams/features/search/presentation/views/widgets/no_products_widgets.dart';
 
 class SearchViewBodyBlocConsumer extends StatelessWidget {

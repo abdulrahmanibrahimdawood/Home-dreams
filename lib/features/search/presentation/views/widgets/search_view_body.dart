@@ -5,7 +5,7 @@ import 'package:home_dreams/core/widgets/search_text_field.dart';
 import 'package:home_dreams/features/search/data/data_sources/search_local_data_source.dart';
 import 'package:home_dreams/features/search/domain/entities/keyword_entity.dart';
 import 'package:home_dreams/features/search/presentation/manager/add_search_keywords_cubit/add_search_keywords_cubit.dart';
-import 'package:home_dreams/features/search/presentation/manager/cubit/search_product_cubit.dart';
+import 'package:home_dreams/features/search/presentation/manager/search_product_cubit/search_product_cubit.dart';
 import 'package:home_dreams/features/search/presentation/views/widgets/search_view_body_bloc_consumer.dart';
 
 class SearchViewBody extends StatefulWidget {
