@@ -60,18 +60,38 @@ class SearchRepoImpl implements SearchRepo {
   @override
   Future<Either<Failure, List<KeywordEntity>>> getSearchKeyWords() async {
     try {
-      var data =
-          await databaseServices.getData(
-                path: BackendEndpoints.getSearchKeyWord,
-                documentId: getUser().uId,
-              )
-              as List<Map<String, dynamic>>;
-      List<KeywordEntity> keywords = data
+      final data = await databaseServices.getData(
+        path: BackendEndpoints.getSearchKeyWord,
+        documentId: getUser().uId,
+      );
+
+      // ---------- استخراج الليست بشكل آمن ----------
+      List<Map<String, dynamic>> list = [];
+
+      if (data is List) {
+        list = data.map((e) => Map<String, dynamic>.from(e)).toList();
+      } else if (data is Map) {
+        // لو Firebase بيرجع Map فيه الكلمات تحت مفتاح معين
+        if (data.containsKey('keywords') && data['keywords'] is List) {
+          list = (data['keywords'] as List)
+              .map((e) => Map<String, dynamic>.from(e))
+              .toList();
+        } else {
+          // لو Map فردي → حوّله List عنصر واحد
+          list = [Map<String, dynamic>.from(data)];
+        }
+      }
+
+      // ---------- تحويل لـ Entities ----------
+      List<KeywordEntity> keywords = list
           .map((e) => KeywordModel.fromJson(e).toEntity())
           .toList();
+
       return right(keywords);
     } catch (e) {
-      return Left(ServerFailure('Failed to get products: ${e.toString()}'));
+      return Left(
+        ServerFailure('Failed to get Search KeyWords: ${e.toString()}'),
+      );
     }
   }
 }
