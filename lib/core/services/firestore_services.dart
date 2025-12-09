@@ -70,4 +70,23 @@ class FirestoreServices implements DatabaseServices {
   }) async {
     await firestore.collection(path).doc(documentId).update(data);
   }
+
+  Future<void> removeKeyword({
+    required String path,
+    required String documentId,
+    required String keyword,
+  }) async {
+    await firestore.collection(path).doc(documentId).update({
+      "searchKeywords": FieldValue.arrayRemove([keyword]),
+    });
+  }
+
+  Future<void> clearKeywords({
+    required String path,
+    required String documentId,
+  }) async {
+    await firestore.collection(path).doc(documentId).update({
+      "searchKeywords": [],
+    });
+  }
 }

@@ -18,4 +18,14 @@ abstract class DatabaseServices {
     required Map<String, dynamic> data,
     required String documentId,
   });
+  Future<void> removeKeyword({
+    required String path,
+    required String documentId,
+    required String keyword,
+  });
+
+  Future<void> clearKeywords({
+    required String path,
+    required String documentId,
+  });
 }

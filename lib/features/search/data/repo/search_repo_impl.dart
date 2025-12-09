@@ -81,4 +81,34 @@ class SearchRepoImpl implements SearchRepo {
       );
     }
   }
+
+  @override
+  Future<Either<Failure, void>> removeSearchKeyWord(String keyword) async {
+    try {
+      await databaseServices.updateData(
+        path: BackendEndpoints.searchKeyWord,
+        documentId: getUser().uId,
+        data: {
+          "searchKeywords": FieldValue.arrayRemove([keyword]),
+        },
+      );
+      return const Right(null);
+    } catch (e) {
+      return Left(ServerFailure('Failed to remove keyword: ${e.toString()}'));
+    }
+  }
+
+  @override
+  Future<Either<Failure, void>> clearSearchKeyWords() async {
+    try {
+      await databaseServices.updateData(
+        path: BackendEndpoints.searchKeyWord,
+        documentId: getUser().uId,
+        data: {"searchKeywords": []},
+      );
+      return const Right(null);
+    } catch (e) {
+      return Left(ServerFailure('Failed to clear keywords: ${e.toString()}'));
+    }
+  }
 }

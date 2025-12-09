@@ -7,4 +7,6 @@ abstract class SearchRepo {
   Future<Either<Failure, List<ProductEntity>>> searchProducts(String name);
   Future<Either<Failure, void>> addSearchKeyWord(KeywordEntity keyWordEntity);
   Future<Either<Failure, List<String>>> getSearchKeyWords();
+  Future<Either<Failure, void>> clearSearchKeyWords();
+  Future<Either<Failure, void>> removeSearchKeyWord(String keyword);
 }
