@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:home_dreams/constants.dart';
-import 'package:home_dreams/core/utils/app_text_styles.dart';
 import 'package:home_dreams/core/widgets/search_text_field.dart';
 import 'package:home_dreams/features/search/domain/entities/keyword_entity.dart';
 import 'package:home_dreams/features/search/presentation/manager/add_search_keywords_cubit/add_search_keywords_cubit.dart';
 import 'package:home_dreams/features/search/presentation/manager/get_search_keyword_cubit/get_search_keyword_cubit.dart';
 import 'package:home_dreams/features/search/presentation/manager/manage_keywords_cubit/manage_keywords_cubit.dart';
 import 'package:home_dreams/features/search/presentation/manager/search_product_cubit/search_product_cubit.dart';
+import 'package:home_dreams/features/search/presentation/views/widgets/search_keyword_header.dart';
+import 'package:home_dreams/features/search/presentation/views/widgets/search_view_bloc_builder.dart';
 import 'package:home_dreams/features/search/presentation/views/widgets/search_view_body_bloc_consumer.dart';
 
 class SearchViewBody extends StatelessWidget {
@@ -71,30 +72,7 @@ class SearchViewBody extends StatelessWidget {
                                 left: 38,
                                 right: 20,
                               ),
-                              child: Row(
-                                children: [
-                                  Text(
-                                    'عمليات البحث الأخيرة',
-                                    style: TextStyles.semiBold13.copyWith(
-                                      color: Colors.black,
-                                    ),
-                                  ),
-                                  Spacer(),
-                                  InkWell(
-                                    onTap: () {
-                                      context
-                                          .read<ManageKeywordsCubit>()
-                                          .clearKeywords();
-                                    },
-                                    child: Text(
-                                      'حذف الكل',
-                                      style: TextStyles.semiBold13.copyWith(
-                                        color: Colors.grey,
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
+                              child: SearchKeywordHeader(),
                             ),
                             ListView.builder(
                               shrinkWrap: true,
@@ -106,7 +84,12 @@ class SearchViewBody extends StatelessWidget {
                                     onPressed: () {
                                       context
                                           .read<ManageKeywordsCubit>()
-                                          .removeKeyword(state.keyWords[index]);
+                                          .removeKeyword(state.keyWords[index])
+                                          .then((_) {
+                                            context
+                                                .read<GetSearchKeywordCubit>()
+                                                .getSearchKeyWords();
+                                          });
                                     },
                                   ),
                                   leading: Icon(
@@ -137,28 +120,7 @@ class SearchViewBody extends StatelessWidget {
             ),
           ),
           SliverToBoxAdapter(child: SizedBox(height: 16)),
-          SliverToBoxAdapter(
-            child: BlocBuilder<SearchProductCubit, SearchProductState>(
-              builder: (context, state) {
-                if (state is SearchProductSuccess &&
-                    state.products.isNotEmpty) {
-                  return Row(
-                    children: [
-                      Text(
-                        'نتايج البحث',
-                        style: TextStyle(
-                          fontSize: 13,
-                          color: Color(0xFF949D9E),
-                        ),
-                      ),
-                    ],
-                  );
-                } else {
-                  return SizedBox.shrink();
-                }
-              },
-            ),
-          ),
+          SliverToBoxAdapter(child: SearchViewBlocBuilder()),
           SliverToBoxAdapter(child: SizedBox(height: 12)),
           SearchViewBodyBlocConsumer(),
         ],
