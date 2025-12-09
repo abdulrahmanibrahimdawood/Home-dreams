@@ -1,18 +1,23 @@
 import 'package:home_dreams/features/search/domain/entities/keyword_entity.dart';
 
 class KeywordModel {
-  final String searchKeyWord;
-  KeywordModel({required this.searchKeyWord});
+  final List<String> searchKeyWords;
 
-  factory KeywordModel.fromEntity(KeywordEntity keywordEntity) =>
-      KeywordModel(searchKeyWord: keywordEntity.searchKeyWord);
+  KeywordModel({required this.searchKeyWords});
+
+  factory KeywordModel.fromEntity(KeywordEntity keywordEntity) => KeywordModel(
+    searchKeyWords: List<String>.from(keywordEntity.searchKeyWordList),
+  );
 
   KeywordEntity toEntity() {
-    return KeywordEntity(searchKeyWord: searchKeyWord);
+    return KeywordEntity(searchKeyWordList: List<String>.from(searchKeyWords));
   }
 
-  toJson() => {'searchKeyWord': searchKeyWord};
+  Map<String, dynamic> toJson() => {
+    "searchKeywords": List<String>.from(searchKeyWords),
+  };
 
-  factory KeywordModel.fromJson(Map<String, dynamic> json) =>
-      KeywordModel(searchKeyWord: json['searchKeyWord']);
+  factory KeywordModel.fromJson(Map<String, dynamic> json) => KeywordModel(
+    searchKeyWords: List<String>.from(json["searchKeywords"] ?? []),
+  );
 }

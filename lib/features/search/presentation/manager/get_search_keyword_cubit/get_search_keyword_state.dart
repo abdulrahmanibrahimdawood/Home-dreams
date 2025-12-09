@@ -17,6 +17,6 @@ final class GetSearchKeywordFailure extends GetSearchKeywordState {
 }
 
 final class GetSearchKeywordSuccess extends GetSearchKeywordState {
-  final List<KeywordEntity> keyWords;
+  final List<String> keyWords;
   const GetSearchKeywordSuccess({required this.keyWords});
 }

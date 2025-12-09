@@ -1,5 +1,4 @@
 class KeywordEntity {
-  final String searchKeyWord;
-
-  KeywordEntity({required this.searchKeyWord});
+  final List<String> searchKeyWordList;
+  KeywordEntity({required this.searchKeyWordList});
 }

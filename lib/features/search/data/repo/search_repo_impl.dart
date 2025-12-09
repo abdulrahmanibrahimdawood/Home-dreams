@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
 import 'package:home_dreams/core/entities/product_entity.dart';
 import 'package:home_dreams/core/errors/failures.dart';
@@ -5,7 +6,6 @@ import 'package:home_dreams/core/helper_funcations/get_user.dart';
 import 'package:home_dreams/core/models/product_model.dart';
 import 'package:home_dreams/core/services/data_service.dart';
 import 'package:home_dreams/core/utils/backend_endpoints.dart';
-import 'package:home_dreams/features/search/data/models/keyword_model.dart';
 import 'package:home_dreams/features/search/domain/entities/keyword_entity.dart';
 import 'package:home_dreams/features/search/domain/repo/search_repo.dart';
 
@@ -46,50 +46,37 @@ class SearchRepoImpl implements SearchRepo {
     KeywordEntity keyWordEntity,
   ) async {
     try {
-      await databaseServices.addData(
+      await databaseServices.updateData(
         path: BackendEndpoints.searchKeyWord,
-        data: KeywordModel.fromEntity(keyWordEntity).toJson(),
         documentId: getUser().uId,
+        data: {
+          "searchKeywords": FieldValue.arrayUnion(
+            keyWordEntity.searchKeyWordList,
+          ),
+        },
       );
       return const Right(null);
     } catch (e) {
-      return Left(ServerFailure('Failed to add product: ${e.toString()}'));
+      return Left(ServerFailure('Failed to add keyword: ${e.toString()}'));
     }
   }
 
   @override
-  Future<Either<Failure, List<KeywordEntity>>> getSearchKeyWords() async {
+  Future<Either<Failure, List<String>>> getSearchKeyWords() async {
     try {
-      final data = await databaseServices.getData(
+      final doc = await databaseServices.getData(
         path: BackendEndpoints.getSearchKeyWord,
         documentId: getUser().uId,
       );
 
-      // ---------- استخراج الليست بشكل آمن ----------
-      List<Map<String, dynamic>> list = [];
+      if (doc == null) return right([]);
 
-      if (data is List) {
-        list = data.map((e) => Map<String, dynamic>.from(e)).toList();
-      } else if (data is Map) {
-        // لو Firebase بيرجع Map فيه الكلمات تحت مفتاح معين
-        if (data.containsKey('keywords') && data['keywords'] is List) {
-          list = (data['keywords'] as List)
-              .map((e) => Map<String, dynamic>.from(e))
-              .toList();
-        } else {
-          // لو Map فردي → حوّله List عنصر واحد
-          list = [Map<String, dynamic>.from(data)];
-        }
-      }
-
-      // ---------- تحويل لـ Entities ----------
-      List<KeywordEntity> keywords = list
-          .map((e) => KeywordModel.fromJson(e).toEntity())
-          .toList();
-
-      return right(keywords);
+      final List<String> keyWords = List<String>.from(
+        doc["searchKeywords"] ?? [],
+      );
+      return right(keyWords);
     } catch (e) {
-      return Left(
+      return left(
         ServerFailure('Failed to get Search KeyWords: ${e.toString()}'),
       );
     }

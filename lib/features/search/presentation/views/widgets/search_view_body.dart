@@ -31,7 +31,11 @@ class SearchViewBody extends StatelessWidget {
                     context.read<SearchProductCubit>().getSearchProducts(value);
                   },
                   onSubmitted: (value) {
-                    var keywordEntity = KeywordEntity(searchKeyWord: value);
+                    List<String> searchKeyWords = [];
+                    searchKeyWords.add(value);
+                    var keywordEntity = KeywordEntity(
+                      searchKeyWordList: searchKeyWords,
+                    );
                     context.read<AddSearchKeywordsCubit>().addSearchKeyWord(
                       keywordEntity,
                     );
@@ -100,14 +104,12 @@ class SearchViewBody extends StatelessWidget {
                                     size: 20,
                                     color: Colors.grey,
                                   ),
-                                  title: Text(
-                                    state.keyWords[index].searchKeyWord,
-                                  ),
+                                  title: Text(state.keyWords[index]),
                                   onTap: () {
                                     context
                                         .read<SearchProductCubit>()
                                         .getSearchProducts(
-                                          state.keyWords[index].searchKeyWord,
+                                          state.keyWords[index],
                                         );
                                   },
                                 );
