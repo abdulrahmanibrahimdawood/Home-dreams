@@ -6,6 +6,7 @@ import 'package:home_dreams/core/widgets/search_text_field.dart';
 import 'package:home_dreams/features/search/domain/entities/keyword_entity.dart';
 import 'package:home_dreams/features/search/presentation/manager/add_search_keywords_cubit/add_search_keywords_cubit.dart';
 import 'package:home_dreams/features/search/presentation/manager/get_search_keyword_cubit/get_search_keyword_cubit.dart';
+import 'package:home_dreams/features/search/presentation/manager/manage_keywords_cubit/manage_keywords_cubit.dart';
 import 'package:home_dreams/features/search/presentation/manager/search_product_cubit/search_product_cubit.dart';
 import 'package:home_dreams/features/search/presentation/views/widgets/search_view_body_bloc_consumer.dart';
 
@@ -46,7 +47,8 @@ class SearchViewBody extends StatelessWidget {
                   builder: (context, state) {
                     if (state is GetSearchKeywordFailure) {
                       return Text(state.errMessage);
-                    } else if (state is GetSearchKeywordSuccess) {
+                    } else if (state is GetSearchKeywordSuccess &&
+                        state.keyWords.isNotEmpty) {
                       return Container(
                         margin: const EdgeInsets.only(top: 8),
                         decoration: BoxDecoration(
@@ -79,7 +81,11 @@ class SearchViewBody extends StatelessWidget {
                                   ),
                                   Spacer(),
                                   InkWell(
-                                    onTap: () {},
+                                    onTap: () {
+                                      context
+                                          .read<ManageKeywordsCubit>()
+                                          .clearKeywords();
+                                    },
                                     child: Text(
                                       'حذف الكل',
                                       style: TextStyles.semiBold13.copyWith(
@@ -97,7 +103,11 @@ class SearchViewBody extends StatelessWidget {
                                 return ListTile(
                                   trailing: IconButton(
                                     icon: Icon(Icons.close),
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      context
+                                          .read<ManageKeywordsCubit>()
+                                          .removeKeyword(state.keyWords[index]);
+                                    },
                                   ),
                                   leading: Icon(
                                     Icons.history,
