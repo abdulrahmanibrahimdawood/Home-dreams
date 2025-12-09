@@ -14,7 +14,7 @@ class AddSearchKeywordsCubit extends Cubit<AddSearchKeywordsState> {
     final result = await searchRepo.addSearchKeyWord(keyWordEntity);
     result.fold(
       (failure) => emit(AddSearchKeywordsFailure(errMessage: failure.message)),
-      (products) => emit(AddSearchKeywordsSuccess()),
+      (success) => emit(AddSearchKeywordsSuccess()),
     );
   }
 }
