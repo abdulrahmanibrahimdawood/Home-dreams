@@ -20,51 +20,78 @@ class SearchViewBody extends StatefulWidget {
 
 class _SearchViewBodyState extends State<SearchViewBody> {
   final TextEditingController searchController = TextEditingController();
+  bool showKeywords = false;
+  @override
+  void dispose() {
+    searchController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: kHorizontalPadding),
-      child: CustomScrollView(
-        slivers: [
-          SliverToBoxAdapter(child: SizedBox(height: 12)),
-          SliverToBoxAdapter(
-            child: Column(
-              children: [
-                SearchTextField(
-                  onTapIcon: () {
-                    showFilterBottomSheet(context);
-                  },
-                  controller: searchController,
-                  readOnly: false,
-                  onTap: () {
-                    context.read<GetSearchKeywordCubit>().getSearchKeyWords();
-                  },
-                  onChanged: (value) {
-                    context.read<SearchProductCubit>().getSearchProducts(value);
-                  },
-                  onSubmitted: (value) {
-                    List<String> searchKeyWords = [];
-                    searchKeyWords.add(value);
-                    var keywordEntity = KeywordEntity(
-                      searchKeyWordList: searchKeyWords,
-                    );
-                    context.read<AddSearchKeywordsCubit>().addSearchKeyWord(
-                      keywordEntity,
-                    );
-                  },
-                ),
-                SearchKeywordsBodyBlocbuilder(
-                  searchController: searchController,
-                ),
-              ],
+    return GestureDetector(
+      behavior: HitTestBehavior.opaque,
+      onTap: () {
+        setState(() {
+          showKeywords = false;
+        });
+        FocusScope.of(context).unfocus();
+      },
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: kHorizontalPadding),
+        child: CustomScrollView(
+          slivers: [
+            SliverToBoxAdapter(child: SizedBox(height: 12)),
+            SliverToBoxAdapter(
+              child: Column(
+                children: [
+                  SearchTextField(
+                    controller: searchController,
+                    readOnly: false,
+                    onTapIcon: () {
+                      showFilterBottomSheet(context);
+                    },
+                    onTap: () {
+                      context.read<GetSearchKeywordCubit>().getSearchKeyWords();
+                      setState(() {
+                        showKeywords = true;
+                      });
+                    },
+                    onChanged: (value) {
+                      context.read<SearchProductCubit>().getSearchProducts(
+                        value,
+                      );
+                      setState(() {
+                        showKeywords = true;
+                      });
+                    },
+                    onSubmitted: (value) {
+                      List<String> searchKeyWords = [];
+                      searchKeyWords.add(value);
+                      var keywordEntity = KeywordEntity(
+                        searchKeyWordList: searchKeyWords,
+                      );
+                      context.read<AddSearchKeywordsCubit>().addSearchKeyWord(
+                        keywordEntity,
+                      );
+                      setState(() {
+                        showKeywords = false;
+                      });
+                    },
+                  ),
+                  if (showKeywords)
+                    SearchKeywordsBodyBlocbuilder(
+                      searchController: searchController,
+                    ),
+                ],
+              ),
             ),
-          ),
-          SliverToBoxAdapter(child: SizedBox(height: 16)),
-          SliverToBoxAdapter(child: SearchViewBlocBuilder()),
-          SliverToBoxAdapter(child: SizedBox(height: 12)),
-          SearchViewBodyBlocConsumer(),
-        ],
+            SliverToBoxAdapter(child: SizedBox(height: 16)),
+            SliverToBoxAdapter(child: SearchViewBlocBuilder()),
+            SliverToBoxAdapter(child: SizedBox(height: 12)),
+            SearchViewBodyBlocConsumer(),
+          ],
+        ),
       ),
     );
   }
