@@ -6,6 +6,7 @@ import 'package:home_dreams/core/widgets/custom_text_form_field.dart';
 
 class SearchTextField extends StatelessWidget {
   final VoidCallback? onTap;
+  final void Function()? onTapIcon;
   final bool readOnly;
   final void Function(String)? onChanged;
   final void Function(String)? onSubmitted;
@@ -17,6 +18,7 @@ class SearchTextField extends StatelessWidget {
     this.onChanged,
     this.onSubmitted,
     this.controller,
+    this.onTapIcon,
   });
 
   @override
@@ -38,10 +40,13 @@ class SearchTextField extends StatelessWidget {
         readOnly: readOnly,
         onTap: onTap,
         decoration: InputDecoration(
-          suffixIcon: SizedBox(
-            width: 20,
-            child: Center(
-              child: SvgPicture.asset(Assets.assetsImagesSearchFilter),
+          suffixIcon: InkWell(
+            onTap: onTapIcon,
+            child: SizedBox(
+              width: 20,
+              child: Center(
+                child: SvgPicture.asset(Assets.assetsImagesSearchFilter),
+              ),
             ),
           ),
           prefixIcon: SizedBox(

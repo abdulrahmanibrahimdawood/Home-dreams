@@ -6,6 +6,7 @@ import 'package:home_dreams/features/search/domain/entities/keyword_entity.dart'
 import 'package:home_dreams/features/search/presentation/manager/add_search_keywords_cubit/add_search_keywords_cubit.dart';
 import 'package:home_dreams/features/search/presentation/manager/get_search_keyword_cubit/get_search_keyword_cubit.dart';
 import 'package:home_dreams/features/search/presentation/manager/search_product_cubit/search_product_cubit.dart';
+import 'package:home_dreams/features/search/presentation/views/widgets/filter_modal_bottom_sheet.dart';
 import 'package:home_dreams/features/search/presentation/views/widgets/search_keywords_body_blocbuilder.dart';
 import 'package:home_dreams/features/search/presentation/views/widgets/search_view_bloc_builder.dart';
 import 'package:home_dreams/features/search/presentation/views/widgets/search_view_body_bloc_consumer.dart';
@@ -31,6 +32,9 @@ class _SearchViewBodyState extends State<SearchViewBody> {
             child: Column(
               children: [
                 SearchTextField(
+                  onTapIcon: () {
+                    showFilterBottomSheet(context);
+                  },
                   controller: searchController,
                   readOnly: false,
                   onTap: () {

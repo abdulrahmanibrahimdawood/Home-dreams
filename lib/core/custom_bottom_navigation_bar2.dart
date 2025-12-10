@@ -12,11 +12,11 @@ class CustomBottomNavigationBar2 extends StatefulWidget {
   static const String routeName = 'MainView2';
 
   @override
-  _CustomBottomNavigationBar2State createState() =>
-      _CustomBottomNavigationBar2State();
+  CustomBottomNavigationBar2State createState() =>
+      CustomBottomNavigationBar2State();
 }
 
-class _CustomBottomNavigationBar2State
+class CustomBottomNavigationBar2State
     extends State<CustomBottomNavigationBar2> {
   late PersistentTabController _controller;
   late ScrollController _scrollController1;
