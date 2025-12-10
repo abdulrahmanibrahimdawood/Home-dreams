@@ -9,12 +9,14 @@ class SearchTextField extends StatelessWidget {
   final bool readOnly;
   final void Function(String)? onChanged;
   final void Function(String)? onSubmitted;
+  final TextEditingController? controller;
   const SearchTextField({
     this.onTap,
     super.key,
     required this.readOnly,
     this.onChanged,
     this.onSubmitted,
+    this.controller,
   });
 
   @override
@@ -30,6 +32,7 @@ class SearchTextField extends StatelessWidget {
         ],
       ),
       child: TextField(
+        controller: controller,
         onSubmitted: onSubmitted,
         onChanged: onChanged,
         readOnly: readOnly,

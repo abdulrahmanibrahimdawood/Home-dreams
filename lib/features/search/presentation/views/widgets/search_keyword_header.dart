@@ -5,7 +5,8 @@ import 'package:home_dreams/features/search/presentation/manager/get_search_keyw
 import 'package:home_dreams/features/search/presentation/manager/manage_keywords_cubit/manage_keywords_cubit.dart';
 
 class SearchKeywordHeader extends StatelessWidget {
-  const SearchKeywordHeader({super.key});
+  const SearchKeywordHeader({super.key, required this.onClearAll});
+  final VoidCallback onClearAll;
 
   @override
   Widget build(BuildContext context) {
@@ -20,6 +21,7 @@ class SearchKeywordHeader extends StatelessWidget {
           onTap: () {
             context.read<ManageKeywordsCubit>().clearKeywords().then((_) {
               context.read<GetSearchKeywordCubit>().getSearchKeyWords();
+              onClearAll();
             });
           },
           child: Text(

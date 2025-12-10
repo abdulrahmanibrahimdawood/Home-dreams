@@ -5,14 +5,20 @@ import 'package:home_dreams/core/widgets/search_text_field.dart';
 import 'package:home_dreams/features/search/domain/entities/keyword_entity.dart';
 import 'package:home_dreams/features/search/presentation/manager/add_search_keywords_cubit/add_search_keywords_cubit.dart';
 import 'package:home_dreams/features/search/presentation/manager/get_search_keyword_cubit/get_search_keyword_cubit.dart';
-import 'package:home_dreams/features/search/presentation/manager/manage_keywords_cubit/manage_keywords_cubit.dart';
 import 'package:home_dreams/features/search/presentation/manager/search_product_cubit/search_product_cubit.dart';
-import 'package:home_dreams/features/search/presentation/views/widgets/search_keyword_header.dart';
+import 'package:home_dreams/features/search/presentation/views/widgets/search_keywords_body_blocbuilder.dart';
 import 'package:home_dreams/features/search/presentation/views/widgets/search_view_bloc_builder.dart';
 import 'package:home_dreams/features/search/presentation/views/widgets/search_view_body_bloc_consumer.dart';
 
-class SearchViewBody extends StatelessWidget {
+class SearchViewBody extends StatefulWidget {
   const SearchViewBody({super.key});
+
+  @override
+  State<SearchViewBody> createState() => _SearchViewBodyState();
+}
+
+class _SearchViewBodyState extends State<SearchViewBody> {
+  final TextEditingController searchController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -25,6 +31,7 @@ class SearchViewBody extends StatelessWidget {
             child: Column(
               children: [
                 SearchTextField(
+                  controller: searchController,
                   readOnly: false,
                   onTap: () {
                     context.read<GetSearchKeywordCubit>().getSearchKeyWords();
@@ -43,78 +50,8 @@ class SearchViewBody extends StatelessWidget {
                     );
                   },
                 ),
-                // Icon(Icons.search, color: Colors.grey),
-                BlocBuilder<GetSearchKeywordCubit, GetSearchKeywordState>(
-                  builder: (context, state) {
-                    if (state is GetSearchKeywordFailure) {
-                      return Text(state.errMessage);
-                    } else if (state is GetSearchKeywordSuccess &&
-                        state.keyWords.isNotEmpty) {
-                      return Container(
-                        margin: const EdgeInsets.only(top: 8),
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(8),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.black12,
-                              blurRadius: 6,
-                              offset: Offset(0, 3),
-                            ),
-                          ],
-                        ),
-                        child: Column(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(
-                                top: 16,
-                                bottom: 8,
-                                left: 38,
-                                right: 20,
-                              ),
-                              child: SearchKeywordHeader(),
-                            ),
-                            ListView.builder(
-                              shrinkWrap: true,
-                              itemCount: state.keyWords.length,
-                              itemBuilder: (context, index) {
-                                return ListTile(
-                                  trailing: IconButton(
-                                    icon: Icon(Icons.close),
-                                    onPressed: () {
-                                      context
-                                          .read<ManageKeywordsCubit>()
-                                          .removeKeyword(state.keyWords[index])
-                                          .then((_) {
-                                            context
-                                                .read<GetSearchKeywordCubit>()
-                                                .getSearchKeyWords();
-                                          });
-                                    },
-                                  ),
-                                  leading: Icon(
-                                    Icons.history,
-                                    size: 20,
-                                    color: Colors.grey,
-                                  ),
-                                  title: Text(state.keyWords[index]),
-                                  onTap: () {
-                                    context
-                                        .read<SearchProductCubit>()
-                                        .getSearchProducts(
-                                          state.keyWords[index],
-                                        );
-                                  },
-                                );
-                              },
-                            ),
-                          ],
-                        ),
-                      );
-                    } else {
-                      return SizedBox.shrink();
-                    }
-                  },
+                SearchKeywordsBodyBlocbuilder(
+                  searchController: searchController,
                 ),
               ],
             ),
