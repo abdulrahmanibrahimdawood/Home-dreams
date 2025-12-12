@@ -3,7 +3,7 @@ import 'package:home_dreams/core/utils/app_colors.dart';
 
 Future<String?> showFilterBottomSheet(
   BuildContext context, {
-  String initialValue = "lowToHigh",
+  String initialValue = "",
 }) {
   String selectedValue = initialValue;
 
@@ -41,39 +41,29 @@ Future<String?> showFilterBottomSheet(
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(height: 20),
-                Column(
-                  children: [
-                    RadioListTile(
-                      title: const Text("السعر ( الأقل إلى الأعلى )"),
-                      value: "lowToHigh",
-                      groupValue: selectedValue,
-                      onChanged: (val) {
-                        setState(() {
-                          selectedValue = val!;
-                        });
-                      },
-                    ),
-                    RadioListTile(
-                      title: const Text("السعر ( الأعلى إلى الأقل )"),
-                      value: "highToLow",
-                      groupValue: selectedValue,
-                      onChanged: (val) {
-                        setState(() {
-                          selectedValue = val!;
-                        });
-                      },
-                    ),
-                    RadioListTile(
-                      title: const Text("الأحدث"),
-                      value: "newest",
-                      groupValue: selectedValue,
-                      onChanged: (val) {
-                        setState(() {
-                          selectedValue = val!;
-                        });
-                      },
-                    ),
-                  ],
+                RadioGroup<String>(
+                  groupValue: selectedValue,
+                  onChanged: (val) {
+                    setState(() {
+                      selectedValue = val!;
+                    });
+                  },
+                  child: Column(
+                    children: [
+                      RadioListTile(
+                        title: Text("السعر ( الأقل إلى الأعلى )"),
+                        value: "lowToHigh",
+                      ),
+                      RadioListTile(
+                        title: Text("السعر ( الأعلى إلى الأقل )"),
+                        value: "highToLow",
+                      ),
+                      RadioListTile(
+                        title: const Text("الأحدث"),
+                        value: "newest",
+                      ),
+                    ],
+                  ),
                 ),
                 const SizedBox(height: 10),
                 SizedBox(

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:home_dreams/constants.dart';
@@ -48,8 +50,13 @@ class _SearchViewBodyState extends State<SearchViewBody> {
                   SearchTextField(
                     controller: searchController,
                     readOnly: false,
-                    onTapIcon: () {
-                      showFilterBottomSheet(context);
+                    onTapIcon: () async {
+                      {
+                        final filterResult = await showFilterBottomSheet(
+                          context,
+                        );
+                        log("Selected Filter => $filterResult");
+                      }
                     },
                     onTap: () {
                       context.read<GetSearchKeywordCubit>().getSearchKeyWords();
