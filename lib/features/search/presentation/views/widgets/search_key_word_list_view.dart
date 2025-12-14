@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:home_dreams/features/search/presentation/manager/get_search_keyword_cubit/get_search_keyword_cubit.dart';
 import 'package:home_dreams/features/search/presentation/manager/manage_keywords_cubit/manage_keywords_cubit.dart';
-import 'package:home_dreams/features/search/presentation/manager/search_product_cubit/search_product_cubit.dart';
 import 'package:home_dreams/features/search/presentation/views/widgets/search_keyword_header.dart';
 
 class SearchKeywordsBody extends StatelessWidget {
@@ -64,9 +63,9 @@ class SearchKeywordsBody extends StatelessWidget {
                 title: Text(keywords[index]),
                 onTap: () {
                   searchController.text = keywords[index];
-                  context.read<SearchProductCubit>().getSearchProducts(
-                    keywords[index],
-                  );
+                  // context.read<SearchProductCubit>().getSearchProducts(
+                  //   keywords[index],
+                  // );
                 },
               );
             },

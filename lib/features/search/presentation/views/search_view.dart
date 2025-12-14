@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:home_dreams/core/cubits/products_cubit/cubit/products_cubit.dart';
+import 'package:home_dreams/core/repos/products_repo/product_repo.dart';
 import 'package:home_dreams/core/services/get_it_services.dart';
 import 'package:home_dreams/core/widgets/custom_app_bar_inside.dart';
 import 'package:home_dreams/features/search/domain/repo/search_repo.dart';
 import 'package:home_dreams/features/search/presentation/manager/add_search_keywords_cubit/add_search_keywords_cubit.dart';
 import 'package:home_dreams/features/search/presentation/manager/get_search_keyword_cubit/get_search_keyword_cubit.dart';
 import 'package:home_dreams/features/search/presentation/manager/manage_keywords_cubit/manage_keywords_cubit.dart';
-import 'package:home_dreams/features/search/presentation/manager/search_product_cubit/search_product_cubit.dart';
 import 'package:home_dreams/features/search/presentation/views/widgets/search_view_body.dart';
 
 class SearchView extends StatelessWidget {
@@ -17,10 +18,12 @@ class SearchView extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => SearchProductCubit(getIt.get<SearchRepo>()),
+          create: (context) => AddSearchKeywordsCubit(getIt.get<SearchRepo>()),
         ),
         BlocProvider(
-          create: (context) => AddSearchKeywordsCubit(getIt.get<SearchRepo>()),
+          create: (context) =>
+              ProductsCubit(getIt.get<ProductsRepo>())
+                ..getBestSellingProducts(),
         ),
         BlocProvider(
           create: (context) => GetSearchKeywordCubit(getIt.get<SearchRepo>()),

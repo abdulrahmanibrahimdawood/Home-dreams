@@ -13,21 +13,27 @@ class ProductsRepoImpl implements ProductsRepo {
 
   ProductsRepoImpl({required this.databaseServices});
   @override
-  Future<Either<Failure, List<ProductEntity>>> getBestSellingProducts() async {
+  Future<Either<Failure, List<ProductEntity>>> getBestSellingProducts({
+    String? keyword,
+  }) async {
     try {
-      var data =
-          await databaseServices.getData(
-                path: BackendEndpoints.getProducts,
-                query: {
-                  'limit': 10,
-                  'orderBy': 'sellingCount',
-                  'descending': true,
-                },
-              )
-              as List<Map<String, dynamic>>;
-      List<ProductEntity> products = data
-          .map((e) => ProductModel.fromJson(e).toEntity())
+      final data = await databaseServices.getData(
+        path: BackendEndpoints.getProducts,
+        query: {
+          'limit': 10,
+          'orderBy': 'sellingCount',
+          'descending': true,
+          if (keyword != null && keyword.isNotEmpty)
+            'keyword': keyword.toLowerCase(),
+        },
+      );
+
+      final List<ProductEntity> products = data
+          .map<ProductEntity>(
+            (e) => ProductModel.fromJson(e as Map<String, dynamic>).toEntity(),
+          )
           .toList();
+
       return right(products);
     } catch (e) {
       return left(
@@ -58,3 +64,35 @@ class ProductsRepoImpl implements ProductsRepo {
     }
   }
 }
+
+// Future<List<Product>> getProducts({
+//   String? keyword,
+//   FilterParams? filter,
+// }) async {
+//   Query query = FirebaseFirestore.instance.collection('products');
+
+//   /// 🔍 Search
+//   if (keyword != null && keyword.trim().isNotEmpty) {
+//     query = query.where('keywords', arrayContains: keyword.toLowerCase());
+//   }
+
+//   /// 💰 Filter (Range)
+//   if (filter?.minPrice != null) {
+//     query = query.where('price', isGreaterThanOrEqualTo: filter!.minPrice);
+//   }
+
+//   if (filter?.maxPrice != null) {
+//     query = query.where('price', isLessThanOrEqualTo: filter!.maxPrice);
+//   }
+
+//   /// ⬆⬇ Sort
+//   if (filter?.priceHighToLow != null) {
+//     query = query.orderBy('price', descending: filter!.priceHighToLow!);
+//   }
+
+//   final snapshot = await query.get();
+
+//   return snapshot.docs
+//       .map((e) => Product.fromJson(e.data() as Map<String, dynamic>))
+//       .toList();
+// }
