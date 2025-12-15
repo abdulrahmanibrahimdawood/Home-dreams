@@ -36,6 +36,7 @@ Future<String?> showFilterBottomSheet(
                     ),
                   ),
                 ),
+
                 const Text(
                   "ترتيب حسب :",
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
@@ -57,6 +58,14 @@ Future<String?> showFilterBottomSheet(
                       RadioListTile(
                         title: Text("السعر ( الأعلى إلى الأقل )"),
                         value: "highToLow",
+                      ),
+                      RadioListTile(
+                        fillColor: WidgetStateProperty.all(Colors.red),
+                        title: Text(
+                          "إلغاء الترتيب",
+                          style: TextStyle(color: Colors.red),
+                        ),
+                        value: "reset",
                       ),
                     ],
                   ),

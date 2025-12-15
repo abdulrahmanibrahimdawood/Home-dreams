@@ -55,6 +55,8 @@ class ProductsRepoImpl implements ProductsRepo {
             case SortBy.priceLowToHigh:
               query = query.orderBy('price');
               break;
+            case SortBy.reset:
+              break;
           }
         }
       }
@@ -107,7 +109,7 @@ class ProductsRepoImpl implements ProductsRepo {
   // }
 }
 
-enum SortBy { priceHighToLow, priceLowToHigh }
+enum SortBy { priceHighToLow, priceLowToHigh, reset }
 
 class FilterParams {
   final SortBy? sortBy;

@@ -17,6 +17,8 @@ class ProductsViewBody extends StatefulWidget {
 }
 
 class _ProductsViewBodyState extends State<ProductsViewBody> {
+  String? lastSelectedSort;
+
   @override
   void initState() {
     context.read<ProductsCubit>().getProducts();
@@ -45,20 +47,42 @@ class _ProductsViewBodyState extends State<ProductsViewBody> {
                       searchKeyword: value,
                     );
                   },
-                  onChanged: (value) async {
+                  onChanged: (value) {
                     context.read<ProductsCubit>().getProducts(
                       searchKeyword: value,
                     );
                   },
                   readOnly: false,
                   onTapIcon: () async {
-                    FilterParams? filter = await filterWith(context);
-                    context.read<ProductsCubit>().getProducts(filter: filter);
+                    final sort = await showFilterBottomSheet(
+                      context,
+                      initialValue: lastSelectedSort ?? '',
+                    );
+                    if (sort != null) {
+                      lastSelectedSort = sort;
+                      FilterParams filter;
+                      if (sort == 'lowToHigh') {
+                        filter = FilterParams(sortBy: SortBy.priceLowToHigh);
+                      } else if (sort == 'highToLow') {
+                        filter = FilterParams(sortBy: SortBy.priceHighToLow);
+                      } else {
+                        filter = FilterParams(sortBy: SortBy.reset);
+                      }
+                      context.read<ProductsCubit>().getProducts(filter: filter);
+                    }
                   },
                 ),
                 SizedBox(height: 12),
-                ProductsViewHeader(
-                  productsLength: context.read<ProductsCubit>().productsLength,
+                BlocBuilder<ProductsCubit, ProductsState>(
+                  builder: (context, state) {
+                    if (state is ProductsSuccess) {
+                      return ProductsViewHeader(
+                        productsLength: state.products.length,
+                      );
+                    } else {
+                      return ProductsViewHeader(productsLength: 0);
+                    }
+                  },
                 ),
                 SizedBox(height: 8),
               ],
@@ -68,18 +92,5 @@ class _ProductsViewBodyState extends State<ProductsViewBody> {
         ],
       ),
     );
-  }
-
-  Future<FilterParams?> filterWith(BuildContext context) async {
-    FilterParams? filter;
-    final sort = await showFilterBottomSheet(context);
-    if (sort != null) {
-      if (sort == 'lowToHigh') {
-        filter = FilterParams(sortBy: SortBy.priceLowToHigh);
-      } else if (sort == 'highToLow') {
-        filter = FilterParams(sortBy: SortBy.priceHighToLow);
-      }
-    }
-    return filter;
   }
 }
