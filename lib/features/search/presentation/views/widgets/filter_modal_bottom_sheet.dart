@@ -58,10 +58,6 @@ Future<String?> showFilterBottomSheet(
                         title: Text("السعر ( الأعلى إلى الأقل )"),
                         value: "highToLow",
                       ),
-                      RadioListTile(
-                        title: const Text("الأحدث"),
-                        value: "newest",
-                      ),
                     ],
                   ),
                 ),

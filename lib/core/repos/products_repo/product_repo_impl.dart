@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
 import 'package:home_dreams/core/entities/product_entity.dart';
 import 'package:home_dreams/core/errors/failures.dart';
@@ -37,24 +38,79 @@ class ProductsRepoImpl implements ProductsRepo {
   }
 
   @override
-  Future<Either<Failure, List<ProductEntity>>> getProducts() async {
+  Future<Either<Failure, List<ProductEntity>>> getProducts({
+    FilterParams? filter,
+    String? searchKeyword,
+    FilterParams? postSearchFilter,
+  }) async {
     try {
-      var data =
-          await databaseServices.getData(path: BackendEndpoints.getProducts)
-              as List<Map<String, dynamic>>;
-      // List<ProductModel> products = data
-      //     .map((e) => ProductModel.fromJson(e))
-      //     .toList();
-      // List<ProductEntity> productsEntities = products
-      //     .map((e) => e.toEntity())
-      //     .toList();
-      List<ProductEntity> products = data
-          .map((e) => ProductModel.fromJson(e).toEntity())
+      Query query = FirebaseFirestore.instance.collection('products');
+      // ===== 1️⃣ فلترة أساسية قبل البحث =====
+      if (filter != null) {
+        if (filter.sortBy != null) {
+          switch (filter.sortBy!) {
+            case SortBy.priceHighToLow:
+              query = query.orderBy('price', descending: true);
+              break;
+            case SortBy.priceLowToHigh:
+              query = query.orderBy('price');
+              break;
+          }
+        }
+      }
+      final snapshot = await query.get();
+      List<ProductEntity> products = snapshot.docs
+          .map(
+            (e) => ProductModel.fromJson(
+              e.data() as Map<String, dynamic>,
+            ).toEntity(),
+          )
           .toList();
+
+      // ===== 3️⃣ البحث الحر في Dart =====
+      if (searchKeyword != null && searchKeyword.trim().isNotEmpty) {
+        final searchWords = searchKeyword.toLowerCase().split(' ');
+
+        products = products.where((product) {
+          final nameLower = product.name.toLowerCase();
+          // كل كلمة موجودة في الاسم
+          return searchWords.every((word) => nameLower.contains(word));
+        }).toList();
+      }
       return right(products);
-    } catch (e) {
+    } on Exception catch (e) {
       log(e.toString());
       return left(ServerFailure('Failed to get products: ${e.toString()}'));
     }
   }
+
+  // @override
+  // Future<Either<Failure, List<ProductEntity>>> getProducts() async {
+  //   try {
+  //     var data =
+  //         await databaseServices.getData(path: BackendEndpoints.getProducts)
+  //             as List<Map<String, dynamic>>;
+  //     // List<ProductModel> products = data
+  //     //     .map((e) => ProductModel.fromJson(e))
+  //     //     .toList();
+  //     // List<ProductEntity> productsEntities = products
+  //     //     .map((e) => e.toEntity())
+  //     //     .toList();
+  //     List<ProductEntity> products = data
+  //         .map((e) => ProductModel.fromJson(e).toEntity())
+  //         .toList();
+  //     return right(products);
+  //   } catch (e) {
+  //     log(e.toString());
+  //     return left(ServerFailure('Failed to get products: ${e.toString()}'));
+  //   }
+  // }
+}
+
+enum SortBy { priceHighToLow, priceLowToHigh }
+
+class FilterParams {
+  final SortBy? sortBy;
+
+  FilterParams({this.sortBy});
 }
