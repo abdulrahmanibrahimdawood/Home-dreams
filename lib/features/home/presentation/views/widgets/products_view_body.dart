@@ -2,12 +2,11 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:home_dreams/constants.dart';
 import 'package:home_dreams/core/cubits/products_cubit/cubit/products_cubit.dart';
-import 'package:home_dreams/core/repos/products_repo/product_repo_impl.dart';
+import 'package:home_dreams/core/helper_funcations/filter_with.dart';
 import 'package:home_dreams/core/widgets/custom_app_bar_inside.dart';
 import 'package:home_dreams/core/widgets/search_text_field.dart';
 import 'package:home_dreams/features/home/presentation/views/widgets/best_selling_grid_view_bloc_builder.dart';
 import 'package:home_dreams/features/home/presentation/views/widgets/products_view_header.dart';
-import 'package:home_dreams/features/search/presentation/views/widgets/filter_modal_bottom_sheet.dart';
 
 class ProductsViewBody extends StatefulWidget {
   const ProductsViewBody({super.key});
@@ -54,22 +53,14 @@ class _ProductsViewBodyState extends State<ProductsViewBody> {
                   },
                   readOnly: false,
                   onTapIcon: () async {
-                    final sort = await showFilterBottomSheet(
-                      context,
-                      initialValue: lastSelectedSort ?? '',
+                    final result = await filterWith(
+                      context: context,
+                      lastSelectedSort: lastSelectedSort,
                     );
-                    if (sort != null) {
-                      lastSelectedSort = sort;
-                      FilterParams filter;
-                      if (sort == 'lowToHigh') {
-                        filter = FilterParams(sortBy: SortBy.priceLowToHigh);
-                      } else if (sort == 'highToLow') {
-                        filter = FilterParams(sortBy: SortBy.priceHighToLow);
-                      } else {
-                        filter = FilterParams(sortBy: SortBy.reset);
-                      }
-                      context.read<ProductsCubit>().getProducts(filter: filter);
-                    }
+
+                    setState(() {
+                      lastSelectedSort = result;
+                    });
                   },
                 ),
                 SizedBox(height: 12),

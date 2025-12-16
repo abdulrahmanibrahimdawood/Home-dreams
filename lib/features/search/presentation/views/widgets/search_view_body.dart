@@ -2,12 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:home_dreams/constants.dart';
 import 'package:home_dreams/core/cubits/products_cubit/cubit/products_cubit.dart';
-import 'package:home_dreams/core/repos/products_repo/product_repo_impl.dart';
+import 'package:home_dreams/core/helper_funcations/filter_with.dart';
 import 'package:home_dreams/core/widgets/search_text_field.dart';
 import 'package:home_dreams/features/search/domain/entities/keyword_entity.dart';
 import 'package:home_dreams/features/search/presentation/manager/add_search_keywords_cubit/add_search_keywords_cubit.dart';
 import 'package:home_dreams/features/search/presentation/manager/get_search_keyword_cubit/get_search_keyword_cubit.dart';
-import 'package:home_dreams/features/search/presentation/views/widgets/filter_modal_bottom_sheet.dart';
 import 'package:home_dreams/features/search/presentation/views/widgets/search_keywords_body_blocbuilder.dart';
 import 'package:home_dreams/features/search/presentation/views/widgets/search_view_bloc_builder.dart';
 import 'package:home_dreams/features/search/presentation/views/widgets/search_view_body_bloc_consumer.dart';
@@ -52,25 +51,16 @@ class _SearchViewBodyState extends State<SearchViewBody> {
                     controller: searchController,
                     readOnly: false,
                     onTapIcon: () async {
-                      final sort = await showFilterBottomSheet(
-                        context,
-                        initialValue: lastSelectedSort ?? '',
+                      final result = await filterWith(
+                        context: context,
+                        lastSelectedSort: lastSelectedSort,
                       );
-                      if (sort != null) {
-                        lastSelectedSort = sort;
-                        FilterParams filter;
-                        if (sort == 'lowToHigh') {
-                          filter = FilterParams(sortBy: SortBy.priceLowToHigh);
-                        } else if (sort == 'highToLow') {
-                          filter = FilterParams(sortBy: SortBy.priceHighToLow);
-                        } else {
-                          filter = FilterParams(sortBy: SortBy.reset);
-                        }
-                        context.read<ProductsCubit>().getProducts(
-                          filter: filter,
-                        );
-                      }
+
+                      setState(() {
+                        lastSelectedSort = result;
+                      });
                     },
+
                     onTap: () {
                       context.read<GetSearchKeywordCubit>().getSearchKeyWords();
                       setState(() {
