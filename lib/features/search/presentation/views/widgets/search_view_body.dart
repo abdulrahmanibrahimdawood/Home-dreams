@@ -1,13 +1,12 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:home_dreams/constants.dart';
+import 'package:home_dreams/core/cubits/products_cubit/cubit/products_cubit.dart';
+import 'package:home_dreams/core/repos/products_repo/product_repo_impl.dart';
 import 'package:home_dreams/core/widgets/search_text_field.dart';
 import 'package:home_dreams/features/search/domain/entities/keyword_entity.dart';
 import 'package:home_dreams/features/search/presentation/manager/add_search_keywords_cubit/add_search_keywords_cubit.dart';
 import 'package:home_dreams/features/search/presentation/manager/get_search_keyword_cubit/get_search_keyword_cubit.dart';
-import 'package:home_dreams/features/search/presentation/manager/search_product_cubit/search_product_cubit.dart';
 import 'package:home_dreams/features/search/presentation/views/widgets/filter_modal_bottom_sheet.dart';
 import 'package:home_dreams/features/search/presentation/views/widgets/search_keywords_body_blocbuilder.dart';
 import 'package:home_dreams/features/search/presentation/views/widgets/search_view_bloc_builder.dart';
@@ -23,6 +22,8 @@ class SearchViewBody extends StatefulWidget {
 class _SearchViewBodyState extends State<SearchViewBody> {
   final TextEditingController searchController = TextEditingController();
   bool showKeywords = false;
+  String? lastSelectedSort;
+
   @override
   void dispose() {
     searchController.dispose();
@@ -51,11 +52,23 @@ class _SearchViewBodyState extends State<SearchViewBody> {
                     controller: searchController,
                     readOnly: false,
                     onTapIcon: () async {
-                      {
-                        final filterResult = await showFilterBottomSheet(
-                          context,
+                      final sort = await showFilterBottomSheet(
+                        context,
+                        initialValue: lastSelectedSort ?? '',
+                      );
+                      if (sort != null) {
+                        lastSelectedSort = sort;
+                        FilterParams filter;
+                        if (sort == 'lowToHigh') {
+                          filter = FilterParams(sortBy: SortBy.priceLowToHigh);
+                        } else if (sort == 'highToLow') {
+                          filter = FilterParams(sortBy: SortBy.priceHighToLow);
+                        } else {
+                          filter = FilterParams(sortBy: SortBy.reset);
+                        }
+                        context.read<ProductsCubit>().getProducts(
+                          filter: filter,
                         );
-                        log("Selected Filter => $filterResult");
                       }
                     },
                     onTap: () {
@@ -65,22 +78,28 @@ class _SearchViewBodyState extends State<SearchViewBody> {
                       });
                     },
                     onChanged: (value) {
-                      context.read<SearchProductCubit>().getSearchProducts(
-                        value,
+                      context.read<ProductsCubit>().getBestSellingProducts(
+                        searchKeyword: value,
                       );
                       setState(() {
                         showKeywords = true;
                       });
                     },
                     onSubmitted: (value) {
+                      final keyword = value.trim();
+                      context.read<ProductsCubit>().getBestSellingProducts(
+                        searchKeyword: value,
+                      );
                       List<String> searchKeyWords = [];
                       searchKeyWords.add(value);
                       var keywordEntity = KeywordEntity(
                         searchKeyWordList: searchKeyWords,
                       );
-                      context.read<AddSearchKeywordsCubit>().addSearchKeyWord(
-                        keywordEntity,
-                      );
+                      if (keyword.isNotEmpty) {
+                        context.read<AddSearchKeywordsCubit>().addSearchKeyWord(
+                          keywordEntity,
+                        );
+                      }
                       setState(() {
                         showKeywords = false;
                       });

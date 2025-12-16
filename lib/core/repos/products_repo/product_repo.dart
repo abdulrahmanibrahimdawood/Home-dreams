@@ -9,5 +9,9 @@ abstract class ProductsRepo {
     String? searchKeyword,
     FilterParams? postSearchFilter,
   });
-  Future<Either<Failure, List<ProductEntity>>> getBestSellingProducts();
+  Future<Either<Failure, List<ProductEntity>>> getBestSellingProducts({
+    FilterParams? filter,
+    String? searchKeyword,
+    FilterParams? postSearchFilter,
+  });
 }

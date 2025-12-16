@@ -14,7 +14,11 @@ class ProductsRepoImpl implements ProductsRepo {
 
   ProductsRepoImpl({required this.databaseServices});
   @override
-  Future<Either<Failure, List<ProductEntity>>> getBestSellingProducts() async {
+  Future<Either<Failure, List<ProductEntity>>> getBestSellingProducts({
+    FilterParams? filter,
+    String? searchKeyword,
+    FilterParams? postSearchFilter,
+  }) async {
     try {
       var data =
           await databaseServices.getData(
@@ -26,9 +30,35 @@ class ProductsRepoImpl implements ProductsRepo {
                 },
               )
               as List<Map<String, dynamic>>;
+
       List<ProductEntity> products = data
           .map((e) => ProductModel.fromJson(e).toEntity())
           .toList();
+
+      if (searchKeyword != null && searchKeyword.trim().isNotEmpty) {
+        final searchWords = searchKeyword.toLowerCase().split(' ');
+
+        products = products.where((product) {
+          final nameLower = product.name.toLowerCase();
+          return searchWords.every((word) => nameLower.contains(word));
+        }).toList();
+      }
+
+      if (filter != null && filter.sortBy != null) {
+        switch (filter.sortBy!) {
+          case SortBy.priceHighToLow:
+            products.sort((a, b) => b.price.compareTo(a.price));
+            break;
+
+          case SortBy.priceLowToHigh:
+            products.sort((a, b) => a.price.compareTo(b.price));
+            break;
+
+          case SortBy.reset:
+            break;
+        }
+      }
+
       return right(products);
     } catch (e) {
       return left(
@@ -37,6 +67,34 @@ class ProductsRepoImpl implements ProductsRepo {
     }
   }
 
+  // @override
+  // Future<Either<Failure, List<ProductEntity>>> getBestSellingProducts({
+  //   FilterParams? filter,
+  //   String? searchKeyword,
+  //   FilterParams? postSearchFilter,
+  // }) async {
+  //   try {
+  //     var data =
+  //         await databaseServices.getData(
+  //               path: BackendEndpoints.getProducts,
+  //               query: {
+  //                 'limit': 10,
+  //                 'orderBy': 'sellingCount',
+  //                 'descending': true,
+  //               },
+  //             )
+  //             as List<Map<String, dynamic>>;
+  //     List<ProductEntity> products = data
+  //         .map((e) => ProductModel.fromJson(e).toEntity())
+  //         .toList();
+  //     return right(products);
+  //   } catch (e) {
+  //     return left(
+  //       ServerFailure('Failed to get best selling products: ${e.toString()}'),
+  //     );
+  //   }
+  // }
+
   @override
   Future<Either<Failure, List<ProductEntity>>> getProducts({
     FilterParams? filter,
@@ -44,8 +102,9 @@ class ProductsRepoImpl implements ProductsRepo {
     FilterParams? postSearchFilter,
   }) async {
     try {
-      Query query = FirebaseFirestore.instance.collection('products');
-      // ===== 1️⃣ فلترة أساسية قبل البحث =====
+      Query query = FirebaseFirestore.instance.collection(
+        BackendEndpoints.getProducts,
+      );
       if (filter != null) {
         if (filter.sortBy != null) {
           switch (filter.sortBy!) {
@@ -69,13 +128,10 @@ class ProductsRepoImpl implements ProductsRepo {
           )
           .toList();
 
-      // ===== 3️⃣ البحث الحر في Dart =====
       if (searchKeyword != null && searchKeyword.trim().isNotEmpty) {
         final searchWords = searchKeyword.toLowerCase().split(' ');
-
         products = products.where((product) {
           final nameLower = product.name.toLowerCase();
-          // كل كلمة موجودة في الاسم
           return searchWords.every((word) => nameLower.contains(word));
         }).toList();
       }

@@ -27,9 +27,17 @@ class ProductsCubit extends Cubit<ProductsState> {
     );
   }
 
-  Future<void> getBestSellingProducts() async {
+  Future<void> getBestSellingProducts({
+    FilterParams? filter,
+    String? searchKeyword,
+    FilterParams? postSearchFilter,
+  }) async {
     emit(ProductsLoading());
-    final result = await productRepo.getBestSellingProducts();
+    final result = await productRepo.getBestSellingProducts(
+      filter: filter,
+      searchKeyword: searchKeyword,
+      postSearchFilter: postSearchFilter,
+    );
     result.fold(
       (failure) => emit(ProductsFailure(errMessage: failure.message)),
       (products) {
