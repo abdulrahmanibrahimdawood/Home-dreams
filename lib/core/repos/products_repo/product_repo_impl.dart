@@ -23,11 +23,16 @@ class ProductsRepoImpl implements ProductsRepo {
       var data =
           await databaseServices.getData(
                 path: BackendEndpoints.getProducts,
-                query: {
-                  'limit': 10,
-                  'orderBy': 'sellingCount',
-                  'descending': true,
-                },
+                query:
+                    (filter == null &&
+                        postSearchFilter == null &&
+                        searchKeyword == null)
+                    ? {'orderBy': 'sellingCount', 'descending': true}
+                    : {
+                        'limit': 10,
+                        'orderBy': 'sellingCount',
+                        'descending': true,
+                      },
               )
               as List<Map<String, dynamic>>;
 
