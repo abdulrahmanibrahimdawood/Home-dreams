@@ -14,7 +14,7 @@ class LogoutButton extends StatelessWidget {
       child: Container(
         width: double.infinity,
         height: 56,
-        decoration: BoxDecoration(color: Color.fromARGB(255, 248, 239, 234)),
+        decoration: BoxDecoration(color: Color(0xffF4EBE6)),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [

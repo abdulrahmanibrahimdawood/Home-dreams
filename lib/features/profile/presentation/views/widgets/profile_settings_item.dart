@@ -9,8 +9,10 @@ class ProfileSettingsItem extends StatelessWidget {
     super.key,
     required this.imagePath,
     required this.text,
+    this.trailing,
   });
   final String imagePath;
+  final Widget? trailing;
   final String text;
   @override
   Widget build(BuildContext context) {
@@ -31,9 +33,10 @@ class ProfileSettingsItem extends StatelessWidget {
               style: TextStyles.semiBold13.copyWith(color: Color(0xff949D9E)),
             ),
             leading: SvgPicture.asset(imagePath),
-            trailing: SvgPicture.asset(Assets.assetsImagesArrowBackIcon),
+            trailing:
+                trailing ?? SvgPicture.asset(Assets.assetsImagesArrowBackIcon),
           ),
-          Divider(height: 0, color: const Color.fromARGB(255, 198, 197, 197)),
+          Divider(height: 1, color: const Color(0xffC3C2C2)),
         ],
       ),
     );
