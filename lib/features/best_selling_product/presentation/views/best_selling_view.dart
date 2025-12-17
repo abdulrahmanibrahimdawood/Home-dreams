@@ -5,8 +5,6 @@ import 'package:home_dreams/core/repos/products_repo/product_repo.dart';
 import 'package:home_dreams/core/services/get_it_services.dart';
 import 'package:home_dreams/core/widgets/build_app_bar.dart' show buildAppBar;
 import 'package:home_dreams/features/best_selling_product/presentation/views/widgets/best_selling_view_body.dart';
-import 'package:home_dreams/features/home/presentation/manager/cart_cubit/cart_cubit.dart';
-import 'package:home_dreams/features/home/presentation/manager/cart_item_cubit/cart_item_cubit.dart';
 
 class BestSellingView extends StatelessWidget {
   const BestSellingView({super.key});
@@ -20,8 +18,6 @@ class BestSellingView extends StatelessWidget {
               ProductsCubit(getIt.get<ProductsRepo>())
                 ..getBestSellingProducts(),
         ),
-        BlocProvider(create: (context) => CartCubit()),
-        BlocProvider(create: (context) => CartItemCubit()),
       ],
       child: Scaffold(
         appBar: buildAppBar(context),
