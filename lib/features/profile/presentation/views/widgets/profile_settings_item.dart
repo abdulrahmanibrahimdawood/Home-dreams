@@ -10,9 +10,11 @@ class ProfileSettingsItem extends StatelessWidget {
     required this.imagePath,
     required this.text,
     this.trailing,
+    this.onTap,
   });
   final String imagePath;
   final Widget? trailing;
+  final void Function()? onTap;
   final String text;
   @override
   Widget build(BuildContext context) {
@@ -21,20 +23,24 @@ class ProfileSettingsItem extends StatelessWidget {
 
       child: Column(
         children: [
-          ListTile(
-            dense: true,
-            contentPadding: const EdgeInsets.symmetric(horizontal: 0),
-            visualDensity: VisualDensity(
-              horizontal: VisualDensity.minimumDensity,
+          InkWell(
+            onTap: onTap,
+            child: ListTile(
+              dense: true,
+              contentPadding: const EdgeInsets.symmetric(horizontal: 0),
+              visualDensity: VisualDensity(
+                horizontal: VisualDensity.minimumDensity,
+              ),
+              internalAddSemanticForOnTap: true,
+              title: Text(
+                text,
+                style: TextStyles.semiBold13.copyWith(color: Color(0xff949D9E)),
+              ),
+              leading: SvgPicture.asset(imagePath),
+              trailing:
+                  trailing ??
+                  SvgPicture.asset(Assets.assetsImagesArrowBackIcon),
             ),
-            internalAddSemanticForOnTap: true,
-            title: Text(
-              text,
-              style: TextStyles.semiBold13.copyWith(color: Color(0xff949D9E)),
-            ),
-            leading: SvgPicture.asset(imagePath),
-            trailing:
-                trailing ?? SvgPicture.asset(Assets.assetsImagesArrowBackIcon),
           ),
           Divider(height: 1, color: const Color(0xffC3C2C2)),
         ],

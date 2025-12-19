@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:home_dreams/constants.dart';
 import 'package:home_dreams/core/utils/app_images.dart';
 import 'package:home_dreams/core/utils/app_text_styles.dart';
+import 'package:home_dreams/features/profile/presentation/views/edit_profile_view.dart';
 import 'package:home_dreams/features/profile/presentation/views/widgets/custom_cupertino_switch.dart';
 import 'package:home_dreams/features/profile/presentation/views/widgets/logout_button.dart';
 import 'package:home_dreams/features/profile/presentation/views/widgets/profile_settings_item.dart';
@@ -25,6 +26,9 @@ class ProfileViewBody extends StatelessWidget {
         ),
         SizedBox(height: 16),
         ProfileSettingsItem(
+          onTap: () {
+            Navigator.pushNamed(context, EditProfileView.routeName);
+          },
           text: 'الملف الشخصي',
           imagePath: Assets.assetsImagesProfileIconSettings,
         ),

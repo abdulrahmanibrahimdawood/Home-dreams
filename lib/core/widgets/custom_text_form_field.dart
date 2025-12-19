@@ -9,14 +9,14 @@ class CustomTextFormField extends StatelessWidget {
     this.suffixIcon,
     this.onSaved,
     this.obscureText = false,
-    required this.errorMessage,
+    this.errorMessage,
   });
   final String hintText;
   final TextInputType textInputType;
   final Widget? suffixIcon;
   final void Function(String?)? onSaved;
   final bool obscureText;
-  final String errorMessage;
+  final String? errorMessage;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
@@ -35,7 +35,7 @@ class CustomTextFormField extends StatelessWidget {
         hintStyle: TextStyles.bold13.copyWith(color: Color(0xff949D9E)),
         hintText: hintText,
         filled: true,
-        fillColor: Color(0xffF9FAFA),
+        fillColor: Color.fromARGB(255, 243, 241, 241),
         border: buildBorder(),
         enabledBorder: buildBorder(),
         focusedBorder: buildBorder(),
