@@ -2,9 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:home_dreams/core/widgets/custom_text_form_field.dart';
 
 class PasswordField extends StatefulWidget {
-  const PasswordField({super.key, this.onSaved, this.hintText});
+  const PasswordField({
+    super.key,
+    this.onSaved,
+    this.hintText,
+    this.errorMessage,
+    this.validate = true,
+  });
   final void Function(String?)? onSaved;
   final String? hintText;
+  final String? errorMessage;
+  final bool validate;
   @override
   State<PasswordField> createState() => _PasswordFieldState();
 }
@@ -14,7 +22,8 @@ class _PasswordFieldState extends State<PasswordField> {
   @override
   Widget build(BuildContext context) {
     return CustomTextFormField(
-      errorMessage: 'يرجى كتابة كلمة المرور',
+      validate: widget.validate,
+      errorMessage: widget.errorMessage ?? 'يرجى كتابة كلمة المرور',
       obscureText: obscureText,
       onSaved: widget.onSaved,
       suffixIcon: GestureDetector(

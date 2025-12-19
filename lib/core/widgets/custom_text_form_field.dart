@@ -10,6 +10,7 @@ class CustomTextFormField extends StatelessWidget {
     this.onSaved,
     this.obscureText = false,
     this.errorMessage,
+    this.validate = true,
   });
   final String hintText;
   final TextInputType textInputType;
@@ -17,14 +18,18 @@ class CustomTextFormField extends StatelessWidget {
   final void Function(String?)? onSaved;
   final bool obscureText;
   final String? errorMessage;
+  final bool validate;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       obscureText: obscureText,
       onSaved: onSaved,
       validator: (value) {
-        if (value == null || value.isEmpty) {
-          return errorMessage;
+        if (validate == true) {
+          if (value == null || value.isEmpty) {
+            return errorMessage ?? 'يرجى كتابة هذا الحقل';
+          }
+          return null;
         }
         return null;
       },

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:home_dreams/constants.dart';
 import 'package:home_dreams/core/helper_funcations/get_user.dart';
@@ -7,47 +9,82 @@ import 'package:home_dreams/core/widgets/custom_button.dart';
 import 'package:home_dreams/core/widgets/custom_password_field.dart';
 import 'package:home_dreams/core/widgets/custom_text_form_field.dart';
 
-class EditProfileViewBody extends StatelessWidget {
+class EditProfileViewBody extends StatefulWidget {
   const EditProfileViewBody({super.key});
 
+  @override
+  State<EditProfileViewBody> createState() => _EditProfileViewBodyState();
+}
+
+class _EditProfileViewBodyState extends State<EditProfileViewBody> {
+  late String email, name, currentPassword, newPassword, confirmPassword;
+  AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: kHorizontalPadding),
-        child: Column(
-          children: [
-            SizedBox(height: 24),
-            Align(
-              alignment: Alignment.topRight,
-              child: Text('المعلومات الشخصيه', style: TextStyles.semiBold13),
-            ),
-            SizedBox(height: 8),
-            CustomTextFormField(
-              hintText: getUser().name,
-              textInputType: TextInputType.name,
-              suffixIcon: Image.asset(Assets.assetsImagesEdit),
-            ),
-            SizedBox(height: 8),
-            CustomTextFormField(
-              hintText: getUser().email,
-              textInputType: TextInputType.name,
-              suffixIcon: Image.asset(Assets.assetsImagesEdit),
-            ),
-            SizedBox(height: 16),
-            Align(
-              alignment: Alignment.topRight,
-              child: Text('تغيير كلمة المرور', style: TextStyles.semiBold13),
-            ),
-            SizedBox(height: 8),
-            PasswordField(hintText: 'كلمة المرور الحالية'),
-            SizedBox(height: 8),
-            PasswordField(hintText: 'كلمة المرور الجديدة'),
-            SizedBox(height: 16),
-            PasswordField(hintText: 'تأكيد كلمة المرور الجديدة'),
-            SizedBox(height: 74),
-            CustomButton(text: 'حفظ التغيرات', onPressed: () {}),
-          ],
+        child: Form(
+          key: formKey,
+          autovalidateMode: autovalidateMode,
+          child: Column(
+            children: [
+              SizedBox(height: 24),
+              Align(
+                alignment: Alignment.topRight,
+                child: Text('المعلومات الشخصيه', style: TextStyles.semiBold13),
+              ),
+              SizedBox(height: 8),
+              CustomTextFormField(
+                validate: false,
+                hintText: getUser().name,
+                textInputType: TextInputType.name,
+                suffixIcon: Image.asset(Assets.assetsImagesEdit),
+              ),
+              SizedBox(height: 8),
+              CustomTextFormField(
+                validate: false,
+                hintText: getUser().email,
+                textInputType: TextInputType.emailAddress,
+                suffixIcon: Image.asset(Assets.assetsImagesEdit),
+              ),
+              SizedBox(height: 16),
+              Align(
+                alignment: Alignment.topRight,
+                child: Text('تغيير كلمة المرور', style: TextStyles.semiBold13),
+              ),
+              SizedBox(height: 8),
+              PasswordField(
+                hintText: 'كلمة المرور الحالية',
+                validate: false,
+                errorMessage: 'كلمة المرور غير صحيحة',
+              ),
+              SizedBox(height: 8),
+              PasswordField(hintText: 'كلمة المرور الجديدة', validate: false),
+              SizedBox(height: 16),
+              PasswordField(
+                errorMessage: 'كلمة المرور غير متطابقة',
+                hintText: 'تأكيد كلمة المرور الجديدة',
+                validate: false,
+              ),
+              SizedBox(height: 74),
+              CustomButton(
+                text: 'حفظ التغيرات',
+                onPressed: () {
+                  if (formKey.currentState!.validate()) {
+                    formKey.currentState!.save();
+                    log('success');
+                  } else {
+                    {
+                      autovalidateMode = AutovalidateMode.always;
+                      setState(() {});
+                    }
+                  }
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );
