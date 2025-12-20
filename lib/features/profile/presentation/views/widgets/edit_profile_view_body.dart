@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:home_dreams/constants.dart';
 import 'package:home_dreams/core/helper_funcations/get_user.dart';
 import 'package:home_dreams/core/utils/app_images.dart';
@@ -8,7 +7,6 @@ import 'package:home_dreams/core/widgets/custom_button.dart';
 import 'package:home_dreams/core/widgets/custom_password_field.dart';
 import 'package:home_dreams/core/widgets/custom_text_form_field.dart';
 import 'package:home_dreams/features/profile/domain/repos/update_user_data_repo.dart';
-import 'package:home_dreams/features/profile/presentation/manager/update_user_data_cubit/update_user_data_cubit.dart';
 
 class EditProfileViewBody extends StatefulWidget {
   const EditProfileViewBody({super.key, required this.updateUserDataRepo});
@@ -48,6 +46,9 @@ class _EditProfileViewBodyState extends State<EditProfileViewBody> {
               ),
               SizedBox(height: 8),
               CustomTextFormField(
+                onSaved: (value) {
+                  email = value!;
+                },
                 validate: false,
                 hintText: getUser().email,
                 textInputType: TextInputType.emailAddress,
@@ -77,6 +78,9 @@ class _EditProfileViewBodyState extends State<EditProfileViewBody> {
               ),
               SizedBox(height: 16),
               PasswordField(
+                onSaved: (value) {
+                  confirmPassword = value!;
+                },
                 errorMessage: 'كلمة المرور غير متطابقة',
                 hintText: 'تأكيد كلمة المرور الجديدة',
                 validate: false,
@@ -87,9 +91,9 @@ class _EditProfileViewBodyState extends State<EditProfileViewBody> {
                 onPressed: () {
                   if (formKey.currentState!.validate()) {
                     formKey.currentState!.save();
-                    context.read<UpdateUserDataCubit>().updatePassword(
-                      oldPassword: oldPassword,
-                      newPassword: newPassword,
+                    widget.updateUserDataRepo.updateEmail(
+                      newEmail: email,
+                      password: oldPassword,
                     );
                   } else {
                     {

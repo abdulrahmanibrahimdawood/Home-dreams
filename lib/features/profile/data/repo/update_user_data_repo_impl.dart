@@ -73,4 +73,38 @@ class UpdateUserDataRepoImpl implements UpdateUserDataRepo {
       );
     }
   }
+
+  @override
+  Future<Either<Failure, Unit>> updateEmail({
+    required String newEmail,
+    required String password,
+  }) async {
+    try {
+      final user = FirebaseAuth.instance.currentUser!;
+      await firebaseAuthService.reauthenticate(
+        email: user.email!,
+        password: password,
+      );
+
+      await firebaseAuthService.updateEmail(newEmail: newEmail);
+
+      await databaseServices.updateData(
+        path: BackendEndpoints.updateUserData,
+        documentId: user.uid,
+        data: {'email': newEmail},
+      );
+
+      final updatedUser = UserEntity(
+        name: user.displayName ?? '',
+        email: newEmail,
+        uId: user.uid,
+      );
+
+      await authRepo.saveUserData(user: updatedUser);
+
+      return right(unit);
+    } on CustomException catch (e) {
+      return left(ServerFailure(e.message));
+    }
+  }
 }

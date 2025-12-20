@@ -8,4 +8,8 @@ abstract class UpdateUserDataRepo {
     required String oldPassword,
     required String newPassword,
   });
+  Future<Either<Failure, Unit>> updateEmail({
+    required String newEmail,
+    required String password,
+  });
 }

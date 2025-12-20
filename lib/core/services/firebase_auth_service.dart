@@ -239,4 +239,20 @@ class FirebaseAuthService {
       );
     }
   }
+
+  Future<void> updateEmail({required String newEmail}) async {
+    final user = FirebaseAuth.instance.currentUser;
+    if (user == null) {
+      throw CustomException(message: 'المستخدم غير مسجل الدخول');
+    }
+
+    try {
+      await user.verifyBeforeUpdateEmail(newEmail);
+      await user.reload();
+    } on FirebaseAuthException catch (e) {
+      throw CustomException(
+        message: e.message ?? 'حدث خطأ أثناء تحديث البريد الإلكتروني',
+      );
+    }
+  }
 }
