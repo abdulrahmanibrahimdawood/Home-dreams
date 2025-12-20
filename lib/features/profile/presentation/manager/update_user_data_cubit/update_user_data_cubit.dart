@@ -10,11 +10,16 @@ class UpdateUserDataCubit extends Cubit<UpdateUserDataState> {
   final UpdateUserDataRepo updateUserDataRepo;
 
   Future<void> updateUserName({required String name}) async {
-    emit(UpdateUserDataLoading());
+    emit(UpdateUserNameLoading());
     var result = await updateUserDataRepo.updateUserName(name: name);
     result.fold(
-      (failure) => emit(UpdateUserDataFailure(message: failure.message)),
-      (userEntity) => emit(UpdateUserDataSuccess(userEntity: userEntity)),
+      (failure) => emit(UpdateUserNameFailure(message: failure.message)),
+      (userEntity) => emit(UpdateUserNameSuccess(userEntity: userEntity)),
     );
   }
+
+  Future<void> updatePassword({
+    required String oldPassword,
+    required String newPassword,
+  }) async {}
 }

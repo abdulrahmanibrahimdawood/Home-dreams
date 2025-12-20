@@ -9,14 +9,15 @@ sealed class UpdateUserDataState extends Equatable {
 
 final class UpdateUserDataInitial extends UpdateUserDataState {}
 
-final class UpdateUserDataLoading extends UpdateUserDataState {}
+final class UpdateUserNameLoading extends UpdateUserDataState {}
 
-final class UpdateUserDataSuccess extends UpdateUserDataState {
+final class UpdateUserNameSuccess extends UpdateUserDataState {
   final UserEntity userEntity;
-  const UpdateUserDataSuccess({required this.userEntity});
+  const UpdateUserNameSuccess({required this.userEntity});
 }
 
-final class UpdateUserDataFailure extends UpdateUserDataState {
+final class UpdateUserNameFailure extends UpdateUserDataState {
   final String message;
-  const UpdateUserDataFailure({required this.message});
+  const UpdateUserNameFailure({required this.message});
 }
+//====================================================================================================

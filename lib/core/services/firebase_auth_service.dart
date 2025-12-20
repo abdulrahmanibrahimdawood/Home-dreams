@@ -204,4 +204,39 @@ class FirebaseAuthService {
       throw CustomException(message: 'حدث خطأ أثناء تحديث الاسم');
     }
   }
+
+  Future<void> updatePassword({required String newPassword}) async {
+    final user = FirebaseAuth.instance.currentUser;
+    if (user == null) {
+      throw CustomException(message: 'المستخدم غير مسجل الدخول');
+    }
+    try {
+      await user.updatePassword(newPassword);
+    } on FirebaseAuthException catch (e) {
+      throw CustomException(
+        message: e.message ?? 'حدث خطأ أثناء تحديث كلمة المرور',
+      );
+    }
+  }
+
+  Future<void> reauthenticate({
+    required String email,
+    required String password,
+  }) async {
+    final user = FirebaseAuth.instance.currentUser;
+    if (user == null) {
+      throw CustomException(message: 'المستخدم غير مسجل الدخول');
+    }
+    final credential = EmailAuthProvider.credential(
+      email: email,
+      password: password,
+    );
+    try {
+      await user.reauthenticateWithCredential(credential);
+    } on FirebaseAuthException catch (e) {
+      throw CustomException(
+        message: e.message ?? 'كلمة المرور الحالية غير صحيحة',
+      );
+    }
+  }
 }

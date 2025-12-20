@@ -19,7 +19,9 @@ class EditProfileView extends StatelessWidget {
           context,
           showNotification: false,
         ),
-        body: EditProfileViewBody(),
+        body: EditProfileViewBody(
+          updateUserDataRepo: getIt.get<UpdateUserDataRepo>(),
+        ),
       ),
     );
   }

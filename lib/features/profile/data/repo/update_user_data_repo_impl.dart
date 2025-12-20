@@ -45,7 +45,31 @@ class UpdateUserDataRepoImpl implements UpdateUserDataRepo {
       return right(updatedUser);
     } on CustomException catch (e) {
       return left(
-        ServerFailure('Exception in AuthRepoImpl.updateUserName: ${e.message}'),
+        ServerFailure(
+          'Exception in UpdateUserDataRepoImpl.updateUserName: ${e.message}',
+        ),
+      );
+    }
+  }
+
+  @override
+  Future<Either<Failure, Unit>> updatePassword({
+    required String oldPassword,
+    required String newPassword,
+  }) async {
+    try {
+      final user = FirebaseAuth.instance.currentUser!;
+      await firebaseAuthService.reauthenticate(
+        email: user.email!,
+        password: oldPassword,
+      );
+      await firebaseAuthService.updatePassword(newPassword: newPassword);
+      return right(unit);
+    } on CustomException catch (e) {
+      return left(
+        ServerFailure(
+          'Exception in UpdateUserDataRepoImpl.updatePassword: ${e.message}',
+        ),
       );
     }
   }

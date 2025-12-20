@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:home_dreams/constants.dart';
 import 'package:home_dreams/core/helper_funcations/get_user.dart';
 import 'package:home_dreams/core/utils/app_images.dart';
@@ -7,11 +6,11 @@ import 'package:home_dreams/core/utils/app_text_styles.dart';
 import 'package:home_dreams/core/widgets/custom_button.dart';
 import 'package:home_dreams/core/widgets/custom_password_field.dart';
 import 'package:home_dreams/core/widgets/custom_text_form_field.dart';
-import 'package:home_dreams/features/profile/presentation/manager/update_user_data_cubit/update_user_data_cubit.dart';
+import 'package:home_dreams/features/profile/domain/repos/update_user_data_repo.dart';
 
 class EditProfileViewBody extends StatefulWidget {
-  const EditProfileViewBody({super.key});
-
+  const EditProfileViewBody({super.key, required this.updateUserDataRepo});
+  final UpdateUserDataRepo updateUserDataRepo;
   @override
   State<EditProfileViewBody> createState() => _EditProfileViewBodyState();
 }
@@ -59,12 +58,21 @@ class _EditProfileViewBodyState extends State<EditProfileViewBody> {
               ),
               SizedBox(height: 8),
               PasswordField(
+                onSaved: (value) {
+                  currentPassword = value!;
+                },
                 hintText: 'كلمة المرور الحالية',
                 validate: false,
                 errorMessage: 'كلمة المرور غير صحيحة',
               ),
               SizedBox(height: 8),
-              PasswordField(hintText: 'كلمة المرور الجديدة', validate: false),
+              PasswordField(
+                onSaved: (value) {
+                  newPassword = value!;
+                },
+                hintText: 'كلمة المرور الجديدة',
+                validate: false,
+              ),
               SizedBox(height: 16),
               PasswordField(
                 errorMessage: 'كلمة المرور غير متطابقة',
@@ -77,8 +85,9 @@ class _EditProfileViewBodyState extends State<EditProfileViewBody> {
                 onPressed: () {
                   if (formKey.currentState!.validate()) {
                     formKey.currentState!.save();
-                    context.read<UpdateUserDataCubit>().updateUserName(
-                      name: name,
+                    widget.updateUserDataRepo.updatePassword(
+                      oldPassword: currentPassword,
+                      newPassword: newPassword,
                     );
                   } else {
                     {
