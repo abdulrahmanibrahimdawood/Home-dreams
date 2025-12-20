@@ -9,7 +9,7 @@ import 'package:home_dreams/core/services/custom_bloc_observer.dart';
 import 'package:home_dreams/core/services/get_it_services.dart';
 import 'package:home_dreams/core/services/shared_preferences_singleton.dart';
 import 'package:home_dreams/core/utils/app_colors.dart';
-import 'package:home_dreams/features/auth/presentation/views/signin_view.dart';
+import 'package:home_dreams/features/splash/presentation/views/splash_view.dart';
 import 'package:home_dreams/firebase_options.dart';
 import 'package:home_dreams/generated/l10n.dart';
 
@@ -25,7 +25,7 @@ void main() async {
 }
 
 //abdo9111@gmail.com
-//123456//
+//102030
 class ECommerce extends StatelessWidget {
   const ECommerce({super.key});
 
@@ -47,7 +47,7 @@ class ECommerce extends StatelessWidget {
       supportedLocales: S.delegate.supportedLocales,
       locale: const Locale('ar'),
       onGenerateRoute: onGenerateRoutes,
-      initialRoute: SigninView.routeName,
+      initialRoute: SplashView.routeName,
     );
   }
 }

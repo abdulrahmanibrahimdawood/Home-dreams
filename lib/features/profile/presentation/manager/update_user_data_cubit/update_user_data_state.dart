@@ -20,4 +20,13 @@ final class UpdateUserNameFailure extends UpdateUserDataState {
   final String message;
   const UpdateUserNameFailure({required this.message});
 }
+
 //====================================================================================================
+final class UpdatePasswordLoading extends UpdateUserDataState {}
+
+final class UpdatePasswordSuccess extends UpdateUserDataState {}
+
+final class UpdatePasswordFailure extends UpdateUserDataState {
+  final String message;
+  const UpdatePasswordFailure({required this.message});
+}

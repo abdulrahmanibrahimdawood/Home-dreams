@@ -21,5 +21,15 @@ class UpdateUserDataCubit extends Cubit<UpdateUserDataState> {
   Future<void> updatePassword({
     required String oldPassword,
     required String newPassword,
-  }) async {}
+  }) async {
+    emit(UpdatePasswordLoading());
+    var result = await updateUserDataRepo.updatePassword(
+      oldPassword: oldPassword,
+      newPassword: newPassword,
+    );
+    result.fold(
+      (failure) => emit(UpdatePasswordFailure(message: failure.message)),
+      (userEntity) => emit(UpdatePasswordSuccess()),
+    );
+  }
 }
