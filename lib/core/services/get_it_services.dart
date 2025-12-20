@@ -8,6 +8,8 @@ import 'package:home_dreams/core/services/firebase_auth_service.dart';
 import 'package:home_dreams/core/services/firestore_services.dart';
 import 'package:home_dreams/features/auth/data/repos/auth_repo_impl.dart';
 import 'package:home_dreams/features/auth/domain/repos/auth_repo.dart';
+import 'package:home_dreams/features/profile/data/repo/update_user_data_repo_impl.dart';
+import 'package:home_dreams/features/profile/domain/repos/update_user_data_repo.dart';
 import 'package:home_dreams/features/search/data/repo/search_repo_impl.dart';
 import 'package:home_dreams/features/search/domain/repo/search_repo.dart';
 
@@ -30,5 +32,12 @@ void setupGetIt() {
   );
   getIt.registerSingleton<SearchRepo>(
     SearchRepoImpl(databaseServices: getIt<DatabaseServices>()),
+  );
+  getIt.registerSingleton<UpdateUserDataRepo>(
+    UpdateUserDataRepoImpl(
+      authRepo: getIt<AuthRepo>(),
+      firebaseAuthService: getIt<FirebaseAuthService>(),
+      databaseServices: getIt<DatabaseServices>(),
+    ),
   );
 }

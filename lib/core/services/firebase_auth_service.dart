@@ -194,4 +194,14 @@ class FirebaseAuthService {
       );
     }
   }
+
+  Future<void> updateDisplayName({required String name}) async {
+    try {
+      final user = FirebaseAuth.instance.currentUser;
+      await user?.updateDisplayName(name);
+      await user?.reload();
+    } on FirebaseAuthException {
+      throw CustomException(message: 'حدث خطأ أثناء تحديث الاسم');
+    }
+  }
 }
