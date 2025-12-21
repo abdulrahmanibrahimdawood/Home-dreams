@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:home_dreams/constants.dart';
 import 'package:home_dreams/core/helper_funcations/get_user.dart';
 import 'package:home_dreams/core/utils/app_images.dart';
@@ -6,100 +7,139 @@ import 'package:home_dreams/core/utils/app_text_styles.dart';
 import 'package:home_dreams/core/widgets/custom_button.dart';
 import 'package:home_dreams/core/widgets/custom_password_field.dart';
 import 'package:home_dreams/core/widgets/custom_text_form_field.dart';
-import 'package:home_dreams/features/profile/domain/repos/update_user_data_repo.dart';
+import 'package:home_dreams/features/profile/presentation/manager/update_user_data_cubit/update_user_data_cubit.dart';
 
 class EditProfileViewBody extends StatefulWidget {
-  const EditProfileViewBody({super.key, required this.updateUserDataRepo});
-  final UpdateUserDataRepo updateUserDataRepo;
+  const EditProfileViewBody({super.key});
+
   @override
   State<EditProfileViewBody> createState() => _EditProfileViewBodyState();
 }
 
 class _EditProfileViewBodyState extends State<EditProfileViewBody> {
-  late String email, name, oldPassword, newPassword, confirmPassword;
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  late final TextEditingController nameController;
+  late final TextEditingController emailController;
+  late final TextEditingController oldPasswordController;
+  late final TextEditingController newPasswordController;
+  late final TextEditingController confirmPasswordController;
+
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
-  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+
+  @override
+  void initState() {
+    super.initState();
+    final user = getUser();
+
+    nameController = TextEditingController(text: user.name);
+    emailController = TextEditingController(text: user.email);
+    oldPasswordController = TextEditingController();
+    newPasswordController = TextEditingController();
+    confirmPasswordController = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    nameController.dispose();
+    emailController.dispose();
+    oldPasswordController.dispose();
+    newPasswordController.dispose();
+    confirmPasswordController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
+    final user = getUser();
     return SingleChildScrollView(
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: kHorizontalPadding),
         child: Form(
-          key: formKey,
+          key: _formKey,
           autovalidateMode: autovalidateMode,
           child: Column(
             children: [
-              SizedBox(height: 24),
+              const SizedBox(height: 24),
               Align(
                 alignment: Alignment.topRight,
                 child: Text('المعلومات الشخصيه', style: TextStyles.semiBold13),
               ),
-              SizedBox(height: 8),
+              const SizedBox(height: 8),
               CustomTextFormField(
-                onSaved: (value) {
-                  name = value!;
-                },
                 validate: false,
-                hintText: getUser().name,
+                hintText: 'الاسم الكامل',
+                controller: nameController,
                 textInputType: TextInputType.name,
                 suffixIcon: Image.asset(Assets.assetsImagesEdit),
               ),
-              SizedBox(height: 8),
+              const SizedBox(height: 8),
               CustomTextFormField(
-                onSaved: (value) {
-                  email = value!;
-                },
                 validate: false,
-                hintText: getUser().email,
+                hintText: 'البريد الإلكتروني',
+                controller: emailController,
                 textInputType: TextInputType.emailAddress,
                 suffixIcon: Image.asset(Assets.assetsImagesEdit),
               ),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               Align(
                 alignment: Alignment.topRight,
                 child: Text('تغيير كلمة المرور', style: TextStyles.semiBold13),
               ),
-              SizedBox(height: 8),
+              const SizedBox(height: 8),
               PasswordField(
-                onSaved: (value) {
-                  oldPassword = value!;
-                },
-                hintText: 'كلمة المرور الحالية',
                 validate: false,
+                controller: oldPasswordController,
+                hintText: 'كلمة المرور الحالية',
                 errorMessage: 'كلمة المرور غير صحيحة',
               ),
-              SizedBox(height: 8),
+              const SizedBox(height: 8),
               PasswordField(
-                onSaved: (value) {
-                  newPassword = value!;
-                },
+                validate: false,
+                controller: newPasswordController,
                 hintText: 'كلمة المرور الجديدة',
-                validate: false,
               ),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               PasswordField(
-                onSaved: (value) {
-                  confirmPassword = value!;
-                },
-                errorMessage: 'كلمة المرور غير متطابقة',
-                hintText: 'تأكيد كلمة المرور الجديدة',
                 validate: false,
+                controller: confirmPasswordController,
+                hintText: 'تأكيد كلمة المرور الجديدة',
+                errorMessage: 'كلمة المرور غير متطابقة',
               ),
-              SizedBox(height: 74),
+              const SizedBox(height: 74),
               CustomButton(
                 text: 'حفظ التغيرات',
                 onPressed: () {
-                  if (formKey.currentState!.validate()) {
-                    formKey.currentState!.save();
-                    widget.updateUserDataRepo.updateEmail(
+                  if (!_formKey.currentState!.validate()) {
+                    autovalidateMode = AutovalidateMode.always;
+                    setState(() {});
+                    return;
+                  }
+                  final name = nameController.text.trim();
+                  final email = emailController.text.trim();
+                  final oldPassword = oldPasswordController.text;
+                  final newPassword = newPasswordController.text;
+                  final confirmPassword = confirmPasswordController.text;
+                  if (email.isNotEmpty &&
+                      email != user.email &&
+                      oldPassword.isNotEmpty) {
+                    context.read<UpdateUserDataCubit>().updateEmail(
                       newEmail: email,
                       password: oldPassword,
                     );
-                  } else {
-                    {
-                      autovalidateMode = AutovalidateMode.always;
-                      setState(() {});
-                    }
+                  }
+                  if (name.isNotEmpty && name != user.name) {
+                    context.read<UpdateUserDataCubit>().updateUserName(
+                      name: name,
+                    );
+                  }
+                  if (newPassword.isNotEmpty &&
+                      newPassword == confirmPassword &&
+                      oldPassword.isNotEmpty) {
+                    context.read<UpdateUserDataCubit>().updatePassword(
+                      oldPassword: oldPassword,
+                      newPassword: newPassword,
+                    );
                   }
                 },
               ),

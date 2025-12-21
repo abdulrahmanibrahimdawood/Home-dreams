@@ -32,4 +32,19 @@ class UpdateUserDataCubit extends Cubit<UpdateUserDataState> {
       (userEntity) => emit(UpdatePasswordSuccess()),
     );
   }
+
+  Future<void> updateEmail({
+    required String newEmail,
+    required String password,
+  }) async {
+    emit(UpdateEmailLoading());
+    var result = await updateUserDataRepo.updateEmail(
+      newEmail: newEmail,
+      password: password,
+    );
+    result.fold(
+      (failure) => emit(UpdateEmailFailure(message: failure.message)),
+      (userEntity) => emit(UpdateEmailSuccess()),
+    );
+  }
 }

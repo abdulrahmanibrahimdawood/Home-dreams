@@ -21,7 +21,7 @@ final class UpdateUserNameFailure extends UpdateUserDataState {
   const UpdateUserNameFailure({required this.message});
 }
 
-//====================================================================================================
+//============================= Update Password States =====================
 final class UpdatePasswordLoading extends UpdateUserDataState {}
 
 final class UpdatePasswordSuccess extends UpdateUserDataState {}
@@ -29,4 +29,15 @@ final class UpdatePasswordSuccess extends UpdateUserDataState {}
 final class UpdatePasswordFailure extends UpdateUserDataState {
   final String message;
   const UpdatePasswordFailure({required this.message});
+}
+
+//============================= Update Email States =======================
+
+final class UpdateEmailLoading extends UpdateUserDataState {}
+
+final class UpdateEmailSuccess extends UpdateUserDataState {}
+
+final class UpdateEmailFailure extends UpdateUserDataState {
+  final String message;
+  const UpdateEmailFailure({required this.message});
 }
