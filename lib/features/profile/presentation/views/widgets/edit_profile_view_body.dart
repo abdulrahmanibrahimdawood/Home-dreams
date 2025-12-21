@@ -7,6 +7,7 @@ import 'package:home_dreams/core/utils/app_text_styles.dart';
 import 'package:home_dreams/core/widgets/custom_button.dart';
 import 'package:home_dreams/core/widgets/custom_password_field.dart';
 import 'package:home_dreams/core/widgets/custom_text_form_field.dart';
+import 'package:home_dreams/features/auth/domain/entites/user_entity.dart';
 import 'package:home_dreams/features/profile/presentation/manager/update_user_data_cubit/update_user_data_cubit.dart';
 
 class EditProfileViewBody extends StatefulWidget {
@@ -24,6 +25,11 @@ class _EditProfileViewBodyState extends State<EditProfileViewBody> {
   late final TextEditingController oldPasswordController;
   late final TextEditingController newPasswordController;
   late final TextEditingController confirmPasswordController;
+
+  bool? emailValidate,
+      passwordValidate,
+      newPasswordValidate,
+      confirmPasswordValidate;
 
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
 
@@ -75,7 +81,7 @@ class _EditProfileViewBodyState extends State<EditProfileViewBody> {
               ),
               const SizedBox(height: 8),
               CustomTextFormField(
-                validate: false,
+                validate: emailValidate ?? false,
                 hintText: 'البريد الإلكتروني',
                 controller: emailController,
                 textInputType: TextInputType.emailAddress,
@@ -88,20 +94,20 @@ class _EditProfileViewBodyState extends State<EditProfileViewBody> {
               ),
               const SizedBox(height: 8),
               PasswordField(
-                validate: false,
+                validate: passwordValidate ?? false,
                 controller: oldPasswordController,
                 hintText: 'كلمة المرور الحالية',
                 errorMessage: 'كلمة المرور غير صحيحة',
               ),
               const SizedBox(height: 8),
               PasswordField(
-                validate: false,
+                validate: newPasswordValidate ?? false,
                 controller: newPasswordController,
                 hintText: 'كلمة المرور الجديدة',
               ),
               const SizedBox(height: 16),
               PasswordField(
-                validate: false,
+                validate: confirmPasswordValidate ?? false,
                 controller: confirmPasswordController,
                 hintText: 'تأكيد كلمة المرور الجديدة',
                 errorMessage: 'كلمة المرور غير متطابقة',
@@ -115,32 +121,37 @@ class _EditProfileViewBodyState extends State<EditProfileViewBody> {
                     setState(() {});
                     return;
                   }
+
                   final name = nameController.text.trim();
                   final email = emailController.text.trim();
                   final oldPassword = oldPasswordController.text;
                   final newPassword = newPasswordController.text;
                   final confirmPassword = confirmPasswordController.text;
-                  if (email.isNotEmpty &&
-                      email != user.email &&
-                      oldPassword.isNotEmpty) {
-                    context.read<UpdateUserDataCubit>().updateEmail(
-                      newEmail: email,
-                      password: oldPassword,
-                    );
-                  }
-                  if (name.isNotEmpty && name != user.name) {
-                    context.read<UpdateUserDataCubit>().updateUserName(
-                      name: name,
-                    );
-                  }
-                  if (newPassword.isNotEmpty &&
-                      newPassword == confirmPassword &&
-                      oldPassword.isNotEmpty) {
-                    context.read<UpdateUserDataCubit>().updatePassword(
-                      oldPassword: oldPassword,
-                      newPassword: newPassword,
-                    );
-                  }
+
+                  emailValidate = false;
+                  passwordValidate = false;
+                  newPasswordValidate = false;
+                  confirmPasswordValidate = false;
+
+                  validator(
+                    email,
+                    user,
+                    oldPassword,
+                    newPassword,
+                    confirmPassword,
+                  );
+
+                  setState(() {});
+
+                  triggerCubit(
+                    email,
+                    user,
+                    oldPassword,
+                    context,
+                    name,
+                    newPassword,
+                    confirmPassword,
+                  );
                 },
               ),
             ],
@@ -148,5 +159,59 @@ class _EditProfileViewBodyState extends State<EditProfileViewBody> {
         ),
       ),
     );
+  }
+
+  void triggerCubit(
+    String email,
+    UserEntity user,
+    String oldPassword,
+    BuildContext context,
+    String name,
+    String newPassword,
+    String confirmPassword,
+  ) {
+    if (email.isNotEmpty && email != user.email && oldPassword.isNotEmpty) {
+      context.read<UpdateUserDataCubit>().updateEmail(
+        newEmail: email,
+        password: oldPassword,
+      );
+    }
+
+    if (name.isNotEmpty && name != user.name) {
+      context.read<UpdateUserDataCubit>().updateUserName(name: name);
+    }
+
+    if (newPassword.isNotEmpty &&
+        newPassword == confirmPassword &&
+        oldPassword.isNotEmpty) {
+      context.read<UpdateUserDataCubit>().updatePassword(
+        oldPassword: oldPassword,
+        newPassword: newPassword,
+      );
+    }
+  }
+
+  void validator(
+    String email,
+    UserEntity user,
+    String oldPassword,
+    String newPassword,
+    String confirmPassword,
+  ) {
+    if (email.isNotEmpty && email != user.email && oldPassword.isEmpty) {
+      passwordValidate = true;
+    }
+
+    if (oldPassword.isNotEmpty &&
+        (newPassword.isEmpty || confirmPassword.isEmpty)) {
+      newPasswordValidate = true;
+      confirmPasswordValidate = true;
+    }
+
+    if (newPassword.isNotEmpty &&
+        confirmPassword.isNotEmpty &&
+        newPassword != confirmPassword) {
+      confirmPasswordValidate = true;
+    }
   }
 }
