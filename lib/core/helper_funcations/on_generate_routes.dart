@@ -6,6 +6,7 @@ import 'package:home_dreams/features/auth/presentation/views/signin_view.dart';
 import 'package:home_dreams/features/auth/presentation/views/signup_view.dart';
 import 'package:home_dreams/features/best_selling_product/presentation/views/best_selling_view.dart';
 import 'package:home_dreams/features/checkout/presentation/views/checkout_view.dart';
+import 'package:home_dreams/features/favorites/presentation/views/favorites_view.dart';
 import 'package:home_dreams/features/home/domain/entites/cart_entity.dart';
 import 'package:home_dreams/features/home/presentation/views/main_view.dart';
 import 'package:home_dreams/features/on_boarding/presentation/views/on_boardig_view.dart';
@@ -44,6 +45,8 @@ Route<dynamic> onGenerateRoutes(RouteSettings settings) {
       return MaterialPageRoute(builder: (context) => const SearchView());
     case EditProfileView.routeName:
       return MaterialPageRoute(builder: (context) => const EditProfileView());
+    case FavoritesView.routeName:
+      return MaterialPageRoute(builder: (context) => const FavoritesView());
 
     default:
       return MaterialPageRoute(builder: (context) => const Scaffold());
