@@ -4,6 +4,7 @@ import 'package:home_dreams/core/entities/product_entity.dart';
 import 'package:home_dreams/core/utils/app_colors.dart';
 import 'package:home_dreams/core/utils/app_text_styles.dart';
 import 'package:home_dreams/core/widgets/custom_network_image.dart';
+import 'package:home_dreams/features/favorites/presentation/views/manager/favorite_cubit/favorite_cubit.dart';
 import 'package:home_dreams/features/home/presentation/manager/cart_cubit/cart_cubit.dart';
 
 class ProductItem extends StatelessWidget {
@@ -22,7 +23,9 @@ class ProductItem extends StatelessWidget {
             top: 0,
             right: 0,
             child: IconButton(
-              onPressed: () {},
+              onPressed: () {
+                context.read<FavoriteCubit>().addFavoriteProduct(productEntity);
+              },
               icon: Icon(Icons.favorite_outline),
             ),
           ),
