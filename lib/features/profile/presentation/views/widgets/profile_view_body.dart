@@ -6,6 +6,7 @@ import 'package:home_dreams/core/utils/app_images.dart';
 import 'package:home_dreams/core/utils/app_text_styles.dart';
 import 'package:home_dreams/features/favorites/presentation/views/favorites_view.dart';
 import 'package:home_dreams/features/favorites/presentation/views/manager/favorite_cubit/favorite_cubit.dart';
+import 'package:home_dreams/features/home/presentation/manager/cart_cubit/cart_cubit.dart';
 import 'package:home_dreams/features/profile/presentation/views/edit_profile_view.dart';
 import 'package:home_dreams/features/profile/presentation/views/who_are_we_view.dart';
 import 'package:home_dreams/features/profile/presentation/views/widgets/custom_cupertino_switch.dart';
@@ -47,13 +48,17 @@ class ProfileViewBody extends StatelessWidget {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (_) => BlocProvider.value(
-                  value: context.read<FavoriteCubit>(),
+                builder: (_) => MultiBlocProvider(
+                  providers: [
+                    BlocProvider.value(value: context.read<FavoriteCubit>()),
+                    BlocProvider.value(value: context.read<CartCubit>()),
+                  ],
                   child: const FavoritesView(),
                 ),
               ),
             );
           },
+
           text: 'المفضلة',
           imagePath: Assets.assetsImagesFavorite,
         ),
