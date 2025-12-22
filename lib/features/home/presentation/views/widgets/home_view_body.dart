@@ -4,6 +4,7 @@ import 'package:home_dreams/constants.dart';
 import 'package:home_dreams/core/cubits/products_cubit/cubit/products_cubit.dart';
 import 'package:home_dreams/core/widgets/search_text_field.dart';
 import 'package:home_dreams/features/home/presentation/manager/cart_cubit/cart_cubit.dart';
+import 'package:home_dreams/features/home/presentation/manager/cart_item_cubit/cart_item_cubit.dart';
 import 'package:home_dreams/features/home/presentation/views/widgets/best_selling_grid_view_bloc_builder.dart';
 import 'package:home_dreams/features/home/presentation/views/widgets/best_selling_header.dart';
 import 'package:home_dreams/features/home/presentation/views/widgets/custom_home_app_bar.dart';
@@ -41,9 +42,16 @@ class _HomeViewBodyState extends State<HomeViewBody> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (_) => BlocProvider.value(
-                          value: context.read<CartCubit>(),
-                          child: const SearchView(),
+                        builder: (_) => MultiBlocProvider(
+                          providers: [
+                            BlocProvider.value(
+                              value: context.read<CartCubit>(),
+                            ),
+                            BlocProvider.value(
+                              value: context.read<CartItemCubit>(),
+                            ),
+                          ],
+                          child: SearchView(),
                         ),
                       ),
                     );

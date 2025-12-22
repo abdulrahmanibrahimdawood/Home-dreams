@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:home_dreams/core/utils/app_text_styles.dart';
 import 'package:home_dreams/features/best_selling_product/presentation/views/best_selling_view.dart';
+import 'package:home_dreams/features/favorites/presentation/views/manager/favorite_cubit/favorite_cubit.dart';
 import 'package:home_dreams/features/home/presentation/manager/cart_cubit/cart_cubit.dart';
 import 'package:home_dreams/features/home/presentation/manager/cart_item_cubit/cart_item_cubit.dart';
 
@@ -23,6 +24,7 @@ class BestSellingHeader extends StatelessWidget {
                   providers: [
                     BlocProvider.value(value: context.read<CartCubit>()),
                     BlocProvider.value(value: context.read<CartItemCubit>()),
+                    BlocProvider.value(value: context.read<FavoriteCubit>()),
                   ],
                   child: const BestSellingView(),
                 ),

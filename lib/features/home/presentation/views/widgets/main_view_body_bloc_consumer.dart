@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:home_dreams/core/helper_funcations/build_error_bar.dart';
-import 'package:home_dreams/features/favorites/presentation/views/manager/favorite_cubit/favorite_cubit.dart';
 import 'package:home_dreams/features/home/presentation/manager/cart_cubit/cart_cubit.dart';
 import 'package:home_dreams/features/home/presentation/views/widgets/main_view_body.dart';
 
@@ -19,9 +18,6 @@ class MainViewBodyBlocConsumer extends StatelessWidget {
         }
         if (State is CartItemRemoved) {
           showBar(context, 'تم حذف المنتج بنجاح');
-        }
-        if (State is FavoriteProductAdded) {
-          showBar(context, 'تم اضافة المنتج للمفضله بنجاح');
         }
       },
       child: MainViewBody(currentViewIndex: currentViewIndex),

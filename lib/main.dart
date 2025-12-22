@@ -9,6 +9,9 @@ import 'package:home_dreams/core/services/custom_bloc_observer.dart';
 import 'package:home_dreams/core/services/get_it_services.dart';
 import 'package:home_dreams/core/services/shared_preferences_singleton.dart';
 import 'package:home_dreams/core/utils/app_colors.dart';
+import 'package:home_dreams/features/favorites/presentation/views/manager/favorite_cubit/favorite_cubit.dart';
+import 'package:home_dreams/features/home/presentation/manager/cart_cubit/cart_cubit.dart';
+import 'package:home_dreams/features/home/presentation/manager/cart_item_cubit/cart_item_cubit.dart';
 import 'package:home_dreams/features/splash/presentation/views/splash_view.dart';
 import 'package:home_dreams/firebase_options.dart';
 import 'package:home_dreams/generated/l10n.dart';
@@ -29,23 +32,30 @@ class ECommerce extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(
-        scaffoldBackgroundColor: Color.fromARGB(255, 252, 250, 249),
-        fontFamily: 'Cairo',
-        colorScheme: ColorScheme.fromSeed(seedColor: AppColors.primaryColor),
-      ),
-      localizationsDelegates: [
-        S.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) => CartCubit()),
+        BlocProvider(create: (context) => CartItemCubit()),
+        BlocProvider(create: (context) => FavoriteCubit()),
       ],
-      debugShowCheckedModeBanner: false,
-      supportedLocales: S.delegate.supportedLocales,
-      locale: const Locale('ar'),
-      onGenerateRoute: onGenerateRoutes,
-      initialRoute: SplashView.routeName,
+      child: MaterialApp(
+        theme: ThemeData(
+          scaffoldBackgroundColor: Color.fromARGB(255, 252, 250, 249),
+          fontFamily: 'Cairo',
+          colorScheme: ColorScheme.fromSeed(seedColor: AppColors.primaryColor),
+        ),
+        localizationsDelegates: [
+          S.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
+        debugShowCheckedModeBanner: false,
+        supportedLocales: S.delegate.supportedLocales,
+        locale: const Locale('ar'),
+        onGenerateRoute: onGenerateRoutes,
+        initialRoute: SplashView.routeName,
+      ),
     );
   }
 }

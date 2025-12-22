@@ -1,9 +1,11 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:home_dreams/constants.dart';
 import 'package:home_dreams/core/utils/app_images.dart';
 import 'package:home_dreams/core/utils/app_text_styles.dart';
 import 'package:home_dreams/features/favorites/presentation/views/favorites_view.dart';
+import 'package:home_dreams/features/favorites/presentation/views/manager/favorite_cubit/favorite_cubit.dart';
 import 'package:home_dreams/features/profile/presentation/views/edit_profile_view.dart';
 import 'package:home_dreams/features/profile/presentation/views/who_are_we_view.dart';
 import 'package:home_dreams/features/profile/presentation/views/widgets/custom_cupertino_switch.dart';
@@ -42,7 +44,15 @@ class ProfileViewBody extends StatelessWidget {
         SizedBox(height: 4),
         ProfileSettingsItem(
           onTap: () {
-            Navigator.pushNamed(context, FavoritesView.routeName);
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (_) => BlocProvider.value(
+                  value: context.read<FavoriteCubit>(),
+                  child: const FavoritesView(),
+                ),
+              ),
+            );
           },
           text: 'المفضلة',
           imagePath: Assets.assetsImagesFavorite,
