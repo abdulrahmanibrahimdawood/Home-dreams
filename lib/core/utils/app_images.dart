@@ -202,8 +202,8 @@ class Assets {
   /// assets/images/user_profile_image.png
   static const String assetsImagesUserProfileImage = "assets/images/user_profile_image.png";
 
-  /// Assets for assetsImagesWeAreWe
-  /// assets/images/we_are_we.svg
-  static const String assetsImagesWeAreWe = "assets/images/we_are_we.svg";
+  /// Assets for assetsImagesWhoAreWe
+  /// assets/images/who_are_we.svg
+  static const String assetsImagesWhoAreWe = "assets/images/who_are_we.svg";
 }
 
