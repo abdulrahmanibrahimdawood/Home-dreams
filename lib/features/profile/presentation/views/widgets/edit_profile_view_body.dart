@@ -26,11 +26,6 @@ class _EditProfileViewBodyState extends State<EditProfileViewBody> {
   late final TextEditingController newPasswordController;
   late final TextEditingController confirmPasswordController;
 
-  bool? emailValidate,
-      passwordValidate,
-      newPasswordValidate,
-      confirmPasswordValidate;
-
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
 
   @override
@@ -58,6 +53,7 @@ class _EditProfileViewBodyState extends State<EditProfileViewBody> {
   @override
   Widget build(BuildContext context) {
     final user = getUser();
+
     return SingleChildScrollView(
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: kHorizontalPadding),
@@ -67,11 +63,14 @@ class _EditProfileViewBodyState extends State<EditProfileViewBody> {
           child: Column(
             children: [
               const SizedBox(height: 24),
+
               Align(
                 alignment: Alignment.topRight,
                 child: Text('المعلومات الشخصيه', style: TextStyles.semiBold13),
               ),
+
               const SizedBox(height: 8),
+
               CustomTextFormField(
                 validate: false,
                 hintText: 'الاسم الكامل',
@@ -79,40 +78,78 @@ class _EditProfileViewBodyState extends State<EditProfileViewBody> {
                 textInputType: TextInputType.name,
                 suffixIcon: Image.asset(Assets.assetsImagesEdit),
               ),
+
               const SizedBox(height: 8),
+
               CustomTextFormField(
-                validate: emailValidate ?? false,
                 hintText: 'البريد الإلكتروني',
                 controller: emailController,
                 textInputType: TextInputType.emailAddress,
                 suffixIcon: Image.asset(Assets.assetsImagesEdit),
               ),
+
               const SizedBox(height: 16),
+
               Align(
                 alignment: Alignment.topRight,
                 child: Text('تغيير كلمة المرور', style: TextStyles.semiBold13),
               ),
+
               const SizedBox(height: 8),
+
               PasswordField(
-                validate: passwordValidate ?? false,
                 controller: oldPasswordController,
                 hintText: 'كلمة المرور الحالية',
-                errorMessage: 'كلمة المرور غير صحيحة',
+                customValidator: (value) {
+                  if (value != null && value.isNotEmpty) {
+                    return null;
+                  }
+
+                  if (newPasswordController.text.isNotEmpty ||
+                      confirmPasswordController.text.isNotEmpty) {
+                    return 'يرجى إدخال كلمة المرور الحالية';
+                  }
+
+                  return null;
+                },
               ),
+
               const SizedBox(height: 8),
+
               PasswordField(
-                validate: newPasswordValidate ?? false,
                 controller: newPasswordController,
                 hintText: 'كلمة المرور الجديدة',
+                customValidator: (value) {
+                  if (value == null || value.isEmpty) {
+                    if (oldPasswordController.text.isNotEmpty) {
+                      return 'يرجى إدخال كلمة المرور الجديدة';
+                    }
+                  }
+                  return null;
+                },
               ),
+
               const SizedBox(height: 16),
+
               PasswordField(
-                validate: confirmPasswordValidate ?? false,
                 controller: confirmPasswordController,
                 hintText: 'تأكيد كلمة المرور الجديدة',
-                errorMessage: 'كلمة المرور غير متطابقة',
+                customValidator: (value) {
+                  if (value == null || value.isEmpty) {
+                    if (newPasswordController.text.isNotEmpty) {
+                      return 'يرجى تأكيد كلمة المرور';
+                    }
+                  }
+
+                  if (value != newPasswordController.text) {
+                    return 'كلمة المرور غير متطابقة';
+                  }
+                  return null;
+                },
               ),
+
               const SizedBox(height: 74),
+
               CustomButton(
                 text: 'حفظ التغيرات',
                 onPressed: () {
@@ -128,22 +165,7 @@ class _EditProfileViewBodyState extends State<EditProfileViewBody> {
                   final newPassword = newPasswordController.text;
                   final confirmPassword = confirmPasswordController.text;
 
-                  emailValidate = false;
-                  passwordValidate = false;
-                  newPasswordValidate = false;
-                  confirmPasswordValidate = false;
-
-                  validator(
-                    email,
-                    user,
-                    oldPassword,
-                    newPassword,
-                    confirmPassword,
-                  );
-
-                  setState(() {});
-
-                  triggerCubit(
+                  triggerUpdateDataCubit(
                     email,
                     user,
                     oldPassword,
@@ -161,7 +183,7 @@ class _EditProfileViewBodyState extends State<EditProfileViewBody> {
     );
   }
 
-  void triggerCubit(
+  void triggerUpdateDataCubit(
     String email,
     UserEntity user,
     String oldPassword,
@@ -188,30 +210,6 @@ class _EditProfileViewBodyState extends State<EditProfileViewBody> {
         oldPassword: oldPassword,
         newPassword: newPassword,
       );
-    }
-  }
-
-  void validator(
-    String email,
-    UserEntity user,
-    String oldPassword,
-    String newPassword,
-    String confirmPassword,
-  ) {
-    if (email.isNotEmpty && email != user.email && oldPassword.isEmpty) {
-      passwordValidate = true;
-    }
-
-    if (oldPassword.isNotEmpty &&
-        (newPassword.isEmpty || confirmPassword.isEmpty)) {
-      newPasswordValidate = true;
-      confirmPasswordValidate = true;
-    }
-
-    if (newPassword.isNotEmpty &&
-        confirmPassword.isNotEmpty &&
-        newPassword != confirmPassword) {
-      confirmPasswordValidate = true;
     }
   }
 }

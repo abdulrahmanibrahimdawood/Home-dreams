@@ -13,7 +13,9 @@ class CustomTextFormField extends StatelessWidget {
     this.validate = true,
     this.initialValue,
     this.controller,
+    this.customValidator,
   });
+
   final String hintText;
   final String? initialValue;
   final TextInputType textInputType;
@@ -23,6 +25,8 @@ class CustomTextFormField extends StatelessWidget {
   final String? errorMessage;
   final TextEditingController? controller;
   final bool validate;
+  final String? Function(String?)? customValidator;
+
   @override
   Widget build(BuildContext context) {
     return TextFormField(
@@ -31,15 +35,17 @@ class CustomTextFormField extends StatelessWidget {
       obscureText: obscureText,
       onSaved: onSaved,
       validator: (value) {
+        if (customValidator != null) {
+          return customValidator!(value);
+        }
+
         if (validate == true) {
           if (value == null || value.isEmpty) {
             return errorMessage ?? 'يرجى كتابة هذا الحقل';
           }
-          return null;
         }
         return null;
       },
-
       keyboardType: textInputType,
       decoration: InputDecoration(
         suffixIcon: suffixIcon,

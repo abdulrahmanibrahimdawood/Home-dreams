@@ -9,19 +9,23 @@ class PasswordField extends StatefulWidget {
     this.errorMessage,
     this.validate = true,
     this.controller,
+    this.customValidator,
   });
+
   final void Function(String?)? onSaved;
   final String? hintText;
   final String? errorMessage;
   final TextEditingController? controller;
-
   final bool validate;
+  final String? Function(String?)? customValidator;
+
   @override
   State<PasswordField> createState() => _PasswordFieldState();
 }
 
 class _PasswordFieldState extends State<PasswordField> {
   bool obscureText = true;
+
   @override
   Widget build(BuildContext context) {
     return CustomTextFormField(
@@ -30,6 +34,7 @@ class _PasswordFieldState extends State<PasswordField> {
       errorMessage: widget.errorMessage ?? 'يرجى كتابة كلمة المرور',
       obscureText: obscureText,
       onSaved: widget.onSaved,
+      customValidator: widget.customValidator,
       suffixIcon: GestureDetector(
         onTap: () {
           obscureText = !obscureText;

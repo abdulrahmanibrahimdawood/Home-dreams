@@ -24,8 +24,6 @@ void main() async {
   runApp(const ECommerce());
 }
 
-//abdo9111@gmail.com
-//102030
 class ECommerce extends StatelessWidget {
   const ECommerce({super.key});
 
