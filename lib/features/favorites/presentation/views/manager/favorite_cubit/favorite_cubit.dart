@@ -12,7 +12,12 @@ class FavoriteCubit extends Cubit<FavoriteState> {
     bool isProductExist = favoriteEntity.isExist(productEntity);
     if (!isProductExist) {
       favoriteEntity.addFavoriteItem(productEntity);
-      emit(FavoriteProductAdded());
+      emit(FavoriteItemAdded());
     }
+  }
+
+  void deleteFavoriteProduct(ProductEntity productEntity) {
+    favoriteEntity.removeFavoriteItem(productEntity);
+    emit(FavoriteItemRemoved());
   }
 }

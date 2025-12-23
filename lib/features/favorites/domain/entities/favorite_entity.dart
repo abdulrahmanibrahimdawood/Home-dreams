@@ -1,11 +1,16 @@
+import 'package:equatable/equatable.dart';
 import 'package:home_dreams/core/entities/product_entity.dart';
 
-class FavoriteEntity {
+class FavoriteEntity extends Equatable {
   final List<ProductEntity> favoritesList;
 
-  FavoriteEntity(this.favoritesList);
+  const FavoriteEntity(this.favoritesList);
   addFavoriteItem(ProductEntity productEntity) {
     favoritesList.add(productEntity);
+  }
+
+  removeFavoriteItem(ProductEntity productEntity) {
+    favoritesList.remove(productEntity);
   }
 
   bool isExist(ProductEntity productEntity) {
@@ -16,4 +21,7 @@ class FavoriteEntity {
     }
     return false;
   }
+
+  @override
+  List<Object?> get props => [];
 }

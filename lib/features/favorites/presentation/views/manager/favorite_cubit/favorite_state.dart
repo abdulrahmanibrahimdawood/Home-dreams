@@ -9,6 +9,6 @@ sealed class FavoriteState extends Equatable {
 
 final class FavoriteInitial extends FavoriteState {}
 
-final class FavoriteProductAdded extends FavoriteState {}
+final class FavoriteItemAdded extends FavoriteState {}
 
-final class FavoriteProductRemoved extends FavoriteState {}
+final class FavoriteItemRemoved extends FavoriteState {}
