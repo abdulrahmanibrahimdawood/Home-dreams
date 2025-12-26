@@ -10,8 +10,12 @@ import 'package:home_dreams/features/home/presentation/manager/cart_cubit/cart_c
 class ProductItem extends StatelessWidget {
   const ProductItem({super.key, required this.productEntity});
   final ProductEntity productEntity;
+
   @override
   Widget build(BuildContext context) {
+    final favoriteCubit = context.read<FavoriteCubit>();
+    final cartCubit = context.read<CartCubit>();
+
     return Container(
       decoration: ShapeDecoration(
         color: const Color(0xFFF3F5F7),
@@ -22,13 +26,28 @@ class ProductItem extends StatelessWidget {
           Positioned(
             top: 0,
             right: 0,
-            child: IconButton(
-              onPressed: () {
-                context.read<FavoriteCubit>().addFavoriteProduct(productEntity);
+            child: BlocBuilder<FavoriteCubit, FavoriteState>(
+              builder: (context, state) {
+                final isFavorite = favoriteCubit.favoriteEntity.isExist(
+                  productEntity,
+                );
+                return IconButton(
+                  onPressed: () {
+                    if (isFavorite) {
+                      favoriteCubit.deleteFavoriteProduct(productEntity);
+                    } else {
+                      favoriteCubit.addFavoriteProduct(productEntity);
+                    }
+                  },
+                  icon: Icon(
+                    isFavorite ? Icons.favorite : Icons.favorite_outline,
+                    color: isFavorite ? Colors.red : Colors.grey,
+                  ),
+                );
               },
-              icon: Icon(Icons.favorite_outline),
             ),
           ),
+          // Product details
           Positioned.fill(
             child: Column(
               children: [
@@ -55,19 +74,13 @@ class ProductItem extends StatelessWidget {
                     TextSpan(
                       children: [
                         TextSpan(
-                          text: '${productEntity.price.toString()}جنية',
+                          text: '${productEntity.price} جنية',
                           style: TextStyles.bold13.copyWith(
                             color: AppColors.scoundaryColor,
                           ),
                         ),
                         TextSpan(
-                          text: '/',
-                          style: TextStyles.bold13.copyWith(
-                            color: AppColors.scoundaryColor,
-                          ),
-                        ),
-                        TextSpan(
-                          text: productEntity.unitAmount.toString(),
+                          text: ' ${productEntity.unitAmount} قطع',
                           style: TextStyles.bold13.copyWith(
                             color: AppColors.lightScoundaryColor,
                           ),
@@ -77,9 +90,7 @@ class ProductItem extends StatelessWidget {
                     textAlign: TextAlign.right,
                   ),
                   trailing: GestureDetector(
-                    onTap: () {
-                      context.read<CartCubit>().addProduct(productEntity);
-                    },
+                    onTap: () => cartCubit.addProduct(productEntity),
                     child: CircleAvatar(
                       backgroundColor: AppColors.primaryColor,
                       child: Icon(Icons.add, color: Colors.white),
