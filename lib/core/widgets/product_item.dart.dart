@@ -15,7 +15,6 @@ class ProductItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final favoriteCubit = context.read<FavoriteCubit>();
     final cartCubit = context.read<CartCubit>();
-
     return Container(
       decoration: ShapeDecoration(
         color: const Color(0xFFF3F5F7),
@@ -47,13 +46,14 @@ class ProductItem extends StatelessWidget {
               },
             ),
           ),
-          // Product details
           Positioned.fill(
             child: Column(
               children: [
-                SizedBox(height: 20),
+                SizedBox(height: 40),
                 productEntity.imageUrl != null
-                    ? Flexible(
+                    ? SizedBox(
+                        height: 120,
+                        width: double.infinity,
                         child: CustomNetworkImage(
                           imageUrl: productEntity.imageUrl!,
                         ),
@@ -63,7 +63,7 @@ class ProductItem extends StatelessWidget {
                         width: 150,
                         decoration: BoxDecoration(color: Colors.grey.shade200),
                       ),
-                SizedBox(height: 24),
+                SizedBox(height: 4),
                 ListTile(
                   title: Text(
                     productEntity.name,
@@ -77,12 +77,6 @@ class ProductItem extends StatelessWidget {
                           text: '${productEntity.price} جنية',
                           style: TextStyles.bold13.copyWith(
                             color: AppColors.scoundaryColor,
-                          ),
-                        ),
-                        TextSpan(
-                          text: ' ${productEntity.unitAmount} قطع',
-                          style: TextStyles.bold13.copyWith(
-                            color: AppColors.lightScoundaryColor,
                           ),
                         ),
                       ],
