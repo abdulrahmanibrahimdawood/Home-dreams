@@ -6,7 +6,6 @@ import 'package:home_dreams/core/helper_funcations/filter_with.dart';
 import 'package:home_dreams/core/widgets/search_text_field.dart';
 import 'package:home_dreams/features/search/domain/entities/keyword_entity.dart';
 import 'package:home_dreams/features/search/presentation/manager/add_search_keywords_cubit/add_search_keywords_cubit.dart';
-import 'package:home_dreams/features/search/presentation/manager/get_search_keyword_cubit/get_search_keyword_cubit.dart';
 import 'package:home_dreams/features/search/presentation/views/widgets/search_keywords_body_blocbuilder.dart';
 import 'package:home_dreams/features/search/presentation/views/widgets/search_view_bloc_builder.dart';
 import 'package:home_dreams/features/search/presentation/views/widgets/search_view_body_bloc_consumer.dart';
@@ -61,12 +60,12 @@ class _SearchViewBodyState extends State<SearchViewBody> {
                       });
                     },
 
-                    onTap: () {
-                      context.read<GetSearchKeywordCubit>().getSearchKeyWords();
-                      setState(() {
-                        showKeywords = true;
-                      });
-                    },
+                    // onTap: () {
+                    //   context.read<GetSearchKeywordCubit>().getSearchKeyWords();
+                    //   setState(() {
+                    //     showKeywords = true;
+                    //   });
+                    // },
                     onChanged: (value) {
                       context.read<ProductsCubit>().getBestSellingProducts(
                         searchKeyword: value,

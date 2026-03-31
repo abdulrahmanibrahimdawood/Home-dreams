@@ -151,8 +151,8 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
       MaterialPageRoute(
         builder: (BuildContext context) => PaypalCheckoutView(
           sandboxMode: true,
-          clientId: kPaypalClientId,
-          secretKey: kPaypalSecretKey,
+          clientId: AppKeys.kPaypalClientId,
+          secretKey: AppKeys.kPaypalSecretKey,
           transactions: [paypalPaymentEntity.toJson()],
           note: "Contact us for any questions on your order.",
           onSuccess: (Map params) async {
