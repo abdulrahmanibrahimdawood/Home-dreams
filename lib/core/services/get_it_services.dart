@@ -20,28 +20,51 @@ import 'package:home_dreams/features/search/domain/repo/search_repo.dart';
 final getIt = GetIt.instance;
 
 void setupGetIt() {
-  getIt.registerSingleton<DatabaseServices>(FirestoreServices());
+  /// ====== Services ======
+  // Firestore service نفسها متاحة لأي repo يحتاجها مباشرة
+  getIt.registerSingleton<FirestoreServices>(FirestoreServices());
+
+  // DatabaseServices abstraction يظل موجود
+  getIt.registerSingleton<DatabaseServices>(getIt<FirestoreServices>());
+
   getIt.registerSingleton<FirebaseAuthService>(FirebaseAuthService());
+
+  // Storage service
+  getIt.registerLazySingleton<StorageService>(() => SupabaseStorageService());
+
+  /// ====== Repos ======
+  // Auth repo
   getIt.registerSingleton<AuthRepo>(
     AuthRepoImpl(
       firebaseAuthService: getIt<FirebaseAuthService>(),
       databaseServices: getIt<DatabaseServices>(),
     ),
   );
+
+  // Products repo
   getIt.registerSingleton<ProductsRepo>(
     ProductsRepoImpl(databaseServices: getIt<DatabaseServices>()),
   );
+
+  // Order repo
   getIt.registerSingleton<OrderRepo>(
-    OrderRepoImpl(firestoreServices: getIt<DatabaseServices>()),
+    OrderRepoImpl(firestoreServices: getIt<FirestoreServices>()),
   );
+
+  // Search repo
   getIt.registerSingleton<SearchRepo>(
     SearchRepoImpl(databaseServices: getIt<DatabaseServices>()),
   );
-  getIt.registerLazySingleton<StorageService>(() => SupabaseStorageService());
+
+  // Images repo
   getIt.registerSingleton<ImagesRepo>(
-    ImagesRepoImpl(storageService: getIt<StorageService>()),
+    ImagesRepoImpl(
+      storageService: getIt<StorageService>(),
+      firestoreServices: getIt<FirestoreServices>(),
+    ),
   );
 
+  // Update user data repo
   getIt.registerSingleton<UpdateUserDataRepo>(
     UpdateUserDataRepoImpl(
       authRepo: getIt<AuthRepo>(),

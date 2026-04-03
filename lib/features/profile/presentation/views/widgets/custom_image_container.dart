@@ -4,9 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:home_dreams/core/utils/app_images.dart';
 
 class CustomContainerImage extends StatelessWidget {
-  const CustomContainerImage({super.key, required this.selectedImage});
+  const CustomContainerImage({
+    super.key,
+    required this.selectedImage,
+    required this.oldImage,
+  });
 
   final File? selectedImage;
+  final String oldImage;
 
   @override
   Widget build(BuildContext context) {

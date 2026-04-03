@@ -6,6 +6,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:home_dreams/constants.dart';
 import 'package:home_dreams/core/helper_funcations/build_error_bar.dart';
 import 'package:home_dreams/core/helper_funcations/get_user.dart';
+import 'package:home_dreams/core/services/firestore_services.dart';
 import 'package:home_dreams/core/utils/app_images.dart';
 import 'package:home_dreams/core/utils/app_text_styles.dart';
 import 'package:home_dreams/features/profile/presentation/manager/cubit/upload_image_cubit.dart';
@@ -13,8 +14,8 @@ import 'package:home_dreams/features/profile/presentation/views/widgets/custom_i
 import 'package:image_picker/image_picker.dart';
 
 class UserCard extends StatefulWidget {
-  const UserCard({super.key});
-
+  const UserCard({super.key, this.imageUrl});
+  final String? imageUrl;
   @override
   State<UserCard> createState() => _UserCardState();
 }
@@ -26,6 +27,7 @@ class _UserCardState extends State<UserCard> {
   @override
   Widget build(BuildContext context) {
     final user = getUser();
+    FirestoreServices firestoreServices = FirestoreServices();
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: kHorizontalPadding),
@@ -34,6 +36,12 @@ class _UserCardState extends State<UserCard> {
           BlocConsumer<UploadImageCubit, UploadImageState>(
             listener: (context, state) {
               if (state is UploadImageSuccess) {
+                final imageUrl = state.imageUrl;
+                firestoreServices.addData(
+                  path: 'profile_images',
+                  documentId: user.uId,
+                  data: {'profileImageUrl': imageUrl},
+                );
                 showBar(context, 'تم تحديث الصورة بنجاح');
               } else if (state is UploadImageFailure) {
                 showBar(context, 'حدث خطأ أثناء تحديث الصورة');
@@ -43,7 +51,11 @@ class _UserCardState extends State<UserCard> {
               return Stack(
                 clipBehavior: Clip.none,
                 children: [
-                  CustomContainerImage(selectedImage: selectedImage),
+                  CustomContainerImage(
+                    selectedImage: selectedImage,
+                    oldImage:
+                        widget.imageUrl ?? Assets.assetsImagesProfileImage,
+                  ),
                   Positioned(
                     bottom: -14,
                     left: 0,

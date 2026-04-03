@@ -15,8 +15,8 @@ import 'package:home_dreams/features/profile/presentation/views/widgets/profile_
 import 'package:home_dreams/features/profile/presentation/views/widgets/user_card.dart';
 
 class ProfileViewBody extends StatelessWidget {
-  const ProfileViewBody({super.key});
-
+  const ProfileViewBody(this.imageUrl, {super.key});
+  final String? imageUrl;
   @override
   Widget build(BuildContext context) {
     return Column(
