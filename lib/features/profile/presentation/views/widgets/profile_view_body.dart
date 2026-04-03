@@ -7,6 +7,7 @@ import 'package:home_dreams/core/utils/app_text_styles.dart';
 import 'package:home_dreams/features/favorites/presentation/views/favorites_view.dart';
 import 'package:home_dreams/features/favorites/presentation/views/manager/favorite_cubit/favorite_cubit.dart';
 import 'package:home_dreams/features/home/presentation/manager/cart_cubit/cart_cubit.dart';
+import 'package:home_dreams/features/profile/presentation/manager/cubit/upload_image_cubit.dart';
 import 'package:home_dreams/features/profile/presentation/views/edit_profile_view.dart';
 import 'package:home_dreams/features/profile/presentation/views/who_are_we_view.dart';
 import 'package:home_dreams/features/profile/presentation/views/widgets/custom_cupertino_switch.dart';
@@ -23,7 +24,36 @@ class ProfileViewBody extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         SizedBox(height: 16),
-        UserCard(),
+        BlocConsumer<UploadImageCubit, UploadImageState>(
+          listener: (context, state) {
+            if (state is UploadImageSuccess) {
+              print("Image URL: ${state.imageUrl}");
+            } else if (state is UploadImageFailure) {
+              print(state.error);
+            }
+          },
+          builder: (context, state) {
+            if (state is UploadImageLoading) {
+              return Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Center(
+                    child: Center(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: kHorizontalPadding,
+                        ),
+                        child: CircularProgressIndicator(),
+                      ),
+                    ),
+                  ),
+                ],
+              );
+            }
+
+            return UserCard();
+          },
+        ),
         SizedBox(height: 24),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: kHorizontalPadding),

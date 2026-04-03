@@ -1,11 +1,13 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:home_dreams/constants.dart';
 import 'package:home_dreams/core/helper_funcations/get_user.dart';
 import 'package:home_dreams/core/utils/app_images.dart';
 import 'package:home_dreams/core/utils/app_text_styles.dart';
+import 'package:home_dreams/features/profile/presentation/manager/cubit/upload_image_cubit.dart';
 import 'package:image_picker/image_picker.dart';
 
 class UserCard extends StatefulWidget {
@@ -53,9 +55,9 @@ class _UserCardState extends State<UserCard> {
                     );
 
                     if (image != null) {
-                      setState(() {
-                        selectedImage = File(image.path);
-                      });
+                      final file = File(image.path);
+
+                      context.read<UploadImageCubit>().uploadImage(file);
                     }
                   },
                   child: Center(

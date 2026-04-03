@@ -7,4 +7,5 @@ class BackendEndpoints {
   static const addOrder = 'orders';
   static const searchKeyWord = 'searchKeywords';
   static const getSearchKeyWord = 'searchKeywords';
+  static const images = 'Profile_image';
 }
