@@ -1,12 +1,22 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:home_dreams/constants.dart';
 import 'package:home_dreams/core/helper_funcations/get_user.dart';
 import 'package:home_dreams/core/utils/app_images.dart';
 import 'package:home_dreams/core/utils/app_text_styles.dart';
+import 'package:image_picker/image_picker.dart';
 
-class UserCard extends StatelessWidget {
+class UserCard extends StatefulWidget {
   const UserCard({super.key});
+
+  @override
+  State<UserCard> createState() => _UserCardState();
+}
+
+class _UserCardState extends State<UserCard> {
+  File? selectedImage;
 
   @override
   Widget build(BuildContext context) {
@@ -20,23 +30,42 @@ class UserCard extends StatelessWidget {
               Container(
                 width: 73,
                 height: 73,
-                decoration: ShapeDecoration(shape: OvalBorder()),
-                child: Image.asset(
-                  Assets.assetsImagesUserProfileImage,
-                  fit: BoxFit.fill,
+                decoration: const ShapeDecoration(shape: OvalBorder()),
+                child: ClipOval(
+                  child: selectedImage != null
+                      ? Image.file(selectedImage!, fit: BoxFit.cover)
+                      : Image.asset(
+                          Assets.assetsImagesUserProfileImage,
+                          fit: BoxFit.cover,
+                        ),
                 ),
               ),
               Positioned(
                 bottom: -14,
                 left: 0,
                 right: 0,
-                child: Center(
-                  child: SvgPicture.asset(Assets.assetsImagesCamera),
+                child: GestureDetector(
+                  onTap: () async {
+                    final picker = ImagePicker();
+
+                    final XFile? image = await picker.pickImage(
+                      source: ImageSource.gallery,
+                    );
+
+                    if (image != null) {
+                      setState(() {
+                        selectedImage = File(image.path);
+                      });
+                    }
+                  },
+                  child: Center(
+                    child: SvgPicture.asset(Assets.assetsImagesCamera),
+                  ),
                 ),
               ),
             ],
           ),
-          SizedBox(width: 24),
+          const SizedBox(width: 24),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

@@ -38,11 +38,7 @@ class ProfileViewBody extends StatelessWidget {
           imagePath: Assets.assetsImagesProfileIconSettings,
         ),
         SizedBox(height: 4),
-        ProfileSettingsItem(
-          text: 'طلباتي',
-          imagePath: Assets.assetsImagesMyOrders,
-        ),
-        SizedBox(height: 4),
+
         ProfileSettingsItem(
           onTap: () {
             Navigator.push(
@@ -62,12 +58,7 @@ class ProfileViewBody extends StatelessWidget {
           text: 'المفضلة',
           imagePath: Assets.assetsImagesFavorite,
         ),
-        SizedBox(height: 4),
-        ProfileSettingsItem(
-          text: 'الاشعارات',
-          imagePath: Assets.assetsImagesNotificationSettingsIcon,
-          trailing: CustomCupertinoSwitch(onChanged: (value) {}),
-        ),
+
         SizedBox(height: 4),
         ProfileSettingsItem(
           text: 'اللغة',
