@@ -4,6 +4,7 @@ import 'package:home_dreams/core/cubits/products_cubit/cubit/products_cubit.dart
 import 'package:home_dreams/core/helper_funcations/build_error_bar.dart';
 import 'package:home_dreams/features/home/presentation/views/widgets/products_grid_view.dart';
 import 'package:home_dreams/features/search/presentation/views/widgets/no_products_widgets.dart';
+import 'package:home_dreams/generated/l10n.dart';
 
 class SearchViewBodyBlocConsumer extends StatelessWidget {
   const SearchViewBodyBlocConsumer({super.key});
@@ -28,7 +29,7 @@ class SearchViewBodyBlocConsumer extends StatelessWidget {
           );
         } else if (state is ProductsFailure) {
           return SliverToBoxAdapter(
-            child: const Center(child: Text('هناك خطأ ما')),
+            child: Center(child: Text(S.of(context).somethingWentWrong)),
           );
         } else if (state is ProductsSuccess) {
           return state.products.isEmpty

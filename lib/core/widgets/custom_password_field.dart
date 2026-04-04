@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:home_dreams/core/widgets/custom_text_form_field.dart';
+import 'package:home_dreams/generated/l10n.dart';
 
 class PasswordField extends StatefulWidget {
   const PasswordField({
@@ -31,7 +32,7 @@ class _PasswordFieldState extends State<PasswordField> {
     return CustomTextFormField(
       controller: widget.controller,
       validate: widget.validate,
-      errorMessage: widget.errorMessage ?? 'يرجى كتابة كلمة المرور',
+      errorMessage: widget.errorMessage ?? S.current.passwordRequiredDefault,
       obscureText: obscureText,
       onSaved: widget.onSaved,
       customValidator: widget.customValidator,
@@ -44,7 +45,7 @@ class _PasswordFieldState extends State<PasswordField> {
             ? Icon(Icons.remove_red_eye, color: Color(0xffC9CECF))
             : Icon(Icons.visibility_off, color: Color(0xffC9CECF)),
       ),
-      hintText: widget.hintText ?? 'كلمة المرور',
+      hintText: widget.hintText ?? S.current.passwordHintDefault,
       textInputType: TextInputType.emailAddress,
     );
   }

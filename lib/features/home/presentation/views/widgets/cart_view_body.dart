@@ -7,6 +7,7 @@ import 'package:home_dreams/features/home/presentation/views/widgets/cart_header
 import 'package:home_dreams/features/home/presentation/views/widgets/cart_items_list.dart';
 import 'package:home_dreams/features/home/presentation/views/widgets/custom_cart_button.dart';
 import 'package:home_dreams/features/home/presentation/views/widgets/custom_divider.dart';
+import 'package:home_dreams/generated/l10n.dart';
 
 class CartViewBody extends StatelessWidget {
   const CartViewBody({super.key});
@@ -24,7 +25,7 @@ class CartViewBody extends StatelessWidget {
                   buildAppBarInside(
                     showBackButton: false,
                     context,
-                    title: 'السلة',
+                    title: S.of(context).cartTitle,
                     showNotification: false,
                   ),
                   SizedBox(height: 12),

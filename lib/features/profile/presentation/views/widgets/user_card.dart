@@ -11,6 +11,7 @@ import 'package:home_dreams/core/utils/app_images.dart';
 import 'package:home_dreams/core/utils/app_text_styles.dart';
 import 'package:home_dreams/features/profile/presentation/manager/cubit/upload_image_cubit.dart';
 import 'package:home_dreams/features/profile/presentation/views/widgets/custom_image_container.dart';
+import 'package:home_dreams/generated/l10n.dart';
 import 'package:image_picker/image_picker.dart';
 
 class UserCard extends StatefulWidget {
@@ -23,7 +24,6 @@ class UserCard extends StatefulWidget {
 class _UserCardState extends State<UserCard> {
   File? selectedImage;
 
-  @override
   @override
   Widget build(BuildContext context) {
     final user = getUser();
@@ -42,9 +42,9 @@ class _UserCardState extends State<UserCard> {
                   documentId: user.uId,
                   data: {'profileImageUrl': imageUrl},
                 );
-                showBar(context, 'تم تحديث الصورة بنجاح');
+                showBar(context, S.of(context).photoUpdatedSuccess);
               } else if (state is UploadImageFailure) {
-                showBar(context, 'حدث خطأ أثناء تحديث الصورة');
+                showBar(context, S.of(context).photoUpdateError);
               }
             },
             builder: (context, state) {

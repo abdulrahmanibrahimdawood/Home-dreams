@@ -51,6 +51,7 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
               child: NavigationBarItem(
                 isSelected: index == selectedIndex,
                 bottomNavigationBarEntity: entity,
+                index: index,
               ),
             ),
           );

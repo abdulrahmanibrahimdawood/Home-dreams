@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:home_dreams/core/utils/app_text_styles.dart';
 import 'package:home_dreams/core/widgets/notification_widget.dart';
+import 'package:home_dreams/generated/l10n.dart';
 
 AppBar buildAppBar(context) {
   return AppBar(
@@ -19,6 +20,6 @@ AppBar buildAppBar(context) {
     backgroundColor: Colors.transparent,
     elevation: 0,
     centerTitle: true,
-    title: const Text('الأكثر مبيعًا', style: TextStyles.bold19),
+    title: Text(S.of(context).bestSelling, style: TextStyles.bold19),
   );
 }

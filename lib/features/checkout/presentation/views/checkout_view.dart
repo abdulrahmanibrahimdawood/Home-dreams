@@ -10,6 +10,7 @@ import 'package:home_dreams/features/checkout/presentation/manager/add_order_cub
 import 'package:home_dreams/features/checkout/presentation/views/widgets/add_order_cubit_bloc_builder.dart';
 import 'package:home_dreams/features/checkout/presentation/views/widgets/checkout_view_body.dart';
 import 'package:home_dreams/features/home/domain/entites/cart_entity.dart';
+import 'package:home_dreams/generated/l10n.dart';
 import 'package:provider/provider.dart';
 
 class CheckoutView extends StatefulWidget {
@@ -41,7 +42,7 @@ class _CheckoutViewState extends State<CheckoutView> {
         appBar: buildAppBarInside(
           showBackButton: false,
           context,
-          title: 'الشحن',
+          title: S.of(context).shippingTitle,
           showNotification: false,
         ),
         body: Provider.value(

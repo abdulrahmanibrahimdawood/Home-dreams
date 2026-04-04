@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:home_dreams/core/utils/app_colors.dart';
 import 'package:home_dreams/core/utils/app_text_styles.dart';
 import 'package:home_dreams/features/auth/presentation/views/widgets/custom_chech_box.dart';
+import 'package:home_dreams/generated/l10n.dart';
 
 class TermsAndCondations extends StatefulWidget {
   const TermsAndCondations({super.key, required this.onChanged});
@@ -15,6 +16,7 @@ class _TermsAndCondationsState extends State<TermsAndCondations> {
   bool isTermedAccepts = false;
   @override
   Widget build(BuildContext context) {
+    final s = S.of(context);
     return Row(
       children: [
         CustomCheckBox(
@@ -31,13 +33,13 @@ class _TermsAndCondationsState extends State<TermsAndCondations> {
             TextSpan(
               children: [
                 TextSpan(
-                  text: 'من خلال إنشاء حساب ، فإنك توافق علي ',
+                  text: s.termsAgreementPrefix,
                   style: TextStyles.semiBold13.copyWith(
                     color: Color(0xff949D9E),
                   ),
                 ),
                 TextSpan(
-                  text: 'الشروط والأحكام الخاصة بنا',
+                  text: s.termsAndConditions,
                   style: TextStyles.semiBold13.copyWith(
                     color: AppColors.lightPrimaryColor,
                   ),

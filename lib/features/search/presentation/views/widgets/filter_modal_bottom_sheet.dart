@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:home_dreams/core/utils/app_colors.dart';
+import 'package:home_dreams/generated/l10n.dart';
 
 Future<String?> showFilterBottomSheet(
   BuildContext context, {
@@ -17,6 +18,7 @@ Future<String?> showFilterBottomSheet(
       ),
     ),
     builder: (context) {
+      final s = S.of(context);
       return StatefulBuilder(
         builder: (context, setState) {
           return Padding(
@@ -37,8 +39,8 @@ Future<String?> showFilterBottomSheet(
                   ),
                 ),
 
-                const Text(
-                  "ترتيب حسب :",
+                Text(
+                  s.sortBy,
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(height: 20),
@@ -52,17 +54,17 @@ Future<String?> showFilterBottomSheet(
                   child: Column(
                     children: [
                       RadioListTile(
-                        title: Text("السعر ( الأقل إلى الأعلى )"),
+                        title: Text(s.priceLowToHigh),
                         value: "lowToHigh",
                       ),
                       RadioListTile(
-                        title: Text("السعر ( الأعلى إلى الأقل )"),
+                        title: Text(s.priceHighToLow),
                         value: "highToLow",
                       ),
                       RadioListTile(
                         fillColor: WidgetStateProperty.all(Colors.red),
                         title: Text(
-                          "إلغاء الترتيب",
+                          s.clearSort,
                           style: TextStyle(color: Colors.red),
                         ),
                         value: "reset",
@@ -84,8 +86,8 @@ Future<String?> showFilterBottomSheet(
                     onPressed: () {
                       Navigator.pop(context, selectedValue);
                     },
-                    child: const Text(
-                      "تصفية",
+                    child: Text(
+                      s.filter,
                       style: TextStyle(fontSize: 16, color: Colors.white),
                     ),
                   ),

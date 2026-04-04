@@ -6,6 +6,7 @@ import 'package:home_dreams/core/repos/products_repo/product_repo.dart';
 import 'package:home_dreams/core/services/get_it_services.dart';
 import 'package:home_dreams/features/home/presentation/manager/cart_cubit/cart_cubit.dart';
 import 'package:home_dreams/features/home/presentation/views/widgets/products_view_body.dart';
+import 'package:home_dreams/generated/l10n.dart';
 
 class ProductsView extends StatelessWidget {
   const ProductsView({super.key});
@@ -17,10 +18,10 @@ class ProductsView extends StatelessWidget {
       child: BlocListener<CartCubit, CartState>(
         listener: (context, state) {
           if (state is CartItemAdded) {
-            showBar(context, 'تم اضافة المنتج بنجاح');
+            showBar(context, S.of(context).productAddedSuccess);
           }
           if (state is CartItemRemoved) {
-            showBar(context, 'تم حذف المنتج بنجاح');
+            showBar(context, S.of(context).productRemovedSuccess);
           }
         },
         child: const ProductsViewBody(),

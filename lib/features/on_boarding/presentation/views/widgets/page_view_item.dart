@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:home_dreams/constants.dart';
 import 'package:home_dreams/core/services/shared_preferences_singleton.dart';
 import 'package:home_dreams/features/auth/presentation/views/signin_view.dart';
+import 'package:home_dreams/generated/l10n.dart';
 
 class PageViewItem extends StatelessWidget {
   const PageViewItem({
@@ -52,7 +53,7 @@ class PageViewItem extends StatelessWidget {
                   },
                   child: Padding(
                     padding: const EdgeInsets.all(16.0),
-                    child: Text('تخط'),
+                    child: Text(S.of(context).skip),
                   ),
                 ),
               ),

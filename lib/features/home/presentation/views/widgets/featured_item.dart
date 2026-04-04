@@ -3,12 +3,14 @@ import 'package:flutter_svg_provider/flutter_svg_provider.dart';
 import 'package:home_dreams/core/utils/app_images.dart';
 import 'package:home_dreams/core/utils/app_text_styles.dart';
 import 'package:home_dreams/features/home/presentation/views/widgets/featured_item_button.dart';
+import 'package:home_dreams/generated/l10n.dart';
 
 class FeaturedItem extends StatelessWidget {
   const FeaturedItem({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final s = S.of(context);
     var itemWidth = MediaQuery.sizeOf(context).width - 32;
     return ClipRRect(
       borderRadius: BorderRadius.circular(4),
@@ -43,14 +45,14 @@ class FeaturedItem extends StatelessWidget {
                     children: [
                       SizedBox(height: 25),
                       Text(
-                        'عروض العيد',
+                        s.eidOffers,
                         style: TextStyles.regular13.copyWith(
                           color: Colors.white,
                         ),
                       ),
                       Spacer(),
                       Text(
-                        'خصم 25%',
+                        s.discount25,
                         style: TextStyles.bold19.copyWith(color: Colors.white),
                       ),
                       SizedBox(height: 11),

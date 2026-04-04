@@ -3,6 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:home_dreams/core/utils/app_colors.dart';
 import 'package:home_dreams/core/utils/app_images.dart';
 import 'package:home_dreams/core/utils/app_text_styles.dart';
+import 'package:home_dreams/generated/l10n.dart';
 
 class LogoutButton extends StatelessWidget {
   const LogoutButton({super.key, this.onTap});
@@ -20,7 +21,7 @@ class LogoutButton extends StatelessWidget {
           children: [
             SizedBox(),
             Text(
-              'تسجيل الخروج',
+              S.of(context).logout,
               style: TextStyles.semiBold13.copyWith(
                 color: AppColors.primaryColor,
               ),

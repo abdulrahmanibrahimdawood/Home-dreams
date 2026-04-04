@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:home_dreams/core/widgets/custom_app_bar_inside.dart';
 import 'package:home_dreams/features/profile/presentation/views/widgets/who_are_we_view_body.dart';
+import 'package:home_dreams/generated/l10n.dart';
 
 class WhoAreWeView extends StatelessWidget {
   const WhoAreWeView({super.key});
@@ -10,7 +11,7 @@ class WhoAreWeView extends StatelessWidget {
     return Scaffold(
       appBar: buildAppBarInside(
         context,
-        title: 'من نحن',
+        title: S.of(context).whoWeAre,
         showNotification: false,
       ),
       body: const WhoAreWeViewBody(),

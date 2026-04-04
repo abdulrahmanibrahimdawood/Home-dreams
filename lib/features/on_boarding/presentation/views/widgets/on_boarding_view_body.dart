@@ -5,6 +5,7 @@ import 'package:home_dreams/core/utils/app_colors.dart';
 import 'package:home_dreams/core/widgets/custom_button.dart';
 import 'package:home_dreams/features/auth/presentation/views/signin_view.dart';
 import 'package:home_dreams/features/on_boarding/presentation/views/widgets/on_boarding_page_view.dart';
+import 'package:home_dreams/generated/l10n.dart';
 
 class OnBoardingViewBody extends StatefulWidget {
   const OnBoardingViewBody({super.key});
@@ -80,7 +81,9 @@ class _OnBoardingViewBodyState extends State<OnBoardingViewBody> {
                   ).pushReplacementNamed(SigninView.routeName);
                 }
               },
-              text: currentPage == 2 ? "ابدأ الان" : 'التالي',
+              text: currentPage == 2
+                  ? S.of(context).getStarted
+                  : S.of(context).next,
             ),
           ),
         ),

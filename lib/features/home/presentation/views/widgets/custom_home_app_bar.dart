@@ -3,6 +3,7 @@ import 'package:home_dreams/core/helper_funcations/get_user.dart';
 import 'package:home_dreams/core/utils/app_images.dart';
 import 'package:home_dreams/core/utils/app_text_styles.dart';
 import 'package:home_dreams/core/widgets/notification_widget.dart';
+import 'package:home_dreams/generated/l10n.dart';
 
 class CustomHomeAppBar extends StatelessWidget {
   const CustomHomeAppBar({super.key});
@@ -13,7 +14,7 @@ class CustomHomeAppBar extends StatelessWidget {
       trailing: NotificationWidget(),
       leading: Image.asset(Assets.assetsImagesEllipse11),
       title: Text(
-        'صباح الخير !..',
+        S.of(context).goodMorning,
         style: TextStyles.regular16.copyWith(color: Color(0xff949D9E)),
       ),
       subtitle: Text(

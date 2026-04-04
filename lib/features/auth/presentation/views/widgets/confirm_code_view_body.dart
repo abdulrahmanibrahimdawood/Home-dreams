@@ -5,12 +5,14 @@ import 'package:home_dreams/core/utils/app_text_styles.dart';
 import 'package:home_dreams/core/widgets/custom_button.dart';
 import 'package:home_dreams/core/widgets/custom_text_form_field.dart';
 import 'package:home_dreams/features/auth/presentation/views/new_password_view.dart';
+import 'package:home_dreams/generated/l10n.dart';
 
 class ConfirmCodeViewBody extends StatelessWidget {
   const ConfirmCodeViewBody({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final s = S.of(context);
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: kHorizontalPadding),
       child: Column(
@@ -19,14 +21,14 @@ class ConfirmCodeViewBody extends StatelessWidget {
         children: [
           SizedBox(height: 24),
           Text(
-            'أدخل الرمز الذي أرسلناه إلى عنوان بريد التالي Maxxx@email.com',
+            '${s.confirmCodeEmailIntro}\nMaxxx@email.com',
             textAlign: TextAlign.right,
             style: TextStyles.semiBold16.copyWith(color: Color(0xFF616A6B)),
           ),
           SizedBox(height: 30),
           CustomTextFormField(
-            errorMessage: 'ادخل رمز التحقق',
-            hintText: 'كود التحقق',
+            errorMessage: s.verificationCodeRequired,
+            hintText: s.verificationCodeHint,
             textInputType: TextInputType.number,
           ),
           SizedBox(height: 30),
@@ -34,13 +36,13 @@ class ConfirmCodeViewBody extends StatelessWidget {
             onPressed: () {
               Navigator.pushNamed(context, NewPasswordView.routeName);
             },
-            text: 'تحقق من الرمز',
+            text: s.verifyCode,
           ),
           SizedBox(height: 30),
           GestureDetector(
             onTap: () {},
             child: Text(
-              'إعادة إرسال الرمز',
+              s.resendCode,
               textAlign: TextAlign.center,
               style: TextStyles.semiBold16.copyWith(
                 color: AppColors.lightPrimaryColor,

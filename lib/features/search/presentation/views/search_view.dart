@@ -9,6 +9,7 @@ import 'package:home_dreams/features/search/presentation/manager/add_search_keyw
 import 'package:home_dreams/features/search/presentation/manager/get_search_keyword_cubit/get_search_keyword_cubit.dart';
 import 'package:home_dreams/features/search/presentation/manager/manage_keywords_cubit/manage_keywords_cubit.dart';
 import 'package:home_dreams/features/search/presentation/views/widgets/search_view_body.dart';
+import 'package:home_dreams/generated/l10n.dart';
 
 class SearchView extends StatelessWidget {
   const SearchView({super.key});
@@ -33,7 +34,7 @@ class SearchView extends StatelessWidget {
         ),
       ],
       child: Scaffold(
-        appBar: buildAppBarInside(context, title: 'بحث'),
+        appBar: buildAppBarInside(context, title: S.of(context).search),
         body: SearchViewBody(),
       ),
     );

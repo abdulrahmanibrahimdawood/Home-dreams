@@ -5,6 +5,7 @@ import 'package:home_dreams/core/widgets/custom_button.dart';
 import 'package:home_dreams/features/checkout/presentation/views/checkout_view.dart';
 import 'package:home_dreams/features/home/presentation/manager/cart_cubit/cart_cubit.dart';
 import 'package:home_dreams/features/home/presentation/manager/cart_item_cubit/cart_item_cubit.dart';
+import 'package:home_dreams/generated/l10n.dart';
 
 class CustomCartButton extends StatelessWidget {
   const CustomCartButton({super.key});
@@ -13,6 +14,7 @@ class CustomCartButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<CartItemCubit, CartItemState>(
       builder: (context, state) {
+        final s = S.of(context);
         return CustomButton(
           onPressed: () {
             if (context.read<CartCubit>().cartEntity.cartItems.isNotEmpty) {
@@ -22,11 +24,11 @@ class CustomCartButton extends StatelessWidget {
                 arguments: context.read<CartCubit>().cartEntity,
               );
             } else {
-              showBar(context, 'لا يوجد منتجات في السلة');
+              showBar(context, s.cartEmpty);
             }
           },
           text:
-              'الدفع ${context.watch<CartCubit>().cartEntity.calculateTotalPrice()} جنيه',
+              '${s.payWord}${context.watch<CartCubit>().cartEntity.calculateTotalPrice()} ${s.currencyEgp}',
         );
       },
     );

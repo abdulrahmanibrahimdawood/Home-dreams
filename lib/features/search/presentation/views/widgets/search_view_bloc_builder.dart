@@ -1,6 +1,7 @@
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:home_dreams/core/cubits/products_cubit/cubit/products_cubit.dart';
+import 'package:home_dreams/generated/l10n.dart';
 
 class SearchViewBlocBuilder extends StatelessWidget {
   const SearchViewBlocBuilder({super.key});
@@ -13,7 +14,7 @@ class SearchViewBlocBuilder extends StatelessWidget {
           return Row(
             children: [
               Text(
-                'نتايج البحث',
+                S.of(context).searchResultsTitle,
                 style: TextStyle(fontSize: 13, color: Color(0xFF949D9E)),
               ),
             ],

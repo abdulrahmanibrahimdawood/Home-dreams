@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:home_dreams/core/utils/app_images.dart';
+import 'package:home_dreams/generated/l10n.dart';
 import 'package:home_dreams/features/home/presentation/views/cart_view.dart';
 import 'package:home_dreams/features/home/presentation/views/home_view.dart';
 import 'package:home_dreams/features/home/presentation/views/products_view.dart';
@@ -49,17 +50,18 @@ class CustomBottomNavigationBar2State
     return [HomeView(), ProductsView(), CartView(), Container()];
   }
 
-  List<PersistentBottomNavBarItem> _navBarsItems() {
+  List<PersistentBottomNavBarItem> _navBarsItems(BuildContext context) {
+    final s = S.of(context);
     return [
       PersistentBottomNavBarItem(
-        icon: ActiveItem(image: Assets.assetsImagesHomeIcon, text: 'الرئيسية'),
+        icon: ActiveItem(image: Assets.assetsImagesHomeIcon, text: s.navHome),
         inactiveIcon: InActiveItem(image: Assets.assetsImagesHomeIcon),
         scrollController: _scrollController1,
       ),
       PersistentBottomNavBarItem(
         icon: ActiveItem(
           image: Assets.assetsImagesProductIconActive,
-          text: 'المنتجات',
+          text: s.navProducts,
         ),
         inactiveIcon: InActiveItem(image: Assets.assetsImagesProductIcon),
         scrollController: _scrollController2,
@@ -67,7 +69,7 @@ class CustomBottomNavigationBar2State
       PersistentBottomNavBarItem(
         icon: ActiveItem(
           image: Assets.assetsImagesCartIconActive,
-          text: 'السلة',
+          text: s.navCart,
         ),
         inactiveIcon: InActiveItem(image: Assets.assetsImagesCartIcon),
         scrollController: _scrollController3,
@@ -75,7 +77,7 @@ class CustomBottomNavigationBar2State
       PersistentBottomNavBarItem(
         icon: ActiveItem(
           image: Assets.assetsImagesProfileIconActive,
-          text: 'حسابي',
+          text: s.navAccount,
         ),
         inactiveIcon: InActiveItem(image: Assets.assetsImagesProfileIcon),
         scrollController: _scrollController4,
@@ -89,7 +91,7 @@ class CustomBottomNavigationBar2State
       context,
       controller: _controller,
       screens: _buildScreens(),
-      items: _navBarsItems(),
+      items: _navBarsItems(context),
       handleAndroidBackButtonPress: true,
       resizeToAvoidBottomInset: true,
       stateManagement: true,

@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:home_dreams/core/helper_funcations/build_error_bar.dart';
 import 'package:home_dreams/features/profile/presentation/manager/update_user_data_cubit/update_user_data_cubit.dart';
 import 'package:home_dreams/features/profile/presentation/views/widgets/edit_profile_view_body.dart';
+import 'package:home_dreams/generated/l10n.dart';
 
 class EditProfileViewBlocConsumer extends StatelessWidget {
   const EditProfileViewBlocConsumer({super.key});
@@ -12,13 +13,13 @@ class EditProfileViewBlocConsumer extends StatelessWidget {
     return BlocConsumer<UpdateUserDataCubit, UpdateUserDataState>(
       listener: (context, state) {
         if (state is UpdateUserNameSuccess) {
-          showBar(context, 'تم التعديل بنجاح');
+          showBar(context, S.of(context).editSuccess);
         }
         if (state is UpdateEmailSuccess) {
-          showBar(context, 'تأكد من البريد الوارد للتفعيل');
+          showBar(context, S.of(context).checkEmailForVerification);
         }
         if (state is UpdatePasswordSuccess) {
-          showBar(context, 'تم التعديل بنجاح');
+          showBar(context, S.of(context).editSuccess);
         }
         if (state is UpdateUserNameFailure) {
           showBar(context, state.message);

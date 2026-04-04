@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:home_dreams/core/utils/app_text_styles.dart';
 import 'package:home_dreams/features/search/presentation/manager/get_search_keyword_cubit/get_search_keyword_cubit.dart';
 import 'package:home_dreams/features/search/presentation/manager/manage_keywords_cubit/manage_keywords_cubit.dart';
+import 'package:home_dreams/generated/l10n.dart';
 
 class SearchKeywordHeader extends StatelessWidget {
   const SearchKeywordHeader({super.key, required this.onClearAll});
@@ -13,7 +14,7 @@ class SearchKeywordHeader extends StatelessWidget {
     return Row(
       children: [
         Text(
-          'عمليات البحث الأخيرة',
+          S.of(context).recentSearches,
           style: TextStyles.semiBold13.copyWith(color: Colors.black),
         ),
         Spacer(),
@@ -25,7 +26,7 @@ class SearchKeywordHeader extends StatelessWidget {
             });
           },
           child: Text(
-            'حذف الكل',
+            S.of(context).deleteAll,
             style: TextStyles.semiBold13.copyWith(color: Colors.grey),
           ),
         ),

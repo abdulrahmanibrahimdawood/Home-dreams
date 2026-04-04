@@ -14,6 +14,7 @@ import 'package:home_dreams/features/auth/presentation/views/forget_password_vie
 import 'package:home_dreams/features/auth/presentation/views/widgets/dont_have_an_account_widget.dart';
 import 'package:home_dreams/features/auth/presentation/views/widgets/or_divider.dart';
 import 'package:home_dreams/features/auth/presentation/views/widgets/social_login_button.dart';
+import 'package:home_dreams/generated/l10n.dart';
 
 class SigninViewBody extends StatefulWidget {
   const SigninViewBody({super.key});
@@ -29,6 +30,7 @@ class _SigninViewBodyState extends State<SigninViewBody> {
 
   @override
   Widget build(BuildContext context) {
+    final s = S.of(context);
     return SingleChildScrollView(
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: kHorizontalPadding),
@@ -39,11 +41,11 @@ class _SigninViewBodyState extends State<SigninViewBody> {
             children: [
               SizedBox(height: 24),
               CustomTextFormField(
-                errorMessage: 'يرجى كتابة البريد الإلكتروني',
+                errorMessage: s.emailRequired,
                 onSaved: (value) {
                   email = value!;
                 },
-                hintText: 'البريد الإلكتروني',
+                hintText: s.emailHint,
                 textInputType: TextInputType.emailAddress,
               ),
               SizedBox(height: 16),
@@ -64,7 +66,7 @@ class _SigninViewBodyState extends State<SigninViewBody> {
                       );
                     },
                     child: Text(
-                      " نسيت كلمة المرور؟",
+                      s.forgotPassword,
                       style: TextStyles.bold13.copyWith(
                         color: AppColors.lightPrimaryColor,
                       ),
@@ -85,7 +87,7 @@ class _SigninViewBodyState extends State<SigninViewBody> {
                     }
                   }
                 },
-                text: 'تسجيل دخول',
+                text: s.signIn,
               ),
               SizedBox(height: 33),
               DontHaveAnAccountWidget(),
@@ -97,7 +99,7 @@ class _SigninViewBodyState extends State<SigninViewBody> {
                   context.read<SigninCubit>().signinWithGoogle();
                 },
                 image: Assets.assetsImagesGoogleIcon,
-                title: 'تسجيل بواسطة جوجل ',
+                title: s.signInWithGoogle,
               ),
               SizedBox(height: 16),
               Platform.isIOS
@@ -108,7 +110,7 @@ class _SigninViewBodyState extends State<SigninViewBody> {
                             context.read<SigninCubit>().signInWithApple();
                           },
                           image: Assets.assetsImagesAppleIcon,
-                          title: 'تسجيل بواسطة أبل ',
+                          title: s.signInWithApple,
                         ),
 
                         SizedBox(height: 16),
@@ -120,7 +122,7 @@ class _SigninViewBodyState extends State<SigninViewBody> {
                   context.read<SigninCubit>().signInWithFacebook();
                 },
                 image: Assets.assetsImagesFacebookIcon,
-                title: 'تسجيل بواسطة فيسبوك ',
+                title: s.signInWithFacebook,
               ),
             ],
           ),

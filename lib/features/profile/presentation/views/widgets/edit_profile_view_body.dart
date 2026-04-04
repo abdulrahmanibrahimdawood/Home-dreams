@@ -9,6 +9,7 @@ import 'package:home_dreams/core/widgets/custom_password_field.dart';
 import 'package:home_dreams/core/widgets/custom_text_form_field.dart';
 import 'package:home_dreams/features/auth/domain/entites/user_entity.dart';
 import 'package:home_dreams/features/profile/presentation/manager/update_user_data_cubit/update_user_data_cubit.dart';
+import 'package:home_dreams/generated/l10n.dart';
 
 class EditProfileViewBody extends StatefulWidget {
   const EditProfileViewBody({super.key});
@@ -53,6 +54,7 @@ class _EditProfileViewBodyState extends State<EditProfileViewBody> {
   @override
   Widget build(BuildContext context) {
     final user = getUser();
+    final s = S.of(context);
 
     return SingleChildScrollView(
       child: Padding(
@@ -66,14 +68,14 @@ class _EditProfileViewBodyState extends State<EditProfileViewBody> {
 
               Align(
                 alignment: Alignment.topRight,
-                child: Text('المعلومات الشخصيه', style: TextStyles.semiBold13),
+                child: Text(s.personalInfo, style: TextStyles.semiBold13),
               ),
 
               const SizedBox(height: 8),
 
               CustomTextFormField(
                 validate: false,
-                hintText: 'الاسم الكامل',
+                hintText: s.fullNameHint,
                 controller: nameController,
                 textInputType: TextInputType.name,
                 suffixIcon: Image.asset(Assets.assetsImagesEdit),
@@ -82,7 +84,7 @@ class _EditProfileViewBodyState extends State<EditProfileViewBody> {
               const SizedBox(height: 8),
 
               CustomTextFormField(
-                hintText: 'البريد الإلكتروني',
+                hintText: s.emailHint,
                 controller: emailController,
                 textInputType: TextInputType.emailAddress,
                 suffixIcon: Image.asset(Assets.assetsImagesEdit),
@@ -92,14 +94,14 @@ class _EditProfileViewBodyState extends State<EditProfileViewBody> {
 
               Align(
                 alignment: Alignment.topRight,
-                child: Text('تغيير كلمة المرور', style: TextStyles.semiBold13),
+                child: Text(s.changePassword, style: TextStyles.semiBold13),
               ),
 
               const SizedBox(height: 8),
 
               PasswordField(
                 controller: oldPasswordController,
-                hintText: 'كلمة المرور الحالية',
+                hintText: s.currentPasswordHint,
                 customValidator: (value) {
                   if (value != null && value.isNotEmpty) {
                     return null;
@@ -107,7 +109,7 @@ class _EditProfileViewBodyState extends State<EditProfileViewBody> {
 
                   if (newPasswordController.text.isNotEmpty ||
                       confirmPasswordController.text.isNotEmpty) {
-                    return 'يرجى إدخال كلمة المرور الحالية';
+                    return s.currentPasswordRequired;
                   }
 
                   return null;
@@ -118,11 +120,11 @@ class _EditProfileViewBodyState extends State<EditProfileViewBody> {
 
               PasswordField(
                 controller: newPasswordController,
-                hintText: 'كلمة المرور الجديدة',
+                hintText: s.newPasswordHint,
                 customValidator: (value) {
                   if (value == null || value.isEmpty) {
                     if (oldPasswordController.text.isNotEmpty) {
-                      return 'يرجى إدخال كلمة المرور الجديدة';
+                      return s.newPasswordRequired;
                     }
                   }
                   return null;
@@ -133,16 +135,16 @@ class _EditProfileViewBodyState extends State<EditProfileViewBody> {
 
               PasswordField(
                 controller: confirmPasswordController,
-                hintText: 'تأكيد كلمة المرور الجديدة',
+                hintText: s.confirmNewPasswordHint,
                 customValidator: (value) {
                   if (value == null || value.isEmpty) {
                     if (newPasswordController.text.isNotEmpty) {
-                      return 'يرجى تأكيد كلمة المرور';
+                      return s.confirmPasswordRequired;
                     }
                   }
 
                   if (value != newPasswordController.text) {
-                    return 'كلمة المرور غير متطابقة';
+                    return s.passwordsDoNotMatch;
                   }
                   return null;
                 },
@@ -151,7 +153,7 @@ class _EditProfileViewBodyState extends State<EditProfileViewBody> {
               const SizedBox(height: 74),
 
               CustomButton(
-                text: 'حفظ التغيرات',
+                text: s.saveChanges,
                 onPressed: () {
                   if (!_formKey.currentState!.validate()) {
                     autovalidateMode = AutovalidateMode.always;

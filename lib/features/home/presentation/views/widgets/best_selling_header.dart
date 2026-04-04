@@ -5,15 +5,17 @@ import 'package:home_dreams/features/best_selling_product/presentation/views/bes
 import 'package:home_dreams/features/favorites/presentation/views/manager/favorite_cubit/favorite_cubit.dart';
 import 'package:home_dreams/features/home/presentation/manager/cart_cubit/cart_cubit.dart';
 import 'package:home_dreams/features/home/presentation/manager/cart_item_cubit/cart_item_cubit.dart';
+import 'package:home_dreams/generated/l10n.dart';
 
 class BestSellingHeader extends StatelessWidget {
   const BestSellingHeader({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final s = S.of(context);
     return Row(
       children: [
-        const Text('الأكثر مبيعًا', style: TextStyles.bold16),
+        Text(s.bestSelling, style: TextStyles.bold16),
         const Spacer(),
         GestureDetector(
           onTap: () {
@@ -32,7 +34,7 @@ class BestSellingHeader extends StatelessWidget {
             );
           },
           child: Text(
-            'المزيد',
+            s.seeMore,
             style: TextStyles.regular13.copyWith(color: Color(0xff949D9E)),
           ),
         ),

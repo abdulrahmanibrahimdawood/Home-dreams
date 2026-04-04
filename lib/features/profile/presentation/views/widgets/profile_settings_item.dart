@@ -1,6 +1,9 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:home_dreams/constants.dart';
+import 'package:home_dreams/core/helper_funcations/is_arabic.dart';
 import 'package:home_dreams/core/utils/app_images.dart';
 import 'package:home_dreams/core/utils/app_text_styles.dart';
 
@@ -19,7 +22,7 @@ class ProfileSettingsItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: kHorizontalPadding),
+      padding: EdgeInsets.symmetric(horizontal: kHorizontalPadding),
 
       child: Column(
         children: [
@@ -37,9 +40,11 @@ class ProfileSettingsItem extends StatelessWidget {
                 style: TextStyles.semiBold13.copyWith(color: Color(0xff949D9E)),
               ),
               leading: SvgPicture.asset(imagePath),
-              trailing:
-                  trailing ??
-                  SvgPicture.asset(Assets.assetsImagesArrowBackIcon),
+              trailing: trailing ??
+                  (isArabic()
+                      ?  SvgPicture.asset(Assets.assetsImagesArrowBackIcon) 
+                      : Transform.rotate(angle:pi , child: SvgPicture.asset(Assets.assetsImagesArrowBackIcon))
+                      ), 
             ),
           ),
           Divider(height: 1, color: const Color(0xffC3C2C2)),

@@ -3,12 +3,14 @@ import 'package:flutter_svg/svg.dart';
 import 'package:home_dreams/core/utils/app_colors.dart';
 import 'package:home_dreams/core/utils/app_images.dart';
 import 'package:home_dreams/core/utils/app_text_styles.dart';
+import 'package:home_dreams/generated/l10n.dart';
 
 class SuccessDialog extends StatelessWidget {
   const SuccessDialog({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final s = S.of(context);
     return Dialog(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       child: SizedBox(
@@ -22,7 +24,7 @@ class SuccessDialog extends StatelessWidget {
               SvgPicture.asset(Assets.assetsImagesConfirmPassword),
               SizedBox(height: 20),
               Text(
-                'تم تغيير كلمة المرور بنجاح!',
+                s.passwordChangedSuccess,
                 textAlign: TextAlign.center,
                 style: TextStyles.semiBold16.copyWith(color: Colors.black),
               ),
@@ -40,7 +42,7 @@ class SuccessDialog extends StatelessWidget {
                     Navigator.pop(context);
                   },
                   child: Text(
-                    'حسناً',
+                    s.ok,
                     style: TextStyles.semiBold16.copyWith(color: Colors.white),
                   ),
                 ),

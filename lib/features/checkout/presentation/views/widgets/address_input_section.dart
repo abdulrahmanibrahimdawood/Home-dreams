@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:home_dreams/core/widgets/custom_text_form_field.dart';
 import 'package:home_dreams/features/checkout/domain/entites/order_input_entity.dart';
+import 'package:home_dreams/generated/l10n.dart';
 
 class AddressInputSection extends StatelessWidget {
   const AddressInputSection({
@@ -18,34 +19,36 @@ class AddressInputSection extends StatelessWidget {
     return SingleChildScrollView(
       child: ValueListenableBuilder<AutovalidateMode>(
         valueListenable: valueListenable,
-        builder: (context, value, child) => Form(
+        builder: (context, value, child) {
+          final s = S.of(context);
+          return Form(
           key: formKey,
           autovalidateMode: value,
           child: Column(
             children: [
               SizedBox(height: 24),
               CustomTextFormField(
-                errorMessage: 'يرجى كتابة الاسم كامل',
+                errorMessage: s.nameRequired,
                 onSaved: (value) {
                   context.read<OrderInputEntity>().shippingAddressEntity.name =
                       value!;
                 },
-                hintText: 'الاسم كامل',
+                hintText: s.addressFullNameHint,
                 textInputType: TextInputType.text,
               ),
               SizedBox(height: 16),
               CustomTextFormField(
-                errorMessage: 'يرجى كتابة البريد الإلكتروني',
+                errorMessage: s.emailRequired,
                 onSaved: (value) {
                   context.read<OrderInputEntity>().shippingAddressEntity.email =
                       value!;
                 },
-                hintText: 'البريد الإلكتروني',
+                hintText: s.emailHint,
                 textInputType: TextInputType.text,
               ),
               SizedBox(height: 16),
               CustomTextFormField(
-                errorMessage: 'يرجى كتابة العنوان',
+                errorMessage: s.addressRequired,
                 onSaved: (value) {
                   context
                           .read<OrderInputEntity>()
@@ -53,42 +56,43 @@ class AddressInputSection extends StatelessWidget {
                           .address =
                       value!;
                 },
-                hintText: 'العنوان',
+                hintText: s.addressHint,
                 textInputType: TextInputType.text,
               ),
               SizedBox(height: 16),
               CustomTextFormField(
-                errorMessage: 'يرجى كتابة المدينه',
+                errorMessage: s.cityRequired,
                 onSaved: (value) {
                   context.read<OrderInputEntity>().shippingAddressEntity.city =
                       value!;
                 },
-                hintText: 'المدينه',
+                hintText: s.cityHint,
                 textInputType: TextInputType.text,
               ),
               SizedBox(height: 16),
               CustomTextFormField(
-                errorMessage: 'يرجى كتابة رقم الطابق , رقم الشقه ..',
+                errorMessage: s.floorApartmentRequired,
                 onSaved: (value) {
                   context.read<OrderInputEntity>().shippingAddressEntity.floor =
                       value!;
                 },
-                hintText: 'رقم الطابق , رقم الشقه ..',
+                hintText: s.floorApartmentHint,
                 textInputType: TextInputType.text,
               ),
               SizedBox(height: 16),
               CustomTextFormField(
-                errorMessage: 'يرجى كتابة رقم التليفون',
+                errorMessage: s.phoneRequired,
                 onSaved: (value) {
                   context.read<OrderInputEntity>().shippingAddressEntity.phone =
                       value!;
                 },
-                hintText: 'رقم التليفون',
+                hintText: s.phoneHint,
                 textInputType: TextInputType.number,
               ),
             ],
           ),
-        ),
+        );
+        },
       ),
     );
   }

@@ -7,6 +7,7 @@ import 'package:home_dreams/features/home/domain/entites/cart_item_entity.dart';
 import 'package:home_dreams/features/home/presentation/manager/cart_cubit/cart_cubit.dart';
 import 'package:home_dreams/features/home/presentation/manager/cart_item_cubit/cart_item_cubit.dart';
 import 'package:home_dreams/features/home/presentation/views/widgets/cart_item_action_buttons.dart';
+import 'package:home_dreams/generated/l10n.dart';
 
 import '../../../../../core/utils/app_images.dart';
 import '../../../../../core/utils/app_text_styles.dart';
@@ -62,7 +63,7 @@ class CartItem extends StatelessWidget {
                       ],
                     ),
                     Text(
-                      '${carItemEntity.calculateTotalWeight()} كم',
+                      '${carItemEntity.calculateTotalWeight()} ${S.of(context).unitKg}',
                       style: TextStyles.regular13.copyWith(
                         color: AppColors.scoundaryColor,
                       ),
@@ -72,7 +73,7 @@ class CartItem extends StatelessWidget {
                         CartItemActionButtons(cartItemEntity: carItemEntity),
                         Spacer(),
                         Text(
-                          '${carItemEntity.calculateTotalPrice().toString()} جنيه',
+                          '${carItemEntity.calculateTotalPrice().toString()} ${S.of(context).currencyEgp}',
                           style: TextStyles.bold16.copyWith(
                             color: AppColors.scoundaryColor,
                           ),

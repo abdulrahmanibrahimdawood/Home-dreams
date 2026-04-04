@@ -5,6 +5,7 @@ import 'package:home_dreams/core/widgets/custom_app_bar_inside.dart';
 import 'package:home_dreams/features/profile/domain/repos/update_user_data_repo.dart';
 import 'package:home_dreams/features/profile/presentation/manager/update_user_data_cubit/update_user_data_cubit.dart';
 import 'package:home_dreams/features/profile/presentation/views/widgets/edit_profile_view_bloc_consumer.dart';
+import 'package:home_dreams/generated/l10n.dart';
 
 class EditProfileView extends StatelessWidget {
   const EditProfileView({super.key});
@@ -13,16 +14,15 @@ class EditProfileView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) =>
-          UpdateUserDataCubit(getIt<UpdateUserDataRepo>()),
-        child: Scaffold(
-          appBar: buildAppBarInside(
-            title: 'الملف الشخصي',
-            context,
-            showNotification: false,
-          ),
-          body: const EditProfileViewBlocConsumer(),
-        )
+      create: (context) => UpdateUserDataCubit(getIt<UpdateUserDataRepo>()),
+      child: Scaffold(
+        appBar: buildAppBarInside(
+          title: S.of(context).personalProfile,
+          context,
+          showNotification: false,
+        ),
+        body: const EditProfileViewBlocConsumer(),
+      ),
     );
   }
 }

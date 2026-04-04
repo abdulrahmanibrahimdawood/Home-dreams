@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:home_dreams/core/utils/app_text_styles.dart';
+import 'package:home_dreams/generated/l10n.dart';
 
 class ProductsViewHeader extends StatelessWidget {
   const ProductsViewHeader({super.key, required this.productsLength});
@@ -7,7 +8,12 @@ class ProductsViewHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      children: [Text('$productsLength نتائج', style: TextStyles.bold16)],
+      children: [
+        Text(
+          '$productsLength ${S.of(context).resultsWord}',
+          style: TextStyles.bold16,
+        ),
+      ],
     );
   }
 }

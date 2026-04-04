@@ -6,6 +6,7 @@ import 'package:home_dreams/features/checkout/domain/repo/images_repo.dart';
 import 'package:home_dreams/features/profile/presentation/manager/cubit/upload_image_cubit.dart';
 import 'package:home_dreams/features/profile/presentation/manager/get_profile_image_cubit/get_profile_image_cubit.dart';
 import 'package:home_dreams/features/profile/presentation/views/widgets/profile_view_body.dart';
+import 'package:home_dreams/generated/l10n.dart';
 
 class ProfileView extends StatefulWidget {
   const ProfileView({super.key});
@@ -42,7 +43,7 @@ class _ProfileViewState extends State<ProfileView> {
         child: Scaffold(
           appBar: buildAppBarInside(
             context,
-            title: 'حسابي',
+            title: S.of(context).myAccount,
             showNotification: false,
             showBackButton: false,
           ),

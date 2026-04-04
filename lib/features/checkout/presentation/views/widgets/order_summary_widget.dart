@@ -3,25 +3,27 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:home_dreams/core/utils/app_text_styles.dart';
 import 'package:home_dreams/features/checkout/domain/entites/order_input_entity.dart';
 import 'package:home_dreams/features/checkout/presentation/views/widgets/payment_item.dart';
+import 'package:home_dreams/generated/l10n.dart';
 
 class OrderSummaryWidget extends StatelessWidget {
   const OrderSummaryWidget({super.key, required this.pageController});
   final PageController pageController;
   @override
   Widget build(BuildContext context) {
+    final s = S.of(context);
     return PaymentItem(
-      title: 'ملخص الطلب',
+      title: s.orderSummary,
       child: Column(
         children: [
           Row(
             children: [
               Text(
-                'المجموع الفرعي :',
+                s.subtotalLabel,
                 style: TextStyles.regular13.copyWith(color: Color(0xff4E5556)),
               ),
               Spacer(),
               Text(
-                '${context.read<OrderInputEntity>().cartEntity.calculateTotalPrice()} جنيه',
+                '${context.read<OrderInputEntity>().cartEntity.calculateTotalPrice()} ${s.currencyEgp}',
                 style: TextStyles.semiBold16,
               ),
             ],
@@ -30,12 +32,12 @@ class OrderSummaryWidget extends StatelessWidget {
           Row(
             children: [
               Text(
-                'التوصيل  :',
+                s.deliveryLabel,
                 style: TextStyles.regular13.copyWith(color: Color(0xff4E5556)),
               ),
               Spacer(),
               Text(
-                '40 جنيه',
+                s.deliveryFee,
                 style: TextStyles.regular13.copyWith(color: Color(0xff4E5556)),
               ),
             ],
@@ -45,10 +47,10 @@ class OrderSummaryWidget extends StatelessWidget {
           SizedBox(height: 9),
           Row(
             children: [
-              Text('الكلي', style: TextStyles.bold16),
+              Text(s.totalLabel, style: TextStyles.bold16),
               Spacer(),
               Text(
-                '${context.read<OrderInputEntity>().cartEntity.calculateTotalPrice() + 40} جنيه',
+                '${context.read<OrderInputEntity>().cartEntity.calculateTotalPrice() + 40} ${s.currencyEgp}',
                 style: TextStyles.bold16,
               ),
             ],

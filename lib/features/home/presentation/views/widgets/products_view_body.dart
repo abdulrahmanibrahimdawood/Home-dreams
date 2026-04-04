@@ -7,6 +7,7 @@ import 'package:home_dreams/core/widgets/custom_app_bar_inside.dart';
 import 'package:home_dreams/core/widgets/search_text_field.dart';
 import 'package:home_dreams/features/home/presentation/views/widgets/best_selling_grid_view_bloc_builder.dart';
 import 'package:home_dreams/features/home/presentation/views/widgets/products_view_header.dart';
+import 'package:home_dreams/generated/l10n.dart';
 
 class ProductsViewBody extends StatefulWidget {
   const ProductsViewBody({super.key});
@@ -36,7 +37,7 @@ class _ProductsViewBodyState extends State<ProductsViewBody> {
                 SizedBox(height: kTopPadding),
                 buildAppBarInside(
                   context,
-                  title: 'المنتجات',
+                  title: S.of(context).products,
                   showBackButton: false,
                 ),
                 SizedBox(height: kTopPadding),

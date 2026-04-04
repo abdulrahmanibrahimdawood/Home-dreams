@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:home_dreams/core/utils/app_text_styles.dart';
+import 'package:home_dreams/generated/l10n.dart';
 
 class CustomTextFormField extends StatelessWidget {
   const CustomTextFormField({
@@ -41,7 +42,7 @@ class CustomTextFormField extends StatelessWidget {
 
         if (validate == true) {
           if (value == null || value.isEmpty) {
-            return errorMessage ?? 'يرجى كتابة هذا الحقل';
+            return errorMessage ?? S.current.fieldRequired;
           }
         }
         return null;

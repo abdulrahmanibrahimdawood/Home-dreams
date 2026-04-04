@@ -6,6 +6,7 @@ import 'package:home_dreams/core/utils/app_text_styles.dart';
 import 'package:home_dreams/core/widgets/custom_button.dart';
 import 'package:home_dreams/core/widgets/custom_text_form_field.dart';
 import 'package:home_dreams/features/auth/domain/repos/auth_repo.dart';
+import 'package:home_dreams/generated/l10n.dart';
 
 class ForgetPasswordViewBody extends StatefulWidget {
   const ForgetPasswordViewBody({super.key, required this.authRepo});
@@ -20,6 +21,7 @@ class _ForgetPasswordViewBodyState extends State<ForgetPasswordViewBody> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
+    final s = S.of(context);
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: kHorizontalPadding),
       child: Form(
@@ -30,7 +32,7 @@ class _ForgetPasswordViewBodyState extends State<ForgetPasswordViewBody> {
           children: [
             SizedBox(height: 24),
             Text(
-              'لا تقلق ، ما عليك سوى كتابة بريدك الالكتروني وسنرسل لك رمز التحقق.',
+              s.forgotPasswordDescription,
               textAlign: TextAlign.right,
               style: TextStyles.semiBold16.copyWith(color: Color(0xFF616A6B)),
             ),
@@ -39,8 +41,8 @@ class _ForgetPasswordViewBodyState extends State<ForgetPasswordViewBody> {
               onSaved: (value) {
                 email = value!;
               },
-              errorMessage: 'يرجى كتابة البريد الإلكتروني',
-              hintText: 'البريد الإلكتروني',
+              errorMessage: s.emailRequired,
+              hintText: s.emailHint,
               textInputType: TextInputType.emailAddress,
             ),
             SizedBox(height: 30),
@@ -56,19 +58,19 @@ class _ForgetPasswordViewBodyState extends State<ForgetPasswordViewBody> {
                 final inputEmail = email;
                 final userEmail = getUser().email;
                 if (inputEmail != userEmail) {
-                  showBar(context, 'البريد الإلكتروني غير صحيح');
+                  showBar(context, s.emailIncorrect);
                   return;
                 }
                 try {
                   await widget.authRepo.resetPassword(email: inputEmail);
                   if (!mounted) return;
-                  showBar(context, 'تم إرسال رابط إعادة تعيين كلمة المرور');
+                  showBar(context, s.resetEmailSent);
                 } catch (e) {
                   if (!mounted) return;
-                  showBar(context, 'حدث خطأ أثناء الإرسال');
+                  showBar(context, s.sendError);
                 }
               },
-              text: 'ارسل رمز التحقق',
+              text: s.sendVerificationCode,
             ),
           ],
         ),

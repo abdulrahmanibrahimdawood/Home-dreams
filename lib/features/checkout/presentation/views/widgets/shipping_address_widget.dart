@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:home_dreams/core/utils/app_images.dart';
+import 'package:home_dreams/generated/l10n.dart';
 import 'package:home_dreams/features/checkout/domain/entites/order_input_entity.dart';
 import 'package:home_dreams/features/checkout/presentation/views/widgets/payment_item.dart';
 import 'package:provider/provider.dart';
@@ -12,7 +13,7 @@ class ShippingAddressWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PaymentItem(
-      title: 'عنوان التوصيل',
+      title: S.of(context).deliveryAddress,
       child: Row(
         children: [
           Image.asset(Assets.assetsImagesLocation),
@@ -39,7 +40,7 @@ class ShippingAddressWidget extends StatelessWidget {
                   Image.asset(Assets.assetsImagesEdit),
                   const SizedBox(width: 4),
                   Text(
-                    'تعديل',
+                    S.of(context).edit,
                     style: TextStyles.semiBold13.copyWith(
                       color: const Color(0xFF949D9E),
                     ),

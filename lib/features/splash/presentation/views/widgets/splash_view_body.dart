@@ -8,6 +8,7 @@ import 'package:home_dreams/core/utils/app_text_styles.dart';
 import 'package:home_dreams/features/auth/presentation/views/signin_view.dart';
 import 'package:home_dreams/features/home/presentation/views/main_view.dart';
 import 'package:home_dreams/features/on_boarding/presentation/views/on_boardig_view.dart';
+import 'package:home_dreams/generated/l10n.dart';
 
 class SplashViewBody extends StatefulWidget {
   const SplashViewBody({super.key});
@@ -38,7 +39,7 @@ class _SplashViewBodyState extends State<SplashViewBody> {
             ),
           ),
           Text(
-            'أحلام المنزل',
+            S.of(context).appName,
             style: TextStyles.bold28.copyWith(color: AppColors.primaryColor),
           ),
         ],

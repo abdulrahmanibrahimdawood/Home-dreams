@@ -9,6 +9,7 @@ import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart'
     show GoogleSignInAccount, GoogleSignIn, GoogleSignInAuthentication;
 import 'package:home_dreams/core/errors/exceptions.dart';
+import 'package:home_dreams/generated/l10n.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
 class FirebaseAuthService {
@@ -29,23 +30,23 @@ class FirebaseAuthService {
         'Exception in FirebaseAuthService.CreateUserWithEmailAndPassword: ${e.message} and code is ${e.code}',
       );
       if (e.code == 'weak-password') {
-        throw CustomException(message: 'الرقم السري ضعيف جداً.');
+        throw CustomException(message: S.current.weakPassword);
       } else if (e.code == 'email-already-in-use') {
         throw CustomException(
-          message: 'لقد قمت بالتسجيل مسبقاً. الرجاء تسجيل الدخول.',
+          message: S.current.emailAlreadyInUse,
         );
       } else if (e.code == 'network-request-failed') {
-        throw CustomException(message: 'لا يوجد اتصال بالانترنت.');
+        throw CustomException(message: S.current.noInternet);
       } else if (e.code == 'invalid-email') {
-        throw CustomException(message: 'صيغة البريد الإلكتروني غير صحيحة.');
+        throw CustomException(message: S.current.invalidEmailFormat);
       } else {
         throw CustomException(
-          message: 'لقد حدث خطأ ما. الرجاء المحاولة مرة اخرى.',
+          message: S.current.genericAuthErrorAlt,
         );
       }
     } catch (e) {
       throw CustomException(
-        message: 'لقد حدث خطأ ما. الرجاء المحاولة مرة اخرى.',
+        message: S.current.genericAuthErrorAlt,
       );
     }
   }
@@ -66,21 +67,21 @@ class FirebaseAuthService {
       );
       if (e.code == 'user-not-found') {
         throw CustomException(
-          message: 'الرقم السري او البريد الالكتروني غير صحيح.',
+          message: S.current.wrongCredentials,
         );
       } else if (e.code == 'wrong-password') {
         throw CustomException(
-          message: 'الرقم السري او البريد الالكتروني غير صحيح.',
+          message: S.current.wrongCredentials,
         );
       } else if (e.code == 'invalid-credential') {
         throw CustomException(
-          message: 'الرقم السري او البريد الالكتروني غير صحيح.',
+          message: S.current.wrongCredentials,
         );
       } else if (e.code == 'network-request-failed') {
-        throw CustomException(message: 'لا يوجد اتصال بالانترنت.');
+        throw CustomException(message: S.current.noInternet);
       } else {
         throw CustomException(
-          message: 'لقد حدث خطأ ما. الرجاء المحاولة مرة اخرى.',
+          message: S.current.genericAuthErrorAlt,
         );
       }
     } catch (e) {
@@ -89,7 +90,7 @@ class FirebaseAuthService {
       );
     }
     throw CustomException(
-      message: 'لقد حدث خطأ ما. الرجاء المحاولة مرة اخرى.',
+      message: S.current.genericAuthErrorAlt,
     );
   }
 
@@ -190,7 +191,7 @@ class FirebaseAuthService {
       await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
     } catch (e) {
       throw CustomException(
-        message: 'لقد حدث خطأ ما. الرجاء المحاولة مرة اخرى.',
+        message: S.current.genericAuthErrorAlt,
       );
     }
   }
@@ -201,20 +202,20 @@ class FirebaseAuthService {
       await user?.updateDisplayName(name);
       await user?.reload();
     } on FirebaseAuthException {
-      throw CustomException(message: 'حدث خطأ أثناء تحديث الاسم');
+      throw CustomException(message: S.current.nameUpdateError);
     }
   }
 
   Future<void> updatePassword({required String newPassword}) async {
     final user = FirebaseAuth.instance.currentUser;
     if (user == null) {
-      throw CustomException(message: 'المستخدم غير مسجل الدخول');
+      throw CustomException(message: S.current.notSignedIn);
     }
     try {
       await user.updatePassword(newPassword);
     } on FirebaseAuthException catch (e) {
       throw CustomException(
-        message: e.message ?? 'حدث خطأ أثناء تحديث كلمة المرور',
+        message: e.message ?? S.current.passwordUpdateError,
       );
     }
   }
@@ -225,7 +226,7 @@ class FirebaseAuthService {
   }) async {
     final user = FirebaseAuth.instance.currentUser;
     if (user == null) {
-      throw CustomException(message: 'المستخدم غير مسجل الدخول');
+      throw CustomException(message: S.current.notSignedIn);
     }
     final credential = EmailAuthProvider.credential(
       email: email,
@@ -235,7 +236,7 @@ class FirebaseAuthService {
       await user.reauthenticateWithCredential(credential);
     } on FirebaseAuthException catch (e) {
       throw CustomException(
-        message: e.message ?? 'كلمة المرور الحالية غير صحيحة',
+        message: e.message ?? S.current.wrongCurrentPassword,
       );
     }
   }
@@ -243,7 +244,7 @@ class FirebaseAuthService {
   Future<void> updateEmail({required String newEmail}) async {
     final user = FirebaseAuth.instance.currentUser;
     if (user == null) {
-      throw CustomException(message: 'المستخدم غير مسجل الدخول');
+      throw CustomException(message: S.current.notSignedIn);
     }
 
     try {
@@ -251,7 +252,7 @@ class FirebaseAuthService {
       await user.reload();
     } on FirebaseAuthException catch (e) {
       throw CustomException(
-        message: e.message ?? 'حدث خطأ أثناء تحديث البريد الإلكتروني',
+        message: e.message ?? S.current.emailUpdateError,
       );
     }
   }

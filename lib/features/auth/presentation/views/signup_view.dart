@@ -5,6 +5,7 @@ import 'package:home_dreams/core/widgets/custom_app_bar.dart';
 import 'package:home_dreams/features/auth/domain/repos/auth_repo.dart';
 import 'package:home_dreams/features/auth/presentation/managers/signup_cubit/signup_cubit.dart';
 import 'package:home_dreams/features/auth/presentation/views/widgets/signup_view_body_bloc_consumer.dart';
+import 'package:home_dreams/generated/l10n.dart';
 
 class SignupView extends StatelessWidget {
   const SignupView({super.key});
@@ -14,7 +15,7 @@ class SignupView extends StatelessWidget {
     return BlocProvider(
       create: (context) => SignupCubit(getIt<AuthRepo>()),
       child: Scaffold(
-        appBar: buildAppBar(context, text: 'حساب جديد'),
+        appBar: buildAppBar(context, text: S.of(context).newAccountTitle),
         body: SignupViewBodyBlocConsumer(),
       ),
     );

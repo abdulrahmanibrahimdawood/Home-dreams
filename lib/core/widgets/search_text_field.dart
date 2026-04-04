@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:home_dreams/core/utils/app_images.dart';
 import 'package:home_dreams/core/utils/app_text_styles.dart';
 import 'package:home_dreams/core/widgets/custom_text_form_field.dart';
+import 'package:home_dreams/generated/l10n.dart';
 
 class SearchTextField extends StatelessWidget {
   final VoidCallback? onTap;
@@ -56,7 +57,7 @@ class SearchTextField extends StatelessWidget {
             ),
           ),
           hintStyle: TextStyles.regular13.copyWith(color: Color(0xff949D9E)),
-          hintText: 'ابحث عن.......',
+          hintText: S.of(context).searchHint,
           filled: true,
           fillColor: Colors.white,
           border: buildBorder(),

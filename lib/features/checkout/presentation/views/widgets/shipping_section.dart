@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:home_dreams/features/checkout/domain/entites/order_input_entity.dart';
 import 'package:home_dreams/features/checkout/presentation/views/widgets/shipping_item.dart';
+import 'package:home_dreams/generated/l10n.dart';
 import 'package:provider/provider.dart';
 
 class ShippingSection extends StatefulWidget {
@@ -17,6 +18,7 @@ class _ShippingSectionState extends State<ShippingSection>
   @override
   Widget build(BuildContext context) {
     super.build(context);
+    final s = S.of(context);
     var orderEntity = context.read<OrderInputEntity>();
     return Column(
       children: [
@@ -28,8 +30,8 @@ class _ShippingSectionState extends State<ShippingSection>
             setState(() {});
           },
           isSelected: selectedIndex == 0,
-          title: 'الدفع عند الاستلام',
-          subTitle: 'التسليم من المكان',
+          title: s.cashOnDelivery,
+          subTitle: s.deliveryFromPlace,
           price: (orderEntity.cartEntity.calculateTotalPrice() + 50).toString(),
         ),
         SizedBox(height: 16),
@@ -40,8 +42,8 @@ class _ShippingSectionState extends State<ShippingSection>
             setState(() {});
           },
           isSelected: selectedIndex == 1,
-          title: 'الدفع اونلاين',
-          subTitle: 'يرجي تحديد طريقه الدفع',
+          title: s.payOnline,
+          subTitle: s.selectPaymentMethod,
           price: orderEntity.cartEntity.calculateTotalPrice().toString(),
         ),
       ],
@@ -51,6 +53,3 @@ class _ShippingSectionState extends State<ShippingSection>
   @override
   bool get wantKeepAlive => true;
 }
-
-@override
-bool get wantKeepAlive => true;

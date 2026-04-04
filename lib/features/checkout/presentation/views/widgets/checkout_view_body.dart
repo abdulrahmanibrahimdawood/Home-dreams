@@ -10,6 +10,7 @@ import 'package:home_dreams/features/checkout/domain/entites/paypal_payment_enti
 import 'package:home_dreams/features/checkout/presentation/manager/add_order_cubit/add_order_cubit.dart';
 import 'package:home_dreams/features/checkout/presentation/views/widgets/checkout_page_view.dart';
 import 'package:home_dreams/features/checkout/presentation/views/widgets/checkout_steps.dart';
+import 'package:home_dreams/generated/l10n.dart';
 import 'package:provider/provider.dart';
 
 class CheckoutViewBody extends StatefulWidget {
@@ -68,7 +69,7 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
                     curve: Curves.easeIn,
                   );
                 } else {
-                  showBar(context, 'يرجي تحديد طريقه الدفع');
+                  showBar(context, S.of(context).selectPaymentMethod);
                 }
               } else {
                 _handleAddressValidation();
@@ -94,7 +95,7 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
                 _processPayment(context);
               }
             },
-            text: getNextButtonText(currentPageIndex),
+            text: getNextButtonText(context, currentPageIndex),
           ),
           const SizedBox(height: 32),
         ],
@@ -110,20 +111,21 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
         curve: Curves.bounceIn,
       );
     } else {
-      showBar(context, 'يرجي تحديد طريقه الدفع');
+      showBar(context, S.of(context).selectPaymentMethod);
     }
   }
 
-  String getNextButtonText(int currentPageIndex) {
+  String getNextButtonText(BuildContext context, int currentPageIndex) {
+    final s = S.of(context);
     switch (currentPageIndex) {
       case 0:
-        return 'التالي';
+        return s.next;
       case 1:
-        return 'التالي';
+        return s.next;
       case 2:
-        return 'الدفع عبر PayPal';
+        return s.payWithPayPal;
       default:
-        return 'التالي';
+        return s.next;
     }
   }
 
@@ -154,7 +156,7 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
           clientId: AppKeys.kPaypalClientId,
           secretKey: AppKeys.kPaypalSecretKey,
           transactions: [paypalPaymentEntity.toJson()],
-          note: "Contact us for any questions on your order.",
+          note: S.of(context).paypalNote,
           onSuccess: (Map params) async {
             Navigator.pop(context);
             addOrderCubit.addOrder(order: orderEntity);
@@ -162,7 +164,7 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
           onError: (error) {
             Navigator.pop(context);
             log(error.toString());
-            showBar(context, 'حدث خطأ في عملية الدفع');
+            showBar(context, S.of(context).paymentProcessError);
           },
           onCancel: () {
             log('cancelled:');

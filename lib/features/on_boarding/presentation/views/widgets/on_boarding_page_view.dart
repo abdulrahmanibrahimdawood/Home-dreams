@@ -2,25 +2,26 @@ import 'package:flutter/material.dart';
 import 'package:home_dreams/core/utils/app_colors.dart';
 import 'package:home_dreams/core/utils/app_images.dart';
 import 'package:home_dreams/features/on_boarding/presentation/views/widgets/page_view_item.dart';
+import 'package:home_dreams/generated/l10n.dart';
 
 class OnBoardingPageView extends StatelessWidget {
   const OnBoardingPageView({super.key, required this.pageController});
   final PageController pageController;
   @override
   Widget build(BuildContext context) {
+    final s = S.of(context);
     return PageView(
       controller: pageController,
       children: [
         PageViewItem(
           isVisable: true,
           image: Assets.assetsImagesOnboarding1,
-          subTitle:
-              'تسوق أفضل منتجات وأساس المنزل بجودة عالية وأسعار مناسبة، واطلب كل احتياجاتك بسهولة ومن مكان واحد.',
+          subTitle: s.onboarding1Subtitle,
           title: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                'مرحبًا بك في',
+                s.onboardingWelcome,
                 style: TextStyle(
                   color: AppColors.primaryColor,
                   fontSize: 23,
@@ -29,7 +30,7 @@ class OnBoardingPageView extends StatelessWidget {
                 ),
               ),
               Text(
-                ' أحلام المنزل',
+                s.onboardingBrand,
                 style: TextStyle(
                   color: AppColors.lightPrimaryColor,
                   fontSize: 23,
@@ -43,10 +44,9 @@ class OnBoardingPageView extends StatelessWidget {
         PageViewItem(
           isVisable: true,
           image: Assets.assetsImagesOnboarding2,
-          subTitle:
-              'اكتشف تشكيلة واسعة من منتجات البيت والأثاث وخليك دايمًا جاهز لكل احتياجات منزلك مع تجربة شراء سهلة وسريعة.',
+          subTitle: s.onboarding2Subtitle,
           title: Text(
-            'منزلك أهم',
+            s.onboarding2Title,
             textAlign: TextAlign.center,
             style: TextStyle(
               color: AppColors.primaryColor,
@@ -60,10 +60,9 @@ class OnBoardingPageView extends StatelessWidget {
         PageViewItem(
           isVisable: false,
           image: Assets.assetsImagesOnboarding3,
-          subTitle:
-              'وفر وقتك ومجهودك وتسوق أساس ومنتجات المنزل بأفضل الأسعار مع توصيل سريع وخدمة مضمونة لحد باب بيتك.',
+          subTitle: s.onboarding3Subtitle,
           title: Text(
-            'تسوق بذكاء',
+            s.onboarding3Title,
             textAlign: TextAlign.center,
             style: TextStyle(
               color: AppColors.primaryColor,

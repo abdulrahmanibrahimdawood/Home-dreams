@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:home_dreams/constants.dart';
 import 'package:home_dreams/features/home/presentation/manager/cart_cubit/cart_cubit.dart';
 import 'package:home_dreams/features/home/presentation/views/widgets/best_selling_grid_view_bloc_builder.dart';
+import 'package:home_dreams/generated/l10n.dart';
 
 class BestSellingViewBody extends StatelessWidget {
   const BestSellingViewBody({super.key});
@@ -19,7 +20,7 @@ class BestSellingViewBody extends StatelessWidget {
             listener: (context, state) {
               if (state is CartItemAdded) {
                 ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('تمت إضافة المنتج إلى السلة')),
+                  SnackBar(content: Text(S.of(context).addedToCartSnackbar)),
                 );
               }
             },

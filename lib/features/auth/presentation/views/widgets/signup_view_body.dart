@@ -8,6 +8,7 @@ import 'package:home_dreams/core/widgets/custom_text_form_field.dart';
 import 'package:home_dreams/features/auth/presentation/managers/signup_cubit/signup_cubit.dart';
 import 'package:home_dreams/features/auth/presentation/views/widgets/have_an_account.dart';
 import 'package:home_dreams/features/auth/presentation/views/widgets/terms_and_condations.dart';
+import 'package:home_dreams/generated/l10n.dart';
 
 class SignupViewBody extends StatefulWidget {
   const SignupViewBody({super.key});
@@ -23,6 +24,7 @@ class _SignupViewBodyState extends State<SignupViewBody> {
   late bool isTermsAccepted = false;
   @override
   Widget build(BuildContext context) {
+    final s = S.of(context);
     return SingleChildScrollView(
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: kHorizontalPadding),
@@ -33,20 +35,20 @@ class _SignupViewBodyState extends State<SignupViewBody> {
             children: [
               SizedBox(height: 24),
               CustomTextFormField(
-                errorMessage: 'يرجى كتابة الاسم كامل',
+                errorMessage: s.nameRequired,
                 onSaved: (value) {
                   userName = value!;
                 },
-                hintText: 'الاسم كامل',
+                hintText: s.addressFullNameHint,
                 textInputType: TextInputType.name,
               ),
               SizedBox(height: 16),
               CustomTextFormField(
-                errorMessage: 'يرجى كتابة البريد الإلكتروني',
+                errorMessage: s.emailRequired,
                 onSaved: (value) {
                   email = value!;
                 },
-                hintText: 'البريد الإلكتروني',
+                hintText: s.emailHint,
                 textInputType: TextInputType.emailAddress,
               ),
               SizedBox(height: 16),
@@ -75,7 +77,7 @@ class _SignupViewBodyState extends State<SignupViewBody> {
                             userName,
                           );
                     } else {
-                      showBar(context, 'يجب الموافقة على الشروط والسياسات');
+                      showBar(context, s.mustAcceptTerms);
                     }
                   } else {
                     setState(() {
@@ -83,7 +85,7 @@ class _SignupViewBodyState extends State<SignupViewBody> {
                     });
                   }
                 },
-                text: 'إنشاء حساب جديد',
+                text: s.createNewAccount,
               ),
               SizedBox(height: 33),
               HaveAnAccountWidget(),

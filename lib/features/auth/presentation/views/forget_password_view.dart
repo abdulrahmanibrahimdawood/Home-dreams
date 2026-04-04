@@ -5,6 +5,7 @@ import 'package:home_dreams/core/services/get_it_services.dart';
 import 'package:home_dreams/core/widgets/custom_app_bar_inside.dart';
 import 'package:home_dreams/features/auth/data/repos/auth_repo_impl.dart';
 import 'package:home_dreams/features/auth/presentation/views/widgets/forget_password_view_body.dart';
+import 'package:home_dreams/generated/l10n.dart';
 
 class ForgetPasswordView extends StatelessWidget {
   const ForgetPasswordView({super.key});
@@ -14,7 +15,7 @@ class ForgetPasswordView extends StatelessWidget {
     return Scaffold(
       appBar: buildAppBarInside(
         context,
-        title: 'نسيان كلمة المرور',
+        title: S.of(context).forgotPasswordTitle,
         showNotification: false,
       ),
       body: ForgetPasswordViewBody(
