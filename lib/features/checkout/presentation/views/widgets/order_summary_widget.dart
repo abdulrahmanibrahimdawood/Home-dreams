@@ -19,7 +19,7 @@ class OrderSummaryWidget extends StatelessWidget {
             children: [
               Text(
                 s.subtotalLabel,
-                style: TextStyles.regular13.copyWith(color: Color(0xff4E5556)),
+                style: TextStyles.regular13.copyWith(color: Theme.of(context).colorScheme.onSurfaceVariant),
               ),
               Spacer(),
               Text(
@@ -33,17 +33,17 @@ class OrderSummaryWidget extends StatelessWidget {
             children: [
               Text(
                 s.deliveryLabel,
-                style: TextStyles.regular13.copyWith(color: Color(0xff4E5556)),
+                style: TextStyles.regular13.copyWith(color: Theme.of(context).colorScheme.onSurfaceVariant),
               ),
               Spacer(),
               Text(
                 s.deliveryFee,
-                style: TextStyles.regular13.copyWith(color: Color(0xff4E5556)),
+                style: TextStyles.regular13.copyWith(color: Theme.of(context).colorScheme.onSurfaceVariant),
               ),
             ],
           ),
           SizedBox(height: 9),
-          Divider(thickness: 0.6, color: Color(0xffCACACE)),
+          Divider(thickness: 0.6, color: Theme.of(context).colorScheme.outlineVariant),
           SizedBox(height: 9),
           Row(
             children: [

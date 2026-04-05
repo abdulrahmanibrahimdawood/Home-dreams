@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:home_dreams/constants.dart';
-import 'package:home_dreams/core/utils/app_colors.dart';
 import 'package:home_dreams/core/utils/app_text_styles.dart';
 import 'package:home_dreams/generated/l10n.dart';
 
@@ -23,35 +22,28 @@ class WhoAreWeViewBody extends StatelessWidget {
                 TextSpan(
                   text: '${s.appName} \n',
                   style: TextStyles.bold16.copyWith(
-                    color: AppColors.scoundaryColor,
+                    color: Theme.of(context).colorScheme.secondary,
                   ),
                 ),
               ],
             ),
           ),
 
-          Text(
-            s.whoAreWeIntro,
-            style: TextStyles.regular13,
-          ),
+          Text(s.whoAreWeIntro, style: TextStyles.regular13),
           SizedBox(height: 12),
 
-          Text(
-            s.whoAreWeParagraph2,
-            style: TextStyles.regular13,
-          ),
+          Text(s.whoAreWeParagraph2, style: TextStyles.regular13),
           SizedBox(height: 16),
 
           Text(
             s.ourServices,
-            style: TextStyles.bold13.copyWith(color: AppColors.scoundaryColor),
+            style: TextStyles.bold13.copyWith(
+              color: Theme.of(context).colorScheme.secondary,
+            ),
           ),
           SizedBox(height: 8),
 
-          Text(
-            s.whoAreWeServicesList,
-            style: TextStyles.regular13,
-          ),
+          Text(s.whoAreWeServicesList, style: TextStyles.regular13),
         ],
       ),
     );

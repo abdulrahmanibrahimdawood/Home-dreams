@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:home_dreams/core/utils/app_colors.dart';
 import 'package:home_dreams/core/utils/app_text_styles.dart';
 import 'package:home_dreams/features/home/domain/entites/cart_item_entity.dart';
 import 'package:home_dreams/features/home/presentation/manager/cart_item_cubit/cart_item_cubit.dart';
@@ -15,7 +14,7 @@ class CartItemActionButtons extends StatelessWidget {
         CartItemActionButton(
           icon: Icons.add,
           iconColor: Colors.white,
-          color: AppColors.primaryColor,
+          color: Theme.of(context).colorScheme.primary,
           onPressed: () {
             cartItemEntity.increaseQuantity();
             context.read<CartItemCubit>().updateCartItem(cartItemEntity);
@@ -32,7 +31,7 @@ class CartItemActionButtons extends StatelessWidget {
         CartItemActionButton(
           icon: Icons.remove,
           iconColor: Colors.grey,
-          color: Color(0xffF3F5F7),
+          color: Theme.of(context).colorScheme.surfaceContainer,
           onPressed: () {
             cartItemEntity.decreaseQuantity();
             context.read<CartItemCubit>().updateCartItem(cartItemEntity);

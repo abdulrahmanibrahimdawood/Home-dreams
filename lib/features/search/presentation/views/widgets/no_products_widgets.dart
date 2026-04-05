@@ -19,7 +19,7 @@ class NoProductsWidget extends StatelessWidget {
             Text(
               S.of(context).noSearchResults,
               style: TextStyles.semiBold13.copyWith(
-                color: const Color(0xFF949D9E),
+                color: Theme.of(context).colorScheme.onSurfaceVariant,
               ),
             ),
             SizedBox(height: MediaQuery.sizeOf(context).height * 0.08),
@@ -28,7 +28,7 @@ class NoProductsWidget extends StatelessWidget {
             Text(
               S.of(context).infoNotAvailable,
               style: TextStyles.semiBold13.copyWith(
-                color: const Color(0xFF949D9E),
+                color: Theme.of(context).colorScheme.onSurfaceVariant,
               ),
             ),
           ],

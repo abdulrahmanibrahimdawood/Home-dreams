@@ -42,8 +42,8 @@ class _PasswordFieldState extends State<PasswordField> {
           setState(() {});
         },
         child: obscureText
-            ? Icon(Icons.remove_red_eye, color: Color(0xffC9CECF))
-            : Icon(Icons.visibility_off, color: Color(0xffC9CECF)),
+            ? Icon(Icons.remove_red_eye, color: Theme.of(context).colorScheme.onSurfaceVariant)
+            : Icon(Icons.visibility_off, color: Theme.of(context).colorScheme.onSurfaceVariant),
       ),
       hintText: widget.hintText ?? S.current.passwordHintDefault,
       textInputType: TextInputType.emailAddress,

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:home_dreams/core/utils/app_colors.dart';
 import 'package:home_dreams/core/utils/app_images.dart';
 
 class CustomCheckBox extends StatelessWidget {
@@ -19,15 +18,19 @@ class CustomCheckBox extends StatelessWidget {
         onChecked(!isChecked);
       },
       child: AnimatedContainer(
-        duration: Duration(milliseconds: 200),
+        duration: const Duration(milliseconds: 200),
         width: 24,
         height: 24,
         decoration: ShapeDecoration(
-          color: isChecked ? AppColors.primaryColor : Colors.white,
+          color: isChecked
+              ? Theme.of(context).colorScheme.primary
+              : Theme.of(context).colorScheme.surfaceContainerHighest,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadiusGeometry.circular(8),
             side: BorderSide(
-              color: isChecked ? Colors.transparent : Color(0xffDCDEDE),
+              color: isChecked
+                  ? Colors.transparent
+                  : Theme.of(context).colorScheme.outline,
               width: 1.5,
             ),
           ),

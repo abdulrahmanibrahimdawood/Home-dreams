@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:home_dreams/constants.dart';
 import 'package:home_dreams/core/services/shared_preferences_singleton.dart';
-import 'package:home_dreams/core/utils/app_colors.dart';
 import 'package:home_dreams/core/widgets/custom_button.dart';
 import 'package:home_dreams/features/auth/presentation/views/signin_view.dart';
 import 'package:home_dreams/features/on_boarding/presentation/views/widgets/on_boarding_page_view.dart';
@@ -51,8 +50,10 @@ class _OnBoardingViewBodyState extends State<OnBoardingViewBody> {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(30),
                 color: isActive
-                    ? AppColors.primaryColor
-                    : AppColors.primaryColor.withValues(alpha: 0.5),
+                    ? Theme.of(context).colorScheme.primary
+                    : Theme.of(
+                        context,
+                      ).colorScheme.primary.withValues(alpha: 0.5),
               ),
             );
           }),

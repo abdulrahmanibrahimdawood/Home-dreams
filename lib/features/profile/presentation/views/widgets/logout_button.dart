@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:home_dreams/core/utils/app_colors.dart';
 import 'package:home_dreams/core/utils/app_images.dart';
 import 'package:home_dreams/core/utils/app_text_styles.dart';
 import 'package:home_dreams/generated/l10n.dart';
@@ -15,7 +14,7 @@ class LogoutButton extends StatelessWidget {
       child: Container(
         width: double.infinity,
         height: 56,
-        decoration: BoxDecoration(color: Color(0xffF4EBE6)),
+        decoration: BoxDecoration(color: Theme.of(context).colorScheme.surfaceContainer),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
@@ -23,7 +22,7 @@ class LogoutButton extends StatelessWidget {
             Text(
               S.of(context).logout,
               style: TextStyles.semiBold13.copyWith(
-                color: AppColors.primaryColor,
+                color: Theme.of(context).colorScheme.primary,
               ),
             ),
             SvgPicture.asset(Assets.assetsImagesLogoutIcon),

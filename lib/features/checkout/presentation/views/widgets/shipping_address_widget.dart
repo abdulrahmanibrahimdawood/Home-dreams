@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:home_dreams/core/utils/app_images.dart';
-import 'package:home_dreams/generated/l10n.dart';
 import 'package:home_dreams/features/checkout/domain/entites/order_input_entity.dart';
 import 'package:home_dreams/features/checkout/presentation/views/widgets/payment_item.dart';
+import 'package:home_dreams/generated/l10n.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../../core/utils/app_text_styles.dart';
@@ -22,7 +22,7 @@ class ShippingAddressWidget extends StatelessWidget {
             context.read<OrderInputEntity>().shippingAddressEntity.toString(),
             textAlign: TextAlign.right,
             style: TextStyles.regular13.copyWith(
-              color: const Color(0xFF4E5556),
+              color: Theme.of(context).colorScheme.onSurfaceVariant,
             ),
           ),
           const Spacer(),
@@ -42,7 +42,7 @@ class ShippingAddressWidget extends StatelessWidget {
                   Text(
                     S.of(context).edit,
                     style: TextStyles.semiBold13.copyWith(
-                      color: const Color(0xFF949D9E),
+                      color: Theme.of(context).colorScheme.onSurfaceVariant,
                     ),
                   ),
                 ],

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:home_dreams/core/utils/app_colors.dart';
 import 'package:home_dreams/core/utils/app_images.dart';
 import 'package:home_dreams/features/on_boarding/presentation/views/widgets/page_view_item.dart';
 import 'package:home_dreams/generated/l10n.dart';
@@ -23,7 +22,7 @@ class OnBoardingPageView extends StatelessWidget {
               Text(
                 s.onboardingWelcome,
                 style: TextStyle(
-                  color: AppColors.primaryColor,
+                  color: Theme.of(context).colorScheme.primary,
                   fontSize: 23,
                   fontFamily: 'Cairo',
                   fontWeight: FontWeight.w700,
@@ -32,7 +31,7 @@ class OnBoardingPageView extends StatelessWidget {
               Text(
                 s.onboardingBrand,
                 style: TextStyle(
-                  color: AppColors.lightPrimaryColor,
+                  color: Theme.of(context).colorScheme.primaryContainer,
                   fontSize: 23,
                   fontFamily: 'Cairo',
                   fontWeight: FontWeight.w700,
@@ -49,7 +48,7 @@ class OnBoardingPageView extends StatelessWidget {
             s.onboarding2Title,
             textAlign: TextAlign.center,
             style: TextStyle(
-              color: AppColors.primaryColor,
+              color: Theme.of(context).colorScheme.primary,
               fontSize: 23,
               fontFamily: 'Cairo',
               fontWeight: FontWeight.w700,
@@ -65,7 +64,7 @@ class OnBoardingPageView extends StatelessWidget {
             s.onboarding3Title,
             textAlign: TextAlign.center,
             style: TextStyle(
-              color: AppColors.primaryColor,
+              color: Theme.of(context).colorScheme.primary,
               fontSize: 23,
               fontFamily: 'Cairo',
               fontWeight: FontWeight.w700,

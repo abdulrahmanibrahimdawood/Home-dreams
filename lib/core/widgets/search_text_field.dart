@@ -28,9 +28,11 @@ class SearchTextField extends StatelessWidget {
       decoration: BoxDecoration(
         boxShadow: [
           BoxShadow(
-            color: Color(0x0A000000),
+            color: Theme.of(
+              context,
+            ).colorScheme.onSurface.withValues(alpha: 0.06),
             blurRadius: 9,
-            offset: Offset(0, 2),
+            offset: const Offset(0, 2),
           ),
         ],
       ),
@@ -56,13 +58,15 @@ class SearchTextField extends StatelessWidget {
               child: SvgPicture.asset(Assets.assetsImagesSearchIcon),
             ),
           ),
-          hintStyle: TextStyles.regular13.copyWith(color: Color(0xff949D9E)),
+          hintStyle: TextStyles.regular13.copyWith(
+            color: Theme.of(context).colorScheme.onSurfaceVariant,
+          ),
           hintText: S.of(context).searchHint,
           filled: true,
-          fillColor: Colors.white,
-          border: buildBorder(),
-          enabledBorder: buildBorder(),
-          focusedBorder: buildBorder(),
+          fillColor: Theme.of(context).colorScheme.surfaceContainerHighest,
+          border: buildBorder(context),
+          enabledBorder: buildBorder(context),
+          focusedBorder: buildBorder(context),
         ),
       ),
     );

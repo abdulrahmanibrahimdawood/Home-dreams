@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:home_dreams/core/utils/app_colors.dart';
 import 'package:home_dreams/core/utils/app_text_styles.dart';
 
 class ActiveStepItem extends StatelessWidget {
@@ -12,13 +11,19 @@ class ActiveStepItem extends StatelessWidget {
       children: [
         CircleAvatar(
           radius: 11.5,
-          backgroundColor: AppColors.primaryColor,
-          child: Icon(Icons.check, color: Colors.white, size: 18),
+          backgroundColor: Theme.of(context).colorScheme.primary,
+          child: Icon(
+            Icons.check,
+            color: Theme.of(context).colorScheme.onPrimary,
+            size: 18,
+          ),
         ),
-        SizedBox(width: 4),
+        const SizedBox(width: 4),
         Text(
           text,
-          style: TextStyles.bold13.copyWith(color: AppColors.primaryColor),
+          style: TextStyles.bold13.copyWith(
+            color: Theme.of(context).colorScheme.primary,
+          ),
         ),
       ],
     );

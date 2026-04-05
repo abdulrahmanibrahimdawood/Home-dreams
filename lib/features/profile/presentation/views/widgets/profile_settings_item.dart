@@ -37,17 +37,27 @@ class ProfileSettingsItem extends StatelessWidget {
               internalAddSemanticForOnTap: true,
               title: Text(
                 text,
-                style: TextStyles.semiBold13.copyWith(color: Color(0xff949D9E)),
+                style: TextStyles.semiBold13.copyWith(
+                  color: Theme.of(context).colorScheme.onSurfaceVariant,
+                ),
               ),
               leading: SvgPicture.asset(imagePath),
-              trailing: trailing ??
+              trailing:
+                  trailing ??
                   (isArabic()
-                      ?  SvgPicture.asset(Assets.assetsImagesArrowBackIcon) 
-                      : Transform.rotate(angle:pi , child: SvgPicture.asset(Assets.assetsImagesArrowBackIcon))
-                      ), 
+                      ? SvgPicture.asset(Assets.assetsImagesArrowBackIcon)
+                      : Transform.rotate(
+                          angle: pi,
+                          child: SvgPicture.asset(
+                            Assets.assetsImagesArrowBackIcon,
+                          ),
+                        )),
             ),
           ),
-          Divider(height: 1, color: const Color(0xffC3C2C2)),
+          Divider(
+            height: 1,
+            color: Theme.of(context).colorScheme.outlineVariant,
+          ),
         ],
       ),
     );

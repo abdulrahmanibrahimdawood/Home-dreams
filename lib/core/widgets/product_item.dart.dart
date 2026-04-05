@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:home_dreams/core/entities/product_entity.dart';
-import 'package:home_dreams/core/utils/app_colors.dart';
 import 'package:home_dreams/core/utils/app_text_styles.dart';
 import 'package:home_dreams/core/widgets/custom_network_image.dart';
 import 'package:home_dreams/features/favorites/presentation/views/manager/favorite_cubit/favorite_cubit.dart';
@@ -18,7 +17,7 @@ class ProductItem extends StatelessWidget {
     final cartCubit = context.read<CartCubit>();
     return Container(
       decoration: ShapeDecoration(
-        color: const Color(0xFFF3F5F7),
+        color: Theme.of(context).colorScheme.surfaceContainer,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
       ),
       child: Stack(
@@ -78,7 +77,7 @@ class ProductItem extends StatelessWidget {
                           text:
                               '${productEntity.price} ${S.of(context).pricePerEgp}',
                           style: TextStyles.bold13.copyWith(
-                            color: AppColors.scoundaryColor,
+                            color: Theme.of(context).colorScheme.secondary,
                           ),
                         ),
                       ],
@@ -88,8 +87,11 @@ class ProductItem extends StatelessWidget {
                   trailing: GestureDetector(
                     onTap: () => cartCubit.addProduct(productEntity),
                     child: CircleAvatar(
-                      backgroundColor: AppColors.primaryColor,
-                      child: Icon(Icons.add, color: Colors.white),
+                      backgroundColor: Theme.of(context).colorScheme.primary,
+                      child: Icon(
+                        Icons.add,
+                        color: Theme.of(context).colorScheme.onPrimary,
+                      ),
                     ),
                   ),
                 ),

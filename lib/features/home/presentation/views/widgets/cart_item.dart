@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:home_dreams/core/utils/app_colors.dart';
 import 'package:home_dreams/core/widgets/custom_network_image.dart';
 import 'package:home_dreams/features/home/domain/entites/cart_item_entity.dart';
 import 'package:home_dreams/features/home/presentation/manager/cart_cubit/cart_cubit.dart';
@@ -33,7 +32,9 @@ class CartItem extends StatelessWidget {
               Container(
                 width: 73,
                 height: 92,
-                decoration: const BoxDecoration(color: Color(0xFFF3F5F7)),
+                decoration: BoxDecoration(
+                  color: Theme.of(context).colorScheme.surfaceContainer,
+                ),
                 child: CustomNetworkImage(
                   imageUrl: carItemEntity.productEntity.imageUrl!,
                 ),
@@ -65,7 +66,7 @@ class CartItem extends StatelessWidget {
                     Text(
                       '${carItemEntity.calculateTotalWeight()} ${S.of(context).unitKg}',
                       style: TextStyles.regular13.copyWith(
-                        color: AppColors.scoundaryColor,
+                        color: Theme.of(context).colorScheme.secondary,
                       ),
                     ),
                     Row(
@@ -75,7 +76,7 @@ class CartItem extends StatelessWidget {
                         Text(
                           '${carItemEntity.calculateTotalPrice().toString()} ${S.of(context).currencyEgp}',
                           style: TextStyles.bold16.copyWith(
-                            color: AppColors.scoundaryColor,
+                            color: Theme.of(context).colorScheme.secondary,
                           ),
                         ),
                       ],

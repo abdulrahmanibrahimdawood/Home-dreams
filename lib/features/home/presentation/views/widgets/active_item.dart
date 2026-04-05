@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:home_dreams/core/utils/app_colors.dart';
 import 'package:home_dreams/core/utils/app_text_styles.dart';
 
 class ActiveItem extends StatelessWidget {
@@ -25,7 +24,7 @@ class ActiveItem extends StatelessWidget {
               width: 30,
               height: 30,
               decoration: ShapeDecoration(
-                color: AppColors.primaryColor,
+                color: Theme.of(context).colorScheme.primary,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(30),
                 ),
@@ -36,7 +35,7 @@ class ActiveItem extends StatelessWidget {
             Text(
               text,
               style: TextStyles.semiBold11.copyWith(
-                color: AppColors.primaryColor,
+                color: Theme.of(context).colorScheme.primary,
               ),
             ),
           ],

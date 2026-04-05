@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:home_dreams/core/utils/app_colors.dart';
 import 'package:home_dreams/generated/l10n.dart';
 
 Future<String?> showFilterBottomSheet(
@@ -77,7 +76,7 @@ Future<String?> showFilterBottomSheet(
                   width: double.infinity,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: AppColors.primaryColor,
+                      backgroundColor: Theme.of(context).colorScheme.primary,
                       padding: const EdgeInsets.symmetric(vertical: 14),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:home_dreams/core/utils/app_colors.dart';
 import 'package:home_dreams/core/utils/app_text_styles.dart';
 import 'package:home_dreams/generated/l10n.dart';
 
@@ -29,11 +28,15 @@ class ShippingItem extends StatelessWidget {
         ),
         clipBehavior: Clip.antiAlias,
         decoration: ShapeDecoration(
-          color: const Color(0x33D9D9D9),
+          color: Theme.of(
+            context,
+          ).colorScheme.outlineVariant.withValues(alpha: 0.2),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(4),
             side: BorderSide(
-              color: isSelected ? AppColors.primaryColor : Colors.transparent,
+              color: isSelected
+                  ? Theme.of(context).colorScheme.primary
+                  : Colors.transparent,
             ),
           ),
         ),
@@ -63,7 +66,7 @@ class ShippingItem extends StatelessWidget {
                 child: Text(
                   '$price ${S.of(context).currencyEgp}',
                   style: TextStyles.bold13.copyWith(
-                    color: AppColors.lightPrimaryColor,
+                    color: Theme.of(context).colorScheme.primaryContainer,
                   ),
                 ),
               ),
@@ -84,8 +87,13 @@ class ActiveShippingItemDot extends StatelessWidget {
       width: 18,
       height: 18,
       decoration: ShapeDecoration(
-        color: AppColors.primaryColor,
-        shape: OvalBorder(side: BorderSide(width: 4, color: Colors.white)),
+        color: Theme.of(context).colorScheme.primary,
+        shape: OvalBorder(
+          side: BorderSide(
+            width: 4,
+            color: Theme.of(context).colorScheme.surfaceContainerHighest,
+          ),
+        ),
       ),
     );
   }

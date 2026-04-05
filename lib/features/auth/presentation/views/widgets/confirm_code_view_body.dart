@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:home_dreams/constants.dart';
-import 'package:home_dreams/core/utils/app_colors.dart';
 import 'package:home_dreams/core/utils/app_text_styles.dart';
 import 'package:home_dreams/core/widgets/custom_button.dart';
 import 'package:home_dreams/core/widgets/custom_text_form_field.dart';
@@ -23,7 +22,9 @@ class ConfirmCodeViewBody extends StatelessWidget {
           Text(
             '${s.confirmCodeEmailIntro}\nMaxxx@email.com',
             textAlign: TextAlign.right,
-            style: TextStyles.semiBold16.copyWith(color: Color(0xFF616A6B)),
+            style: TextStyles.semiBold16.copyWith(
+              color: Theme.of(context).colorScheme.onSurface,
+            ),
           ),
           SizedBox(height: 30),
           CustomTextFormField(
@@ -45,7 +46,7 @@ class ConfirmCodeViewBody extends StatelessWidget {
               s.resendCode,
               textAlign: TextAlign.center,
               style: TextStyles.semiBold16.copyWith(
-                color: AppColors.lightPrimaryColor,
+                color: Theme.of(context).colorScheme.primaryContainer,
               ),
             ),
           ),

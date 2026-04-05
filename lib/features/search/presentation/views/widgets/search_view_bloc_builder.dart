@@ -15,7 +15,10 @@ class SearchViewBlocBuilder extends StatelessWidget {
             children: [
               Text(
                 S.of(context).searchResultsTitle,
-                style: TextStyle(fontSize: 13, color: Color(0xFF949D9E)),
+                style: TextStyle(
+                  fontSize: 13,
+                  color: Theme.of(context).colorScheme.onSurfaceVariant,
+                ),
               ),
             ],
           );

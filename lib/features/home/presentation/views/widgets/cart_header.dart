@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:home_dreams/core/utils/app_colors.dart';
 import 'package:home_dreams/features/home/presentation/manager/cart_cubit/cart_cubit.dart';
 import 'package:home_dreams/generated/l10n.dart';
 
@@ -19,7 +18,7 @@ class CartHeader extends StatelessWidget {
         child: Text(
           '${S.of(context).cartYouHave}${context.watch<CartCubit>().cartEntity.cartItems.length}${S.of(context).cartProductsSuffix}',
           style: TextStyle(
-            color: AppColors.primaryColor,
+            color: Theme.of(context).colorScheme.primary,
             fontSize: 13,
             fontFamily: 'Cairo',
             fontWeight: FontWeight.w400,

@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:home_dreams/core/utils/app_colors.dart';
+import 'package:flutter/material.dart';
 
 class CustomCupertinoSwitch extends StatelessWidget {
   const CustomCupertinoSwitch({super.key, this.onChanged});
@@ -12,7 +12,7 @@ class CustomCupertinoSwitch extends StatelessWidget {
       child: CupertinoSwitch(
         value: false,
         onChanged: onChanged,
-        activeTrackColor: AppColors.primaryColor,
+        activeTrackColor: Theme.of(context).colorScheme.primary,
       ),
     );
   }

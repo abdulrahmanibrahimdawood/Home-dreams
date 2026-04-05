@@ -12,16 +12,20 @@ class InActiveStepItem extends StatelessWidget {
       children: [
         CircleAvatar(
           radius: 10,
-          backgroundColor: Color(0xffF2F3F3),
+          backgroundColor: Theme.of(context).colorScheme.surfaceContainer,
           child: Text(
             index,
-            style: TextStyles.semiBold13.copyWith(color: Colors.black),
+            style: TextStyles.semiBold13.copyWith(
+              color: Theme.of(context).colorScheme.onSurface,
+            ),
           ),
         ),
-        SizedBox(width: 4),
+        const SizedBox(width: 4),
         Text(
           text,
-          style: TextStyles.semiBold13.copyWith(color: Color(0xffAAAAAA)),
+          style: TextStyles.semiBold13.copyWith(
+            color: Theme.of(context).colorScheme.onSurfaceVariant,
+          ),
         ),
       ],
     );

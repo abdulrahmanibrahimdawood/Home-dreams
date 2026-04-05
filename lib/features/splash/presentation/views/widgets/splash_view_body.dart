@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:home_dreams/constants.dart';
 import 'package:home_dreams/core/services/firebase_auth_service.dart';
 import 'package:home_dreams/core/services/shared_preferences_singleton.dart';
-import 'package:home_dreams/core/utils/app_colors.dart';
 import 'package:home_dreams/core/utils/app_images.dart';
 import 'package:home_dreams/core/utils/app_text_styles.dart';
 import 'package:home_dreams/features/auth/presentation/views/signin_view.dart';
@@ -40,7 +39,9 @@ class _SplashViewBodyState extends State<SplashViewBody> {
           ),
           Text(
             S.of(context).appName,
-            style: TextStyles.bold28.copyWith(color: AppColors.primaryColor),
+            style: TextStyles.bold28.copyWith(
+              color: Theme.of(context).colorScheme.primary,
+            ),
           ),
         ],
       ),

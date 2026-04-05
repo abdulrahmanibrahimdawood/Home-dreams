@@ -50,21 +50,26 @@ class CustomTextFormField extends StatelessWidget {
       keyboardType: textInputType,
       decoration: InputDecoration(
         suffixIcon: suffixIcon,
-        hintStyle: TextStyles.bold13.copyWith(color: Color(0xff949D9E)),
+        hintStyle: TextStyles.bold13.copyWith(
+          color: Theme.of(context).colorScheme.onSurfaceVariant,
+        ),
         hintText: hintText,
         filled: true,
-        fillColor: Color.fromARGB(255, 243, 241, 241),
-        border: buildBorder(),
-        enabledBorder: buildBorder(),
-        focusedBorder: buildBorder(),
+        fillColor: Theme.of(context).colorScheme.surfaceContainer,
+        border: buildBorder(context),
+        enabledBorder: buildBorder(context),
+        focusedBorder: buildBorder(context),
       ),
     );
   }
 }
 
-OutlineInputBorder buildBorder() {
+OutlineInputBorder buildBorder(BuildContext context) {
   return OutlineInputBorder(
     borderRadius: BorderRadius.circular(4),
-    borderSide: BorderSide(color: Color(0xffE6E9E9), width: 1),
+    borderSide: BorderSide(
+      color: Theme.of(context).colorScheme.outline,
+      width: 1,
+    ),
   );
 }

@@ -9,7 +9,7 @@ import 'package:home_dreams/core/services/custom_bloc_observer.dart';
 import 'package:home_dreams/core/services/get_it_services.dart';
 import 'package:home_dreams/core/services/shared_preferences_singleton.dart';
 import 'package:home_dreams/core/services/supabase_storage_service.dart';
-import 'package:home_dreams/core/utils/app_colors.dart';
+import 'package:home_dreams/core/utils/theme.dart';
 import 'package:home_dreams/features/favorites/presentation/views/manager/favorite_cubit/favorite_cubit.dart';
 import 'package:home_dreams/features/home/presentation/manager/cart_cubit/cart_cubit.dart';
 import 'package:home_dreams/features/home/presentation/manager/cart_item_cubit/cart_item_cubit.dart';
@@ -52,11 +52,9 @@ class ECommerce extends StatelessWidget {
         BlocProvider(create: (context) => FavoriteCubit()),
       ],
       child: MaterialApp(
-        theme: ThemeData(
-          scaffoldBackgroundColor: const Color.fromARGB(255, 252, 250, 249),
-          fontFamily: 'Cairo',
-          colorScheme: ColorScheme.fromSeed(seedColor: AppColors.primaryColor),
-        ),
+        theme: AppTheme.darkTheme,
+        darkTheme: AppTheme.darkTheme,
+        themeMode: ThemeMode.system,
         localizationsDelegates: const [
           S.delegate,
           GlobalMaterialLocalizations.delegate,
