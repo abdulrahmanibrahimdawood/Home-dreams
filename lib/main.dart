@@ -14,6 +14,7 @@ import 'package:home_dreams/features/favorites/presentation/views/manager/favori
 import 'package:home_dreams/features/home/presentation/manager/cart_cubit/cart_cubit.dart';
 import 'package:home_dreams/features/home/presentation/manager/cart_item_cubit/cart_item_cubit.dart';
 import 'package:home_dreams/features/profile/presentation/manager/local_provider/local_provider.dart';
+import 'package:home_dreams/features/profile/presentation/manager/theme_provider/theme_provider.dart';
 import 'package:home_dreams/features/splash/presentation/views/splash_view.dart';
 import 'package:home_dreams/firebase_options.dart';
 import 'package:home_dreams/generated/l10n.dart';
@@ -32,7 +33,10 @@ void main() async {
 
   runApp(
     MultiProvider(
-      providers: [ChangeNotifierProvider(create: (_) => LocaleProvider())],
+      providers: [
+        ChangeNotifierProvider(create: (_) => LocaleProvider()),
+        ChangeNotifierProvider(create: (_) => ThemeProvider()),
+      ],
       child: const ECommerce(),
     ),
   );
@@ -44,6 +48,7 @@ class ECommerce extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final localeProvider = Provider.of<LocaleProvider>(context);
+    final themeProvider = Provider.of<ThemeProvider>(context);
 
     return MultiBlocProvider(
       providers: [
@@ -52,9 +57,9 @@ class ECommerce extends StatelessWidget {
         BlocProvider(create: (context) => FavoriteCubit()),
       ],
       child: MaterialApp(
-        theme: AppTheme.darkTheme,
+        theme: AppTheme.lightTheme,
         darkTheme: AppTheme.darkTheme,
-        themeMode: ThemeMode.system,
+        themeMode: themeProvider.themeMode,
         localizationsDelegates: const [
           S.delegate,
           GlobalMaterialLocalizations.delegate,
