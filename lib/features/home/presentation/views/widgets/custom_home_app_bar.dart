@@ -15,11 +15,11 @@ class CustomHomeAppBar extends StatelessWidget {
       leading: Image.asset(Assets.assetsImagesEllipse11),
       title: Text(
         S.of(context).goodMorning,
-        style: TextStyles.regular16.copyWith(color: Color(0xff949D9E)),
+        style: TextStyles.regular16.copyWith(color: Theme.of(context).colorScheme.onSurfaceVariant),
       ),
       subtitle: Text(
         getUser().name,
-        style: TextStyles.bold16.copyWith(color: Color(0xff0C0D0D)),
+        style: TextStyles.bold16.copyWith(color: Theme.of(context).colorScheme.onSurface),
       ),
     );
   }

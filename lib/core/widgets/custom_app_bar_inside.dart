@@ -10,7 +10,7 @@ AppBar buildAppBarInside(
   bool showNotification = true,
 }) {
   return AppBar(
-    backgroundColor: Colors.white,
+    backgroundColor: Theme.of(context).colorScheme.surfaceContainerHighest,
     actions: [
       Padding(
         padding: EdgeInsets.symmetric(horizontal: 16),
@@ -33,4 +33,3 @@ AppBar buildAppBarInside(
     title: Text(title, textAlign: TextAlign.center, style: TextStyles.bold19),
   );
 }
- 

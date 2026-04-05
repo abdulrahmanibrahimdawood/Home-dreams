@@ -56,7 +56,9 @@ class ShippingItem extends StatelessWidget {
                   Text(
                     subTitle,
                     style: TextStyles.regular13.copyWith(
-                      color: Colors.black.withValues(alpha: .5),
+                      color: Theme.of(
+                        context,
+                      ).colorScheme.onSurface.withValues(alpha: .5),
                     ),
                   ),
                 ],
@@ -111,7 +113,7 @@ class InActiveShippingItemDot extends StatelessWidget {
         shape: OvalBorder(
           side: BorderSide(
             width: 1,
-            color: const Color(0xFF949D9E) /* Grayscale-400 */,
+            color: Theme.of(context).colorScheme.onSurfaceVariant,
           ),
         ),
       ),

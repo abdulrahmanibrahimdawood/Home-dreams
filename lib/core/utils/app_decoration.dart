@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 
 abstract class AppDecoration {
-  static var greyBoxDecoration = ShapeDecoration(
-    color: Color(0x7FF2F3F3),
-    shape: RoundedRectangleBorder(
-      borderRadius: BorderRadiusGeometry.circular(4),
-    ),
-  );
+  static ShapeDecoration greyBoxDecoration(BuildContext context) {
+    return ShapeDecoration(
+      color: Theme.of(context).colorScheme.surfaceContainer.withValues(alpha: 0.47),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadiusGeometry.circular(4),
+      ),
+    );
+  }
 }

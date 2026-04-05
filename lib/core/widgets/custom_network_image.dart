@@ -15,7 +15,7 @@ class CustomNetworkImage extends StatelessWidget {
         decoration: BoxDecoration(image: DecorationImage(image: imageProvider)),
       ),
       errorWidget: (context, url, error) => Container(
-        color: Colors.grey.shade300,
+        color: Theme.of(context).colorScheme.surfaceContainer,
         child: const Icon(Icons.broken_image, size: 40),
       ),
     );

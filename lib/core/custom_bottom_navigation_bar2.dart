@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:home_dreams/core/utils/app_images.dart';
-import 'package:home_dreams/generated/l10n.dart';
 import 'package:home_dreams/features/home/presentation/views/cart_view.dart';
 import 'package:home_dreams/features/home/presentation/views/home_view.dart';
 import 'package:home_dreams/features/home/presentation/views/products_view.dart';
 import 'package:home_dreams/features/home/presentation/views/widgets/active_item.dart';
 import 'package:home_dreams/features/home/presentation/views/widgets/in_active_item.dart';
+import 'package:home_dreams/generated/l10n.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 
 class CustomBottomNavigationBar2 extends StatefulWidget {
@@ -96,11 +96,11 @@ class CustomBottomNavigationBar2State
       resizeToAvoidBottomInset: true,
       stateManagement: true,
       hideNavigationBarWhenKeyboardAppears: true,
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).colorScheme.surfaceContainerHighest,
       navBarStyle: _navBarStyle,
       decoration: NavBarDecoration(
         borderRadius: BorderRadius.circular(12),
-        colorBehindNavBar: Color.fromARGB(255, 252, 250, 249),
+        colorBehindNavBar: Theme.of(context).colorScheme.surfaceContainer,
       ),
     );
   }

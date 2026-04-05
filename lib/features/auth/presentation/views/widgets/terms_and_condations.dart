@@ -34,7 +34,7 @@ class _TermsAndCondationsState extends State<TermsAndCondations> {
                 TextSpan(
                   text: s.termsAgreementPrefix,
                   style: TextStyles.semiBold13.copyWith(
-                    color: Color(0xff949D9E),
+                    color: Theme.of(context).colorScheme.onSurfaceVariant,
                   ),
                 ),
                 TextSpan(

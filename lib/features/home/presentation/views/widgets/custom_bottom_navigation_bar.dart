@@ -19,18 +19,20 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
       width: 375,
       height: 70,
       decoration: ShapeDecoration(
-        color: Colors.white,
+        color: Theme.of(context).colorScheme.surfaceContainerHighest,
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(30),
             topRight: Radius.circular(30),
           ),
         ),
-        shadows: const [
+        shadows: [
           BoxShadow(
-            color: Color(0x19000000),
+            color: Theme.of(
+              context,
+            ).colorScheme.onSurface.withValues(alpha: 0.10),
             blurRadius: 25,
-            offset: Offset(0, -2),
+            offset: const Offset(0, -2),
             spreadRadius: 0,
           ),
         ],

@@ -20,7 +20,9 @@ class CustomButton extends StatelessWidget {
         ),
         child: Text(
           text,
-          style: TextStyles.bold16.copyWith(color: Colors.white),
+          style: TextStyles.bold16.copyWith(
+            color: Theme.of(context).colorScheme.onPrimary,
+          ),
         ),
       ),
     );

@@ -35,7 +35,9 @@ class BestSellingHeader extends StatelessWidget {
           },
           child: Text(
             s.seeMore,
-            style: TextStyles.regular13.copyWith(color: Color(0xff949D9E)),
+            style: TextStyles.regular13.copyWith(
+              color: Theme.of(context).colorScheme.onSurfaceVariant,
+            ),
           ),
         ),
       ],

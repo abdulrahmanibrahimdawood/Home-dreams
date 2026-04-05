@@ -20,10 +20,16 @@ class SearchKeywordsBody extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.only(top: 8),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Theme.of(context).colorScheme.surfaceContainerHighest,
         borderRadius: BorderRadius.circular(8),
         boxShadow: [
-          BoxShadow(color: Colors.black12, blurRadius: 6, offset: Offset(0, 3)),
+          BoxShadow(
+            color: Theme.of(
+              context,
+            ).colorScheme.onSurface.withValues(alpha: 0.12),
+            blurRadius: 6,
+            offset: const Offset(0, 3),
+          ),
         ],
       ),
       child: Column(
@@ -60,7 +66,11 @@ class SearchKeywordsBody extends StatelessWidget {
                         });
                   },
                 ),
-                leading: Icon(Icons.history, size: 20, color: Colors.grey),
+                leading: Icon(
+                  Icons.history,
+                  size: 20,
+                  color: Theme.of(context).colorScheme.onSurfaceVariant,
+                ),
                 title: Text(keywords[index]),
                 onTap: () {
                   searchController.text = keywords[index];

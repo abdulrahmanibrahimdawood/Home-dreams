@@ -9,7 +9,7 @@ Future<String?> showFilterBottomSheet(
 
   return showModalBottomSheet<String>(
     context: context,
-    backgroundColor: Colors.white,
+    backgroundColor: Theme.of(context).colorScheme.surfaceContainerHighest,
     shape: const RoundedRectangleBorder(
       borderRadius: BorderRadius.only(
         topLeft: Radius.circular(20),
@@ -32,7 +32,7 @@ Future<String?> showFilterBottomSheet(
                     height: 4,
                     margin: const EdgeInsets.only(bottom: 20),
                     decoration: BoxDecoration(
-                      color: Colors.grey.shade300,
+                      color: Theme.of(context).colorScheme.outlineVariant,
                       borderRadius: BorderRadius.circular(10),
                     ),
                   ),
@@ -87,7 +87,10 @@ Future<String?> showFilterBottomSheet(
                     },
                     child: Text(
                       s.filter,
-                      style: TextStyle(fontSize: 16, color: Colors.white),
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: Theme.of(context).colorScheme.onPrimary,
+                      ),
                     ),
                   ),
                 ),

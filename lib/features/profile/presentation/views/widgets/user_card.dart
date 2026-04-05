@@ -73,11 +73,15 @@ class _UserCardState extends State<UserCard> {
                     Positioned.fill(
                       child: Container(
                         decoration: BoxDecoration(
-                          color: Colors.black.withValues(alpha: .3),
+                          color: Theme.of(
+                            context,
+                          ).colorScheme.onSurface.withValues(alpha: .3),
                           shape: BoxShape.circle,
                         ),
-                        child: const Center(
-                          child: CircularProgressIndicator(color: Colors.white),
+                        child: Center(
+                          child: CircularProgressIndicator(
+                            color: Theme.of(context).colorScheme.inverseSurface,
+                          ),
                         ),
                       ),
                     ),
@@ -92,7 +96,9 @@ class _UserCardState extends State<UserCard> {
               Text(user.name, style: TextStyles.bold13),
               Text(
                 user.email,
-                style: TextStyles.regular13.copyWith(color: Colors.grey),
+                style: TextStyles.regular13.copyWith(
+                  color: Theme.of(context).colorScheme.onSurfaceVariant,
+                ),
               ),
             ],
           ),

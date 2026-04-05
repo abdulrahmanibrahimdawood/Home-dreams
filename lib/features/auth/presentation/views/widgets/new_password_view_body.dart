@@ -21,7 +21,9 @@ class NewPasswordViewBody extends StatelessWidget {
           Text(
             s.createNewPasswordDescription,
             textAlign: TextAlign.right,
-            style: TextStyles.semiBold16.copyWith(color: Colors.black),
+            style: TextStyles.semiBold16.copyWith(
+              color: Theme.of(context).colorScheme.onSurface,
+            ),
           ),
           SizedBox(height: 30),
           PasswordField(),

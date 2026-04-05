@@ -47,13 +47,15 @@ class FeaturedItem extends StatelessWidget {
                       Text(
                         s.eidOffers,
                         style: TextStyles.regular13.copyWith(
-                          color: Colors.white,
+                          color: Theme.of(context).colorScheme.inverseSurface,
                         ),
                       ),
-                      Spacer(),
+                      const Spacer(),
                       Text(
                         s.discount25,
-                        style: TextStyles.bold19.copyWith(color: Colors.white),
+                        style: TextStyles.bold19.copyWith(
+                          color: Theme.of(context).colorScheme.inverseSurface,
+                        ),
                       ),
                       SizedBox(height: 11),
                       FeaturedItemButton(onPressed: () {}),

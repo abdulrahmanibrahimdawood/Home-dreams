@@ -81,7 +81,7 @@ class ProfileViewBody extends StatelessWidget {
                       ? s.arabic
                       : 'English',
                   style: TextStyles.regular13.copyWith(
-                    color: const Color(0xFF0C0D0D),
+                    color: Theme.of(context).colorScheme.onSurface,
                   ),
                 ),
                 const SizedBox(width: 2),

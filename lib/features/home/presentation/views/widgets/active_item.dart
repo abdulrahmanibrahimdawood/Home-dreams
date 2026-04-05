@@ -12,7 +12,7 @@ class ActiveItem extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.only(left: 16),
         decoration: ShapeDecoration(
-          color: const Color(0xFFEEEEEE),
+          color: Theme.of(context).colorScheme.outlineVariant,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(30),
           ),

@@ -9,15 +9,15 @@ class OrDivider extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Expanded(child: Divider(color: Color(0xffDCDEDE))),
-        SizedBox(width: 18),
+        Expanded(child: Divider(color: Theme.of(context).colorScheme.outline)),
+        const SizedBox(width: 18),
         Text(
           S.of(context).orDivider,
           style: TextStyles.semiBold16,
           textAlign: TextAlign.center,
         ),
-        SizedBox(width: 18),
-        Expanded(child: Divider(color: Color(0xffDCDEDE))),
+        const SizedBox(width: 18),
+        Expanded(child: Divider(color: Theme.of(context).colorScheme.outline)),
       ],
     );
   }

@@ -34,7 +34,9 @@ class _ForgetPasswordViewBodyState extends State<ForgetPasswordViewBody> {
             Text(
               s.forgotPasswordDescription,
               textAlign: TextAlign.right,
-              style: TextStyles.semiBold16.copyWith(color: Color(0xFF616A6B)),
+              style: TextStyles.semiBold16.copyWith(
+                color: Theme.of(context).colorScheme.onSurface,
+              ),
             ),
             SizedBox(height: 30),
             CustomTextFormField(

@@ -40,7 +40,9 @@ class ProductItem extends StatelessWidget {
                   },
                   icon: Icon(
                     isFavorite ? Icons.favorite : Icons.favorite_outline,
-                    color: isFavorite ? Colors.red : Colors.grey,
+                    color: isFavorite
+                        ? Colors.red
+                        : Theme.of(context).colorScheme.onSurfaceVariant,
                   ),
                 );
               },
@@ -61,7 +63,9 @@ class ProductItem extends StatelessWidget {
                     : Container(
                         height: 100,
                         width: 150,
-                        decoration: BoxDecoration(color: Colors.grey.shade200),
+                        decoration: BoxDecoration(
+                          color: Theme.of(context).colorScheme.surfaceContainer,
+                        ),
                       ),
                 SizedBox(height: 4),
                 ListTile(

@@ -16,13 +16,13 @@ class DontHaveAnAccountWidget extends StatelessWidget {
           TextSpan(
             text: s.noAccountQuestion,
             style: TextStyles.semiBold16.copyWith(
-              color: const Color(0xFF949D9E),
+              color: Theme.of(context).colorScheme.onSurfaceVariant,
             ),
           ),
           TextSpan(
             text: ' ',
             style: TextStyles.semiBold16.copyWith(
-              color: const Color(0xFF616A6B),
+              color: Theme.of(context).colorScheme.onSurface,
             ),
           ),
           TextSpan(

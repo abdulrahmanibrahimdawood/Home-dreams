@@ -15,9 +15,11 @@ class SearchKeywordHeader extends StatelessWidget {
       children: [
         Text(
           S.of(context).recentSearches,
-          style: TextStyles.semiBold13.copyWith(color: Colors.black),
+          style: TextStyles.semiBold13.copyWith(
+            color: Theme.of(context).colorScheme.onSurface,
+          ),
         ),
-        Spacer(),
+        const Spacer(),
         InkWell(
           onTap: () {
             context.read<ManageKeywordsCubit>().clearKeywords().then((_) {
@@ -27,7 +29,9 @@ class SearchKeywordHeader extends StatelessWidget {
           },
           child: Text(
             S.of(context).deleteAll,
-            style: TextStyles.semiBold13.copyWith(color: Colors.grey),
+            style: TextStyles.semiBold13.copyWith(
+              color: Theme.of(context).colorScheme.onSurfaceVariant,
+            ),
           ),
         ),
       ],

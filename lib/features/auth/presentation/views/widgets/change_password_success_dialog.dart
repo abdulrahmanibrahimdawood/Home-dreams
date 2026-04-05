@@ -25,7 +25,9 @@ class SuccessDialog extends StatelessWidget {
               Text(
                 s.passwordChangedSuccess,
                 textAlign: TextAlign.center,
-                style: TextStyles.semiBold16.copyWith(color: Colors.black),
+                style: TextStyles.semiBold16.copyWith(
+                  color: Theme.of(context).colorScheme.onSurface,
+                ),
               ),
               SizedBox(height: 24),
               SizedBox(
@@ -42,7 +44,9 @@ class SuccessDialog extends StatelessWidget {
                   },
                   child: Text(
                     s.ok,
-                    style: TextStyles.semiBold16.copyWith(color: Colors.white),
+                    style: TextStyles.semiBold16.copyWith(
+                      color: Theme.of(context).colorScheme.onPrimary,
+                    ),
                   ),
                 ),
               ),
