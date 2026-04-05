@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'app_colors.dart';
 
 /// All palette values live in [AppColors]. This file maps them into [ThemeData]
@@ -7,6 +8,7 @@ class AppTheme {
   // 🌞 LIGHT
   static ThemeData lightTheme = ThemeData(
     useMaterial3: true,
+    fontFamily: 'Cairo',
     brightness: Brightness.light,
     colorScheme: ColorScheme.light(
       primary: AppColors.primaryColor,
@@ -82,6 +84,7 @@ class AppTheme {
   // 🌙 DARK
   static ThemeData darkTheme = ThemeData(
     useMaterial3: true,
+    fontFamily: 'Cairo',
     brightness: Brightness.dark,
     colorScheme: ColorScheme.dark(
       primary: AppColors.primaryDark,
@@ -144,9 +147,7 @@ class AppTheme {
       ),
     ),
     textButtonTheme: TextButtonThemeData(
-      style: TextButton.styleFrom(
-        foregroundColor: AppColors.lightPrimaryDark,
-      ),
+      style: TextButton.styleFrom(foregroundColor: AppColors.lightPrimaryDark),
     ),
     floatingActionButtonTheme: const FloatingActionButtonThemeData(
       backgroundColor: AppColors.secondaryDark,
