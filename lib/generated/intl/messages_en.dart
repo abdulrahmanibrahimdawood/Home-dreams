@@ -49,6 +49,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "checkoutStepAddress": MessageLookupByLibrary.simpleMessage("Address"),
     "checkoutStepPayment": MessageLookupByLibrary.simpleMessage("Payment"),
     "checkoutStepShipping": MessageLookupByLibrary.simpleMessage("Shipping"),
+    "chooseLanguage": MessageLookupByLibrary.simpleMessage("Choose language"),
     "cityHint": MessageLookupByLibrary.simpleMessage("City"),
     "cityRequired": MessageLookupByLibrary.simpleMessage(
       "Please enter the city",

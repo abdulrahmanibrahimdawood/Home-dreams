@@ -154,5 +154,6 @@
     "passwordUpdateError": "حدث خطأ أثناء تحديث كلمة المرور",
     "wrongCurrentPassword": "كلمة المرور الحالية غير صحيحة",
     "emailUpdateError": "حدث خطأ أثناء تحديث البريد الإلكتروني",
-    "paypalNote": "تواصل معنا لأي استفسار حول طلبك."
+    "paypalNote": "تواصل معنا لأي استفسار حول طلبك.",
+    "chooseLanguage": "اختر اللغة"
 }

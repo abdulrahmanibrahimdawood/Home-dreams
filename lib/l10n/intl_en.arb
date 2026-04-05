@@ -154,5 +154,6 @@
     "passwordUpdateError": "Error updating password",
     "wrongCurrentPassword": "Current password is incorrect",
     "emailUpdateError": "Error updating email",
-    "paypalNote": "Contact us for any questions on your order."
+    "paypalNote": "Contact us for any questions on your order.",
+    "chooseLanguage": "Choose language"
 }

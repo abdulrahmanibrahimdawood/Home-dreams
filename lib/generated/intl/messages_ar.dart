@@ -53,6 +53,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "checkoutStepAddress": MessageLookupByLibrary.simpleMessage("العنوان"),
     "checkoutStepPayment": MessageLookupByLibrary.simpleMessage("الدفع"),
     "checkoutStepShipping": MessageLookupByLibrary.simpleMessage("الشحن"),
+    "chooseLanguage": MessageLookupByLibrary.simpleMessage("اختر اللغة"),
     "cityHint": MessageLookupByLibrary.simpleMessage("المدينه"),
     "cityRequired": MessageLookupByLibrary.simpleMessage("يرجى كتابة المدينه"),
     "clearSort": MessageLookupByLibrary.simpleMessage("إلغاء الترتيب"),

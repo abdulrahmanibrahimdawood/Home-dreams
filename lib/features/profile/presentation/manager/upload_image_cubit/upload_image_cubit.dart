@@ -1,7 +1,7 @@
 import 'dart:io';
 
-import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter_bloc/flutter_bloc.dart' show Cubit;
 import 'package:home_dreams/features/checkout/domain/repo/images_repo.dart';
 
 part 'upload_image_state.dart';

@@ -13,9 +13,11 @@ import 'package:home_dreams/core/utils/app_colors.dart';
 import 'package:home_dreams/features/favorites/presentation/views/manager/favorite_cubit/favorite_cubit.dart';
 import 'package:home_dreams/features/home/presentation/manager/cart_cubit/cart_cubit.dart';
 import 'package:home_dreams/features/home/presentation/manager/cart_item_cubit/cart_item_cubit.dart';
+import 'package:home_dreams/features/profile/presentation/manager/local_provider/local_provider.dart';
 import 'package:home_dreams/features/splash/presentation/views/splash_view.dart';
 import 'package:home_dreams/firebase_options.dart';
 import 'package:home_dreams/generated/l10n.dart';
+import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -27,16 +29,22 @@ void main() async {
   setupGetIt();
   await Hive.initFlutter();
   await Hive.openBox(kSearchHistoryBox);
-  runApp(const ECommerce());
+
+  runApp(
+    MultiProvider(
+      providers: [ChangeNotifierProvider(create: (_) => LocaleProvider())],
+      child: const ECommerce(),
+    ),
+  );
 }
 
-//    abdo55@gmail.com
-//    123456789
 class ECommerce extends StatelessWidget {
   const ECommerce({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final localeProvider = Provider.of<LocaleProvider>(context);
+
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (context) => CartCubit()),
@@ -45,19 +53,19 @@ class ECommerce extends StatelessWidget {
       ],
       child: MaterialApp(
         theme: ThemeData(
-          scaffoldBackgroundColor: Color.fromARGB(255, 252, 250, 249),
+          scaffoldBackgroundColor: const Color.fromARGB(255, 252, 250, 249),
           fontFamily: 'Cairo',
           colorScheme: ColorScheme.fromSeed(seedColor: AppColors.primaryColor),
         ),
-        localizationsDelegates: [
+        localizationsDelegates: const [
           S.delegate,
           GlobalMaterialLocalizations.delegate,
           GlobalWidgetsLocalizations.delegate,
           GlobalCupertinoLocalizations.delegate,
         ],
-        debugShowCheckedModeBanner: false,
         supportedLocales: S.delegate.supportedLocales,
-        locale: const Locale('ar'),
+        locale: localeProvider.locale,
+        debugShowCheckedModeBanner: false,
         onGenerateRoute: onGenerateRoutes,
         initialRoute: SplashView.routeName,
       ),

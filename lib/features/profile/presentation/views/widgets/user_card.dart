@@ -9,7 +9,7 @@ import 'package:home_dreams/core/helper_funcations/get_user.dart';
 import 'package:home_dreams/core/services/firestore_services.dart';
 import 'package:home_dreams/core/utils/app_images.dart';
 import 'package:home_dreams/core/utils/app_text_styles.dart';
-import 'package:home_dreams/features/profile/presentation/manager/cubit/upload_image_cubit.dart';
+import 'package:home_dreams/features/profile/presentation/manager/upload_image_cubit/upload_image_cubit.dart';
 import 'package:home_dreams/features/profile/presentation/views/widgets/custom_image_container.dart';
 import 'package:home_dreams/generated/l10n.dart';
 import 'package:image_picker/image_picker.dart';

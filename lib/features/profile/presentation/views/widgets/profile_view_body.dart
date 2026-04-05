@@ -10,6 +10,7 @@ import 'package:home_dreams/core/utils/app_text_styles.dart';
 import 'package:home_dreams/features/favorites/presentation/views/favorites_view.dart';
 import 'package:home_dreams/features/favorites/presentation/views/manager/favorite_cubit/favorite_cubit.dart';
 import 'package:home_dreams/features/home/presentation/manager/cart_cubit/cart_cubit.dart';
+import 'package:home_dreams/features/profile/presentation/manager/local_provider/local_provider.dart';
 import 'package:home_dreams/features/profile/presentation/views/edit_profile_view.dart';
 import 'package:home_dreams/features/profile/presentation/views/who_are_we_view.dart';
 import 'package:home_dreams/features/profile/presentation/views/widgets/custom_cupertino_switch.dart';
@@ -17,24 +18,27 @@ import 'package:home_dreams/features/profile/presentation/views/widgets/logout_b
 import 'package:home_dreams/features/profile/presentation/views/widgets/profile_settings_item.dart';
 import 'package:home_dreams/features/profile/presentation/views/widgets/user_card.dart';
 import 'package:home_dreams/generated/l10n.dart';
+import 'package:provider/provider.dart';
 
 class ProfileViewBody extends StatelessWidget {
   const ProfileViewBody(this.imageUrl, {super.key});
   final String? imageUrl;
+
   @override
   Widget build(BuildContext context) {
     final s = S.of(context);
+    final localeProvider = Provider.of<LocaleProvider>(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SizedBox(height: 16),
+        const SizedBox(height: 16),
         UserCard(imageUrl: imageUrl),
-        SizedBox(height: 24),
+        const SizedBox(height: 24),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: kHorizontalPadding),
           child: Text(s.generalSection, style: TextStyles.semiBold13),
         ),
-        SizedBox(height: 16),
+        const SizedBox(height: 16),
         ProfileSettingsItem(
           onTap: () {
             Navigator.pushNamed(context, EditProfileView.routeName);
@@ -42,8 +46,7 @@ class ProfileViewBody extends StatelessWidget {
           text: s.personalProfile,
           imagePath: Assets.assetsImagesProfileIconSettings,
         ),
-        SizedBox(height: 4),
-
+        const SizedBox(height: 4),
         ProfileSettingsItem(
           onTap: () {
             Navigator.push(
@@ -59,43 +62,52 @@ class ProfileViewBody extends StatelessWidget {
               ),
             );
           },
-
           text: s.favorites,
           imagePath: Assets.assetsImagesFavorite,
         ),
-
-        SizedBox(height: 4),
+        const SizedBox(height: 4),
         ProfileSettingsItem(
           text: s.language,
           imagePath: Assets.assetsImagesLaungauge,
-          trailing: Row(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              Text(
-                s.arabic,
-                style: TextStyles.regular13.copyWith(
-                  color: const Color(0xFF0C0D0D),
+          trailing: InkWell(
+            onTap: () => showLanguageDialog(context),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Text(
+                  localeProvider.currentLang == AppLanguage.arabic
+                      ? s.arabic
+                      : 'English',
+                  style: TextStyles.regular13.copyWith(
+                    color: const Color(0xFF0C0D0D),
+                  ),
                 ),
-              ),
-              SizedBox(width: 2),
-              isArabic() ? SvgPicture.asset(Assets.assetsImagesArrowBackIcon) :
-              Transform.rotate(angle:pi, child: SvgPicture.asset(Assets.assetsImagesArrowBackIcon)),
-            ],
+                const SizedBox(width: 2),
+                isArabic()
+                    ? SvgPicture.asset(Assets.assetsImagesArrowBackIcon)
+                    : Transform.rotate(
+                        angle: pi,
+                        child: SvgPicture.asset(
+                          Assets.assetsImagesArrowBackIcon,
+                        ),
+                      ),
+              ],
+            ),
           ),
         ),
-        SizedBox(height: 4),
+        const SizedBox(height: 4),
         ProfileSettingsItem(
           text: s.appearanceMode,
           imagePath: Assets.assetsImagesMode,
           trailing: CustomCupertinoSwitch(onChanged: (value) {}),
         ),
-        SizedBox(height: 22),
+        const SizedBox(height: 22),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: kHorizontalPadding),
           child: Text(s.help),
         ),
-        SizedBox(height: 16),
+        const SizedBox(height: 16),
         ProfileSettingsItem(
           onTap: () {
             Navigator.pushNamed(context, WhoAreWeView.routeName);
@@ -103,10 +115,50 @@ class ProfileViewBody extends StatelessWidget {
           text: s.whoWeAre,
           imagePath: Assets.assetsImagesWhoAreWe,
         ),
-        Spacer(),
+        const Spacer(),
         LogoutButton(onTap: () {}),
-        SizedBox(height: 32),
+        const SizedBox(height: 32),
       ],
     );
   }
+}
+
+void showLanguageDialog(BuildContext context) {
+  final localeProvider = Provider.of<LocaleProvider>(context, listen: false);
+  final currentLang = localeProvider.currentLang;
+
+  showDialog(
+    context: context,
+    builder: (context) {
+      return AlertDialog(
+        title: Text(S.of(context).chooseLanguage),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+
+          children: [
+            ListTile(
+              title: const Text("العربية"),
+              trailing: currentLang == AppLanguage.arabic
+                  ? const Icon(Icons.check)
+                  : null,
+              onTap: () {
+                localeProvider.changeLanguage(AppLanguage.arabic);
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              title: const Text("English"),
+              trailing: currentLang == AppLanguage.english
+                  ? const Icon(Icons.check)
+                  : null,
+              onTap: () {
+                localeProvider.changeLanguage(AppLanguage.english);
+                Navigator.pop(context);
+              },
+            ),
+          ],
+        ),
+      );
+    },
+  );
 }
