@@ -134,7 +134,7 @@ class ProfileViewBody extends StatelessWidget {
           imagePath: Assets.assetsImagesWhoAreWe,
         ),
         const Spacer(),
-        LogoutButton(onTap: () {}),
+        LogoutButton(),
         const SizedBox(height: 32),
       ],
     );

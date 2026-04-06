@@ -19,4 +19,5 @@ abstract class AuthRepo {
   Future saveUserData({required UserEntity user});
   Future<UserEntity> getUserData({required String uid});
   Future<void> resetPassword({required String email});
+  Future<void> signOut();
 }

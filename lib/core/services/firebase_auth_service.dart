@@ -32,22 +32,16 @@ class FirebaseAuthService {
       if (e.code == 'weak-password') {
         throw CustomException(message: S.current.weakPassword);
       } else if (e.code == 'email-already-in-use') {
-        throw CustomException(
-          message: S.current.emailAlreadyInUse,
-        );
+        throw CustomException(message: S.current.emailAlreadyInUse);
       } else if (e.code == 'network-request-failed') {
         throw CustomException(message: S.current.noInternet);
       } else if (e.code == 'invalid-email') {
         throw CustomException(message: S.current.invalidEmailFormat);
       } else {
-        throw CustomException(
-          message: S.current.genericAuthErrorAlt,
-        );
+        throw CustomException(message: S.current.genericAuthErrorAlt);
       }
     } catch (e) {
-      throw CustomException(
-        message: S.current.genericAuthErrorAlt,
-      );
+      throw CustomException(message: S.current.genericAuthErrorAlt);
     }
   }
 
@@ -66,32 +60,22 @@ class FirebaseAuthService {
         'Exception in FirebaseAuthService.signInWithEmailAndPassword: ${e.toString()}',
       );
       if (e.code == 'user-not-found') {
-        throw CustomException(
-          message: S.current.wrongCredentials,
-        );
+        throw CustomException(message: S.current.wrongCredentials);
       } else if (e.code == 'wrong-password') {
-        throw CustomException(
-          message: S.current.wrongCredentials,
-        );
+        throw CustomException(message: S.current.wrongCredentials);
       } else if (e.code == 'invalid-credential') {
-        throw CustomException(
-          message: S.current.wrongCredentials,
-        );
+        throw CustomException(message: S.current.wrongCredentials);
       } else if (e.code == 'network-request-failed') {
         throw CustomException(message: S.current.noInternet);
       } else {
-        throw CustomException(
-          message: S.current.genericAuthErrorAlt,
-        );
+        throw CustomException(message: S.current.genericAuthErrorAlt);
       }
     } catch (e) {
       dev.log(
         'Exception in FirebaseAuthService.signInWithEmailAndPassword: ${e.toString()}',
       );
     }
-    throw CustomException(
-      message: S.current.genericAuthErrorAlt,
-    );
+    throw CustomException(message: S.current.genericAuthErrorAlt);
   }
 
   Future<User> signInWithGoogle() async {
@@ -190,9 +174,7 @@ class FirebaseAuthService {
     try {
       await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
     } catch (e) {
-      throw CustomException(
-        message: S.current.genericAuthErrorAlt,
-      );
+      throw CustomException(message: S.current.genericAuthErrorAlt);
     }
   }
 
@@ -251,9 +233,11 @@ class FirebaseAuthService {
       await user.verifyBeforeUpdateEmail(newEmail);
       await user.reload();
     } on FirebaseAuthException catch (e) {
-      throw CustomException(
-        message: e.message ?? S.current.emailUpdateError,
-      );
+      throw CustomException(message: e.message ?? S.current.emailUpdateError);
     }
+  }
+
+  Future<void> signOut() async {
+    await FirebaseAuth.instance.signOut();
   }
 }

@@ -182,9 +182,17 @@ class AuthRepoImpl extends AuthRepo {
     try {
       await firebaseAuthService.resetPassword(email: email);
     } catch (e) {
-      throw CustomException(
-        message: S.current.genericAuthErrorAlt,
-      );
+      throw CustomException(message: S.current.genericAuthErrorAlt);
+    }
+  }
+
+  @override
+  Future<void> signOut() async {
+    try {
+      await firebaseAuthService.signOut();
+    } catch (e) {
+      log('Exception in AuthRepoImpl.signOut: ${e.toString()}');
+      throw CustomException(message: S.current.genericAuthErrorAlt);
     }
   }
 }
