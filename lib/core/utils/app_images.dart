@@ -90,6 +90,10 @@ class Assets {
   /// assets/images/Ellipse11.png
   static const String assetsImagesEllipse11 = "assets/images/Ellipse11.png";
 
+  /// Assets for assetsImagesEllipseDetails
+  /// assets/images/ellipse_details.svg
+  static const String assetsImagesEllipseDetails = "assets/images/ellipse_details.svg";
+
   /// Assets for assetsImagesFacebookIcon
   /// assets/images/facebook_icon.svg
   static const String assetsImagesFacebookIcon = "assets/images/facebook_icon.svg";
@@ -197,6 +201,10 @@ class Assets {
   /// Assets for assetsImagesSplashButtom
   /// assets/images/splash_buttom.svg
   static const String assetsImagesSplashButtom = "assets/images/splash_buttom.svg";
+
+  /// Assets for assetsImagesStar
+  /// assets/images/star.svg
+  static const String assetsImagesStar = "assets/images/star.svg";
 
   /// Assets for assetsImagesTrash
   /// assets/images/trash.svg

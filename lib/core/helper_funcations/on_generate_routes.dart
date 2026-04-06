@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:home_dreams/core/entities/product_entity.dart';
 import 'package:home_dreams/features/auth/presentation/views/confirm_code_view.dart';
 import 'package:home_dreams/features/auth/presentation/views/forget_password_view.dart';
 import 'package:home_dreams/features/auth/presentation/views/new_password_view.dart';
@@ -9,6 +10,7 @@ import 'package:home_dreams/features/checkout/presentation/views/checkout_view.d
 import 'package:home_dreams/features/favorites/presentation/views/favorites_view.dart';
 import 'package:home_dreams/features/home/domain/entites/cart_entity.dart';
 import 'package:home_dreams/features/home/presentation/views/main_view.dart';
+import 'package:home_dreams/features/home/presentation/views/product_details_view.dart';
 import 'package:home_dreams/features/on_boarding/presentation/views/on_boardig_view.dart';
 import 'package:home_dreams/features/profile/presentation/views/edit_profile_view.dart';
 import 'package:home_dreams/features/profile/presentation/views/who_are_we_view.dart';
@@ -50,7 +52,11 @@ Route<dynamic> onGenerateRoutes(RouteSettings settings) {
       return MaterialPageRoute(builder: (context) => const FavoritesView());
     case WhoAreWeView.routeName:
       return MaterialPageRoute(builder: (context) => const WhoAreWeView());
-
+    case ProductDetailsView.routeName:
+      final product = settings.arguments as ProductEntity;
+      return MaterialPageRoute(
+        builder: (context) => ProductDetailsView(productEntity: product),
+      );
     default:
       return MaterialPageRoute(builder: (context) => const Scaffold());
   }
