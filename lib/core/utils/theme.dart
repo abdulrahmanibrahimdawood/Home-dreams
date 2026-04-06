@@ -35,7 +35,7 @@ class AppTheme {
     dividerColor: AppColors.dividerLight,
     appBarTheme: const AppBarTheme(
       backgroundColor: AppColors.primaryColor,
-      foregroundColor: Colors.white,
+      foregroundColor: Color(0xFF1A120C),
       elevation: 0,
     ),
     cardTheme: const CardThemeData(

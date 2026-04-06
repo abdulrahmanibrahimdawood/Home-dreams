@@ -72,28 +72,36 @@ class ProfileViewBody extends StatelessWidget {
           imagePath: Assets.assetsImagesLaungauge,
           trailing: InkWell(
             onTap: () => showLanguageDialog(context),
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Text(
-                  localeProvider.currentLang == AppLanguage.arabic
-                      ? s.arabic
-                      : 'English',
-                  style: TextStyles.regular13.copyWith(
-                    color: Theme.of(context).colorScheme.onSurface,
-                  ),
-                ),
-                const SizedBox(width: 2),
-                isArabic()
-                    ? SvgPicture.asset(Assets.assetsImagesArrowBackIcon)
-                    : Transform.rotate(
-                        angle: pi,
-                        child: SvgPicture.asset(
-                          Assets.assetsImagesArrowBackIcon,
+            child: Builder(
+              builder: (context) {
+                // final isDark = context.watch<ThemeProvider>().isDark;
+
+                return Row(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Text(
+                      localeProvider.currentLang == AppLanguage.arabic
+                          ? s.arabic
+                          : 'English',
+                      style: TextStyles.regular13.copyWith(
+                        color: Theme.of(context).colorScheme.onSurface,
+                      ),
+                    ),
+                    const SizedBox(width: 2),
+                    Transform.rotate(
+                      angle: isArabic() ? 0 : pi,
+                      child: SvgPicture.asset(
+                        Assets.assetsImagesArrowBackIcon,
+                        colorFilter: ColorFilter.mode(
+                          Theme.of(context).colorScheme.onSurface,
+                          BlendMode.srcIn,
                         ),
                       ),
-              ],
+                    ),
+                  ],
+                );
+              },
             ),
           ),
         ),
