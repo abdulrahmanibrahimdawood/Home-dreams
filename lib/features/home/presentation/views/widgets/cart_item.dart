@@ -64,7 +64,7 @@ class CartItem extends StatelessWidget {
                       ],
                     ),
                     Text(
-                      '${carItemEntity.calculateTotalWeight()} ${S.of(context).unitKg}',
+                      '${carItemEntity.calculateTotalWeight()} ${S.of(context).forThePiece}',
                       style: TextStyles.regular13.copyWith(
                         color: Theme.of(context).colorScheme.secondary,
                       ),

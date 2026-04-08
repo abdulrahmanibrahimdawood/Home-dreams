@@ -66,7 +66,7 @@
     "payWord": "الدفع ",
     "currencyEgp": "جنيه",
     "cartTitle": "السلة",
-    "unitKg": "كم",
+    "forThePiece": "للقطعة",
     "navHome": "الرئيسية",
     "navProducts": "المنتجات",
     "navCart": "سلة التسوق",
@@ -155,5 +155,7 @@
     "wrongCurrentPassword": "كلمة المرور الحالية غير صحيحة",
     "emailUpdateError": "حدث خطأ أثناء تحديث البريد الإلكتروني",
     "paypalNote": "تواصل معنا لأي استفسار حول طلبك.",
-    "chooseLanguage": "اختر اللغة"
+    "chooseLanguage": "اختر اللغة",
+    "addToCart": "اضافة للسلة",
+    "reviews": "المراجعات"
 }

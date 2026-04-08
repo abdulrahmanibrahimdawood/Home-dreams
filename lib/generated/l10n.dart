@@ -589,9 +589,14 @@ class S {
     return Intl.message('Cart', name: 'cartTitle', desc: '', args: []);
   }
 
-  /// `kg`
-  String get unitKg {
-    return Intl.message('kg', name: 'unitKg', desc: '', args: []);
+  /// `for the piece`
+  String get forThePiece {
+    return Intl.message(
+      'for the piece',
+      name: 'forThePiece',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `Home`
@@ -1362,6 +1367,16 @@ class S {
       desc: '',
       args: [],
     );
+  }
+
+  /// `Add to cart`
+  String get addToCart {
+    return Intl.message('Add to cart', name: 'addToCart', desc: '', args: []);
+  }
+
+  /// `Reviews`
+  String get reviews {
+    return Intl.message('Reviews', name: 'reviews', desc: '', args: []);
   }
 }
 

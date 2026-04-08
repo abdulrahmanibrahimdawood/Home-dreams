@@ -24,5 +24,5 @@ class CartItemEntity extends Equatable {
   }
 
   @override
-  List<Object?> get props => [productEntity];
+  List<Object?> get props => [productEntity, quantity];
 }

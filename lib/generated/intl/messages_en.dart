@@ -23,6 +23,7 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
     "aboutCompanyPrefix": MessageLookupByLibrary.simpleMessage("About "),
+    "addToCart": MessageLookupByLibrary.simpleMessage("Add to cart"),
     "addedToCartSnackbar": MessageLookupByLibrary.simpleMessage(
       "Product added to cart",
     ),
@@ -119,6 +120,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "floorApartmentRequired": MessageLookupByLibrary.simpleMessage(
       "Please enter floor / apartment number",
     ),
+    "forThePiece": MessageLookupByLibrary.simpleMessage("for the piece"),
     "forgotPassword": MessageLookupByLibrary.simpleMessage("Forgot password?"),
     "forgotPasswordDescription": MessageLookupByLibrary.simpleMessage(
       "Don\'t worry, enter your email and we\'ll send you a verification code.",
@@ -260,6 +262,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Password reset link sent",
     ),
     "resultsWord": MessageLookupByLibrary.simpleMessage("results"),
+    "reviews": MessageLookupByLibrary.simpleMessage("Reviews"),
     "saveChanges": MessageLookupByLibrary.simpleMessage("Save changes"),
     "search": MessageLookupByLibrary.simpleMessage("Search"),
     "searchHint": MessageLookupByLibrary.simpleMessage("Search…"),
@@ -299,7 +302,6 @@ class MessageLookup extends MessageLookupByLibrary {
       "terms and conditions",
     ),
     "totalLabel": MessageLookupByLibrary.simpleMessage("Total"),
-    "unitKg": MessageLookupByLibrary.simpleMessage("kg"),
     "verificationCodeHint": MessageLookupByLibrary.simpleMessage(
       "Verification code",
     ),

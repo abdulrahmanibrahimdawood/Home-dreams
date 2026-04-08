@@ -23,6 +23,7 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
     "aboutCompanyPrefix": MessageLookupByLibrary.simpleMessage("حول "),
+    "addToCart": MessageLookupByLibrary.simpleMessage("اضافة للسلة"),
     "addedToCartSnackbar": MessageLookupByLibrary.simpleMessage(
       "تمت إضافة المنتج إلى السلة",
     ),
@@ -119,6 +120,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "floorApartmentRequired": MessageLookupByLibrary.simpleMessage(
       "يرجى كتابة رقم الطابق , رقم الشقه ..",
     ),
+    "forThePiece": MessageLookupByLibrary.simpleMessage("للقطعة"),
     "forgotPassword": MessageLookupByLibrary.simpleMessage(
       " نسيت كلمة المرور؟",
     ),
@@ -256,6 +258,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "تم إرسال رابط إعادة تعيين كلمة المرور",
     ),
     "resultsWord": MessageLookupByLibrary.simpleMessage("نتائج"),
+    "reviews": MessageLookupByLibrary.simpleMessage("المراجعات"),
     "saveChanges": MessageLookupByLibrary.simpleMessage("حفظ التغيرات"),
     "search": MessageLookupByLibrary.simpleMessage("بحث"),
     "searchHint": MessageLookupByLibrary.simpleMessage("ابحث عن......."),
@@ -291,7 +294,6 @@ class MessageLookup extends MessageLookupByLibrary {
       "الشروط والأحكام الخاصة بنا",
     ),
     "totalLabel": MessageLookupByLibrary.simpleMessage("الكلي"),
-    "unitKg": MessageLookupByLibrary.simpleMessage("كم"),
     "verificationCodeHint": MessageLookupByLibrary.simpleMessage("كود التحقق"),
     "verificationCodeRequired": MessageLookupByLibrary.simpleMessage(
       "ادخل رمز التحقق",
