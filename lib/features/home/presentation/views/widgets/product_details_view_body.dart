@@ -20,9 +20,8 @@ class ProductDetailsViewBody extends StatelessWidget {
           children: [
             SizedBox(
               width: double.infinity,
-              child: SvgPicture.asset(
-                Assets.assetsImagesEllipseDetails,
-                width: screenWidth,
+              child: Image.network(
+                'https://skzbelzesdrnxhsthsat.supabase.co/storage/v1/object/public/${productEntity.imageUrl!}',
                 fit: BoxFit.cover,
               ),
             ),
@@ -36,7 +35,7 @@ class ProductDetailsViewBody extends StatelessWidget {
         ),
         ListTile(
           title: Text(
-            'بطيخ',
+            productEntity.name,
             style: TextStyles.bold16.copyWith(
               color: Theme.of(context).textTheme.headlineSmall!.color,
             ),
@@ -45,7 +44,7 @@ class ProductDetailsViewBody extends StatelessWidget {
             TextSpan(
               children: [
                 TextSpan(
-                  text: '20جنية / ',
+                  text: '${productEntity.price} / ',
                   style: TextStyles.bold13.copyWith(
                     color: Theme.of(context).colorScheme.secondary,
                   ),
@@ -121,10 +120,13 @@ class ProductDetailsViewBody extends StatelessWidget {
         const SizedBox(height: 8),
         Padding(
           padding: EdgeInsets.symmetric(horizontal: kHorizontalPadding),
-          child: Text(
-            "ينتمي إلى الفصيلة القرعية ولثمرته لُب حلو المذاق وقابل للأكل، وبحسب علم النبات فهي تعتبر ثمار لبيّة، تستعمل لفظة البطيخ للإشارة إلى النبات نفسه أو إلى الثمرة تحديداً",
-            style: TextStyles.regular13.copyWith(
-              color: Theme.of(context).textTheme.bodyMedium!.color,
+          child: Align(
+            alignment: Alignment.topRight,
+            child: Text(
+              productEntity.description,
+              style: TextStyles.regular13.copyWith(
+                color: Theme.of(context).textTheme.bodyMedium!.color,
+              ),
             ),
           ),
         ),
